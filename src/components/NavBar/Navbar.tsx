@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import styles from './Navbar.module.scss';
 import Button from '../UI/Button';
+
+import styles from './Navbar.module.scss';
 
 interface NavBarProps {
   navbarProps: {
@@ -11,10 +12,15 @@ interface NavBarProps {
     linkPageCopy: string;
     profileDetailsPageCopy: string;
     buttonPreviewCopy: string;
+    buttonPreviewIcon: string;
   };
+
+  isMobile: boolean;
 }
 
 function Navbar(props: NavBarProps) {
+  const { navbarProps, isMobile } = props;
+  console.log(isMobile);
   const {
     mainLogoDesktop,
     logoLinkPage,
@@ -22,7 +28,9 @@ function Navbar(props: NavBarProps) {
     linkPageCopy,
     profileDetailsPageCopy,
     buttonPreviewCopy,
-  } = props.navbarProps;
+    buttonPreviewIcon,
+  } = navbarProps;
+
   return (
     <nav className={styles.navbar}>
       <Link to={'/'}>
@@ -31,15 +39,21 @@ function Navbar(props: NavBarProps) {
       <section className={styles.navbarLinks}>
         <Link to={'/links'} className={styles.navbarLinks}>
           <img src={logoLinkPage}></img>
-          <span>{linkPageCopy}</span>
+          <span className={styles['link-copy']}>{linkPageCopy}</span>
         </Link>
         <Link to={'/profileDetails'} className={styles.navbarLinks}>
           <img src={logoProfilePage}></img>
-          <span>{profileDetailsPageCopy}</span>
+          <span className={styles['link-copy']}>{profileDetailsPageCopy}</span>
         </Link>
       </section>
-      <Link to={'/preview'}>
-        <Button priority='secondary'>{buttonPreviewCopy}</Button>
+      <Link to={'/preview'} className={styles.navbarLinks}>
+        <Button priority='secondary'>
+          <span className={styles['link-copy']}>{buttonPreviewCopy}</span>
+          <img
+            className={styles['button-preview-icon']}
+            src={buttonPreviewIcon}
+          ></img>
+        </Button>
       </Link>
     </nav>
   );

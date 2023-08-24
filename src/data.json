@@ -7,6 +7,7 @@
         "logoProfilePage": "/src/assets/images/icon-profile-details-header.svg",
         "linkPageCopy": "Links",
         "profileDetailsPageCopy": "Profile Details",
-        "buttonPreviewCopy": "Preview"
+        "buttonPreviewCopy": "Preview",
+        "buttonPreviewIcon": "/src/assets/images/icon-preview-header.svg"
     }
 }
