@@ -1,0 +1,72 @@
+@import '../../sassStyles/variables';
+@import '../../sassStyles/mixins';
+
+.navbar {
+  background-color: $white;
+  padding: 2rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include responsiveMax($phone) {
+    padding: 1rem;
+  }
+
+  .mainLogo-big {
+    @include responsiveMax($phone) {
+      display: none;
+    }
+  }
+
+  .mainLogo-small {
+    display: none;
+    @include responsiveMax($phone) {
+      display: inline-block;
+    }
+  }
+
+  & .navbarLinks {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+
+    &:hover {
+      & svg {
+        fill: $purple;
+      }
+      transition: all 200ms ease-in;
+      color: $purple;
+    }
+
+    & a {
+      text-decoration: none;
+      color: $dark-grey;
+      margin-right: 1rem;
+    }
+
+    & .link-copy {
+      @include responsiveMax($phone) {
+        display: none;
+      }
+    }
+
+    & .previewBtn {
+      @include responsiveMax($phone) {
+        width: 10px;
+        height: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    & .button-preview-icon {
+      display: none;
+      @include responsiveMax($phone) {
+        display: inline-block;
+      }
+    }
+  }
+}
