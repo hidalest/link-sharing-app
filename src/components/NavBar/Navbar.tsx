@@ -23,6 +23,7 @@ function Navbar(props: NavBarProps) {
   console.log(isMobile);
   const {
     mainLogoDesktop,
+    mainLogoSmall,
     logoLinkPage,
     logoProfilePage,
     linkPageCopy,
@@ -34,7 +35,8 @@ function Navbar(props: NavBarProps) {
   return (
     <nav className={styles.navbar}>
       <Link to={'/'}>
-        <img src={mainLogoDesktop}></img>
+        <img src={mainLogoDesktop} className={styles['mainLogo-big']}></img>
+        <img src={mainLogoSmall} className={styles['mainLogo-small']}></img>
       </Link>
       <section className={styles.navbarLinks}>
         <Link to={'/links'} className={styles.navbarLinks}>
@@ -46,8 +48,8 @@ function Navbar(props: NavBarProps) {
           <span className={styles['link-copy']}>{profileDetailsPageCopy}</span>
         </Link>
       </section>
-      <Link to={'/preview'} className={styles.navbarLinks}>
-        <Button priority='secondary'>
+      <Link to={'/preview'} className={`${styles.navbarLinks} `}>
+        <Button priority='secondary' className={styles.previewBtn}>
           <span className={styles['link-copy']}>{buttonPreviewCopy}</span>
           <img
             className={styles['button-preview-icon']}

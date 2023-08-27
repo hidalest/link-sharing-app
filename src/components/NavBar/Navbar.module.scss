@@ -9,6 +9,23 @@
   justify-content: space-between;
   align-items: center;
 
+  @include responsiveMax($phone) {
+    padding: 1rem;
+  }
+
+  .mainLogo-big {
+    @include responsiveMax($phone) {
+      display: none;
+    }
+  }
+
+  .mainLogo-small {
+    display: none;
+    @include responsiveMax($phone) {
+      display: inline-block;
+    }
+  }
+
   & .navbarLinks {
     display: flex;
     flex-direction: row;
@@ -30,8 +47,25 @@
     }
 
     & .link-copy {
-      @include responsiveMax($tablet) {
+      @include responsiveMax($phone) {
         display: none;
+      }
+    }
+
+    & .previewBtn {
+      @include responsiveMax($phone) {
+        width: 10px;
+        height: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    & .button-preview-icon {
+      display: none;
+      @include responsiveMax($phone) {
+        display: inline-block;
       }
     }
   }
