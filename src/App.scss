@@ -22,4 +22,16 @@ body {
       padding: 2.4rem;
     }
   }
+
+  & .buttonSave--container {
+    background-color: $white;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    padding: 2rem;
+
+    & button {
+      text-align: center;
+      width: 93%;
+    }
+  }
 }
