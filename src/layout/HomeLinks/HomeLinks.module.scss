@@ -1,0 +1,21 @@
+@import '../../sassStyles/variables';
+
+.homeLinks {
+  background-color: $white;
+  border-radius: $border-radius;
+  padding: 2rem;
+
+  &-mainIntructions {
+    color: $grey;
+    font-weight: lighter;
+    margin-top: 0.8rem;
+    line-height: 2.3rem;
+  }
+
+  &-buttonAdd {
+    width: 90%;
+    text-align: center;
+    margin-top: 4rem;
+    margin-bottom: 2.4rem;
+  }
+}
