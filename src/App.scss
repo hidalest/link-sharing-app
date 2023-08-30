@@ -1,4 +1,5 @@
 @import './sassStyles/variables';
+@import './sassStyles/mixins';
 
 * {
   margin: 0;
@@ -11,4 +12,26 @@ body {
   margin: 0 auto;
   padding: 2rem;
   background-color: $borders;
+
+  @include responsiveMax($phone) {
+    padding: 0;
+  }
+
+  & .main {
+    @include responsiveMax($phone) {
+      padding: 2.4rem;
+    }
+  }
+
+  & .buttonSave--container {
+    background-color: $white;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    padding: 2rem;
+
+    & button {
+      text-align: center;
+      width: 93%;
+    }
+  }
 }

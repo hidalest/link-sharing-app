@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Button from '../UI/Button';
+import Button from '../UI/Button/Button';
 
 import styles from './Navbar.module.scss';
 
@@ -14,13 +14,9 @@ interface NavBarProps {
     buttonPreviewCopy: string;
     buttonPreviewIcon: string;
   };
-
-  isMobile: boolean;
 }
 
 function Navbar(props: NavBarProps) {
-  const { navbarProps, isMobile } = props;
-  console.log(isMobile);
   const {
     mainLogoDesktop,
     mainLogoSmall,
@@ -30,7 +26,7 @@ function Navbar(props: NavBarProps) {
     profileDetailsPageCopy,
     buttonPreviewCopy,
     buttonPreviewIcon,
-  } = navbarProps;
+  } = props.navbarProps;
 
   return (
     <nav className={styles.navbar}>

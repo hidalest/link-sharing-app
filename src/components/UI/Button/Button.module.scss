@@ -1,4 +1,4 @@
-@import '../../sassStyles/variables';
+@import '../../../sassStyles/variables';
 
 .button {
   all: unset;
@@ -24,13 +24,13 @@
 }
 
 .button-secondary {
-  background-color: $purple-hover;
+  background-color: transparent;
   color: $purple;
   text-transform: uppercase;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   transition: all 200ms ease-out;
-  border: 1px solid transparent;
+  border: 1px solid $purple;
 }
 
 .button-secondary:hover {

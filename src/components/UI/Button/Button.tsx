@@ -5,7 +5,7 @@ interface ButtonProps {
   children: React.ReactNode;
   className?: string;
   onClick?: () => void;
-  priority?: 'primary' | 'secondary' | 'tertiary';
+  priority: 'primary' | 'secondary' | 'tertiary';
 }
 
 function Button(props: ButtonProps) {
