@@ -1,36 +1,10 @@
 import Navbar from '../../components/NavBar/Navbar';
 import Button from '../../components/UI/Button/Button';
 import Card from '../../components/UI/Card/Card';
-import styles from './HomeLinks.module.scss';
+import { HomeLinksProps } from '../../interfaces';
 import WelcomeMessage from './WelcomeMessage/WelcomeMessage';
 
-interface HomeLinksProps {
-  homeLinksData: {
-    phoneMockupImage: string;
-    mainHeader: string;
-    mainInstructions: string;
-    addNewLinkButtonCopy: string;
-    welcomeMessage: {
-      secondaryHeader: string;
-      secondaryMainImage: string;
-      secondaryInstructions: string;
-    };
-    navbarProps: {
-      mainLogoDesktop: string;
-      mainLogoSmall: string;
-      logoLinkPage: string;
-      logoProfilePage: string;
-      linkPageCopy: string;
-      profileDetailsPageCopy: string;
-      buttonPreviewCopy: string;
-      buttonPreviewIcon: string;
-    };
-
-    saveButton: {
-      btnCopy: string;
-    };
-  };
-}
+import styles from './HomeLinks.module.scss';
 
 function HomeLinks(props: HomeLinksProps) {
   const {
