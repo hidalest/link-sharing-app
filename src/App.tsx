@@ -11,7 +11,6 @@ function App() {
 
   return (
     <>
-      <Navbar navbarProps={navbarProps} />
       <main className={'main'}>
         <Routes>
           <Route

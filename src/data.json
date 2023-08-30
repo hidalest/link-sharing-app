@@ -11,6 +11,16 @@
         "buttonPreviewIcon": "/src/assets/images/icon-preview-header.svg"
     },
     "homeLinksData": {
+        "navbarProps": {
+            "mainLogoDesktop": "/src/assets/images/logo-devlinks-large.svg",
+            "mainLogoSmall": "/src/assets/images/logo-devlinks-small.svg",
+            "logoLinkPage": "/src/assets/images/icon-links-header.svg",
+            "logoProfilePage": "/src/assets/images/icon-profile-details-header.svg",
+            "linkPageCopy": "Links",
+            "profileDetailsPageCopy": "Profile Details",
+            "buttonPreviewCopy": "Preview",
+            "buttonPreviewIcon": "/src/assets/images/icon-preview-header.svg"
+        },
         "phoneMockupImage": "/src/assets/images/illustration-phone-mockup.svg",
         "mainHeader": "Customize Your Links",
         "mainInstructions": "Add/edit/remove links below and then share all your profiles with the world!",
