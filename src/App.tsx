@@ -5,11 +5,9 @@ import HomeLinks from './layout/HomeLinks/HomeLinks';
 import data from './data.json';
 
 import './App.scss';
-import Button from './components/UI/Button';
 
 function App() {
-  const { navbarProps, homeLinksData, saveButton } = data;
-  const { btnCopy } = saveButton;
+  const { navbarProps, homeLinksData } = data;
 
   return (
     <>
@@ -21,9 +19,6 @@ function App() {
             element={<HomeLinks homeLinksData={homeLinksData} />}
           />
         </Routes>
-        <section className={'buttonSave--container'}>
-          <Button priority={'primary'}>{btnCopy}</Button>
-        </section>
       </main>
     </>
   );
