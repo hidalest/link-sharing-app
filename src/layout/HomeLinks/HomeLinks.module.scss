@@ -62,5 +62,8 @@
 
   & button {
     text-align: center;
+    @include responsiveMax($phone) {
+      width: 100%;
+    }
   }
 }
