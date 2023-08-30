@@ -4,10 +4,14 @@
 .mainContainer {
   display: grid;
   gap: 2rem;
-  grid-template-areas: 'mockup homeLinks';
+  grid-template-areas:
+    'mockup homeLinks'
+    'mockup buttonSave';
 
   @include responsiveMax($phone) {
-    grid-template-areas: 'homeLinks';
+    grid-template-areas:
+      'homeLinks'
+      'buttonSave';
   }
 }
 
@@ -15,6 +19,7 @@
   margin-top: 2rem;
   display: flex;
   align-items: center;
+  grid-area: mockup;
   @include responsiveMax($phone) {
     display: none;
   }
@@ -22,7 +27,12 @@
 
 .homeLinks {
   margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
   grid-area: homeLinks;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 1px solid $light-grey;
 
   @include responsiveMax($phone) {
     margin-top: 0;
@@ -36,7 +46,6 @@
   }
 
   &-buttonAdd {
-    width: 90%;
     text-align: center;
     margin-top: 4rem;
     margin-bottom: 2.4rem;
@@ -46,9 +55,10 @@
 .buttonSave--container {
   display: flex;
   justify-content: flex-end;
-  border-bottom-left-radius: $border-radius;
-  border-bottom-right-radius: $border-radius;
-  padding: 2rem 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  grid-area: buttonSave;
+  margin-top: -2rem;
 
   & button {
     text-align: center;

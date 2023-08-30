@@ -1,4 +1,5 @@
-import Button from '../../components/UI/Button';
+import Button from '../../components/UI/Button/Button';
+import Card from '../../components/UI/Card/Card';
 import styles from './HomeLinks.module.scss';
 import WelcomeMessage from './WelcomeMessage/WelcomeMessage';
 
@@ -36,10 +37,10 @@ function HomeLinks(props: HomeLinksProps) {
   const { btnCopy } = saveButton;
   return (
     <section className={styles.mainContainer}>
-      <div className={styles['phone-mockup']}>
+      <Card priority='white' className={styles['phone-mockup']}>
         <img src={phoneMockupImage} alt='phone mockup' />
-      </div>
-      <div className={styles.homeLinks}>
+      </Card>
+      <Card priority='white' className={styles.homeLinks}>
         <header>
           <h1>{mainHeader}</h1>
           <p className={styles['homeLinks-mainInstructions']}>
@@ -55,10 +56,10 @@ function HomeLinks(props: HomeLinksProps) {
           secondaryInstructions={secondaryInstructions}
           secondaryMainImage={secondaryMainImage}
         />
-        <section className={'buttonSave--container'}>
-          <Button priority={'primary'}>{btnCopy}</Button>
-        </section>
-      </div>
+      </Card>
+      <Card priority='white' className={styles['buttonSave--container']}>
+        <Button priority={'primary'}>{btnCopy}</Button>
+      </Card>
     </section>
   );
 }
