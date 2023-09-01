@@ -24,6 +24,82 @@
         "saveButton": {
             "btnPriority": "primary",
             "btnCopy": "Save"
+        },
+        "defaultLink": {
+            "icon": "/src/assets/images/icon-github.svg",
+            "name": "Github",
+            "placeholderLink": "https://www.github.com/hidalest"
+        },
+        "linkFormProps": {
+            "heading": "Link",
+            "removeButton": "Remove",
+            "sources": [
+                {
+                    "icon": "/src/assets/images/icon-codepen.svg",
+                    "name": "Codepen",
+                    "placeholderLink": "https://www.codepen.com/hidalest"
+                },
+                {
+                    "icon": "/src/assets/images/icon-codewars.svg",
+                    "name": "Codewars",
+                    "placeholderLink": "https://www.codewars.com/hidalest"
+                },
+                {
+                    "icon": "/src/assets/images/icon-facebook.svg",
+                    "name": "Facebook",
+                    "placeholderLink": "https://www.facebook.com/hidalest"
+                },
+                {
+                    "icon": "/src/assets/images/icon-freecodecamp.svg",
+                    "name": "Freecodecamp",
+                    "placeholderLink": "https://www.freecodecamp.com/hidalest"
+                },
+                {
+                    "icon": "/src/assets/images/icon-frontend-mentor.svg",
+                    "name": "Front End Mentor",
+                    "placeholderLink": "https://www.frontendmentor.com/hidalest"
+                },
+                {
+                    "icon": "/src/assets/images/icon-gitlab.svg",
+                    "name": "Gitlab",
+                    "placeholderLink": "https://www.gitlab.com/hidalest"
+                },
+                {
+                    "icon": "/src/assets/images/icon-hashnode.svg",
+                    "name": "Hashnode",
+                    "placeholderLink": "https://www.hashnode.com/hidalest"
+                },
+                {
+                    "icon": "/src/assets/images/icon-linkedin.svg",
+                    "name": "LinkedIn",
+                    "placeholderLink": "https://www.Linkedin.com/hidalest"
+                },
+                {
+                    "icon": "/src/assets/images/icon-stack-overflow.svg",
+                    "name": "StackOverflow",
+                    "placeholderLink": "https://www.stackoverflow.com/hidalest"
+                },
+                {
+                    "icon": "/src/assets/images/icon-twitch.svg",
+                    "name": "Twitch",
+                    "placeholderLink": "https://www.twitch.com/hidalest"
+                },
+                {
+                    "icon": "/src/assets/images/icon-youtube.svg",
+                    "name": "Youtube",
+                    "placeholderLink": "https://www.youtube.com/hidalest"
+                },
+                {
+                    "icon": "/src/assets/images/icon-devto.svg",
+                    "name": "DevTo",
+                    "placeholderLink": "https://www.devto.com/hidalest"
+                },
+                {
+                    "icon": "/src/assets/images/icon-github.svg",
+                    "name": "Github",
+                    "placeholderLink": "https://www.github.com/hidalest"
+                }
+            ]
         }
     }
 }
