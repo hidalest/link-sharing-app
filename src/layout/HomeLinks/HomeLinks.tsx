@@ -5,8 +5,9 @@ import { HomeLinksProps } from '../../interfaces';
 import WelcomeMessage from './WelcomeMessage/WelcomeMessage';
 
 import styles from './HomeLinks.module.scss';
-import { useState } from 'react';
 import LinkForm from './LinkForm/LinkForm';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { linkActions } from '../../store/store';
 
 function HomeLinks(props: HomeLinksProps) {
   const {
@@ -18,23 +19,19 @@ function HomeLinks(props: HomeLinksProps) {
     saveButton,
     navbarProps,
     linkFormProps,
-    defaultLink,
   } = props.homeLinksData;
+
+  const userLinks = useAppSelector((state) => state.links);
+  const dispatch = useAppDispatch();
 
   const { secondaryHeader, secondaryMainImage, secondaryInstructions } =
     welcomeMessage;
 
   const { btnCopy } = saveButton;
 
-  const [userLinks, setUserLinks] = useState([]);
-
   const areUserLinksEmpty = userLinks.length === 0;
-  console.log(areUserLinksEmpty);
 
-  const onAddNewLinkHandler = () =>
-    setUserLinks((prevState) => {
-      return { ...prevState, ...defaultLink };
-    });
+  const onAddNewLinkHandler = () => dispatch(linkActions.addingNewLink());
 
   return (
     <>
