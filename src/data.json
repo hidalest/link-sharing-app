@@ -33,6 +33,8 @@
         "linkFormProps": {
             "heading": "Link",
             "removeButton": "Remove",
+            "platformHeading": "Platform",
+            "linkSubheading": "Platform",
             "sources": [
                 {
                     "icon": "/src/assets/images/icon-codepen.svg",

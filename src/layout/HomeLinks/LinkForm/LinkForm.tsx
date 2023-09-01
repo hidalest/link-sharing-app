@@ -1,10 +1,25 @@
-import React from 'react';
 import Card from '../../../components/UI/Card/Card';
 
-function LinkForm() {
+interface LinkFormProps {
+  linkFormProps: {
+    removeButton: string;
+    heading: string;
+    platformHeading: string;
+    linkSubheading: string;
+  };
+
+  linkId: number;
+}
+
+function LinkForm(props: LinkFormProps) {
+  const { linkId, linkFormProps } = props;
+  const { removeButton } = linkFormProps;
   return (
     <Card priority='grey'>
-      <p>test</p>
+      <div>
+        <p>{`Link #${linkId}`}</p>
+        <button>{removeButton}</button>
+      </div>
     </Card>
   );
 }

@@ -24,6 +24,17 @@ export interface HomeLinksProps {
     saveButton: {
       btnCopy: string;
     };
+    defaultLink: {
+      icon: string;
+      name: string;
+      placeholderLink: string;
+    };
+    linkFormProps: {
+      heading: string;
+      removeButton: string;
+      platformHeading: string;
+      linkSubheading: string;
+    };
   };
 }
 

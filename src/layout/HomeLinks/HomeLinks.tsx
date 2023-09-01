@@ -6,6 +6,7 @@ import WelcomeMessage from './WelcomeMessage/WelcomeMessage';
 
 import styles from './HomeLinks.module.scss';
 import { useState } from 'react';
+import LinkForm from './LinkForm/LinkForm';
 
 function HomeLinks(props: HomeLinksProps) {
   const {
@@ -16,6 +17,8 @@ function HomeLinks(props: HomeLinksProps) {
     phoneMockupImage,
     saveButton,
     navbarProps,
+    linkFormProps,
+    defaultLink,
   } = props.homeLinksData;
 
   const { secondaryHeader, secondaryMainImage, secondaryInstructions } =
@@ -26,6 +29,13 @@ function HomeLinks(props: HomeLinksProps) {
   const [userLinks, setUserLinks] = useState([]);
 
   const areUserLinksEmpty = userLinks.length === 0;
+  console.log(areUserLinksEmpty);
+
+  const onAddNewLinkHandler = () =>
+    setUserLinks((prevState) => {
+      return { ...prevState, ...defaultLink };
+    });
+
   return (
     <>
       <Navbar navbarProps={navbarProps} />
@@ -44,6 +54,7 @@ function HomeLinks(props: HomeLinksProps) {
           <Button
             priority='secondary'
             className={styles['homeLinks-buttonAdd']}
+            onClick={onAddNewLinkHandler}
           >
             {addNewLinkButtonCopy}
           </Button>
@@ -55,6 +66,10 @@ function HomeLinks(props: HomeLinksProps) {
               secondaryMainImage={secondaryMainImage}
             />
           )}
+          {!areUserLinksEmpty &&
+            userLinks.map((link, index) => (
+              <LinkForm linkFormProps={linkFormProps} linkId={index + 1} />
+            ))}
         </Card>
         <Card priority='white' className={styles['buttonSave--container']}>
           <Button priority={'primary'}>{btnCopy}</Button>
