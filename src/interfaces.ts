@@ -52,3 +52,9 @@ export interface NavBarProps {
     buttonPreviewIcon: string;
   };
 }
+
+export type UserLink = {
+  name: string;
+  userLink: string;
+  linkId: number;
+};

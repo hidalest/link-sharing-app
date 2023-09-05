@@ -4,10 +4,11 @@ import Card from '../../components/UI/Card/Card';
 import { HomeLinksProps } from '../../interfaces';
 import WelcomeMessage from './WelcomeMessage/WelcomeMessage';
 
-import styles from './HomeLinks.module.scss';
 import LinkForm from './LinkForm/LinkForm';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { linkActions } from '../../store/store';
+
+import styles from './HomeLinks.module.scss';
 
 function HomeLinks(props: HomeLinksProps) {
   const {
@@ -23,6 +24,7 @@ function HomeLinks(props: HomeLinksProps) {
 
   const userLinks = useAppSelector((state) => state.links);
   const dispatch = useAppDispatch();
+  console.log(userLinks);
 
   const { secondaryHeader, secondaryMainImage, secondaryInstructions } =
     welcomeMessage;
@@ -65,7 +67,12 @@ function HomeLinks(props: HomeLinksProps) {
           )}
           {!areUserLinksEmpty &&
             userLinks.map((link, index) => (
-              <LinkForm linkFormProps={linkFormProps} linkId={index + 1} />
+              <LinkForm
+                linkFormProps={linkFormProps}
+                linkId={link.linkId + 1}
+                key={link.linkId}
+                enumeration={index + 1}
+              />
             ))}
         </Card>
         <Card priority='white' className={styles['buttonSave--container']}>

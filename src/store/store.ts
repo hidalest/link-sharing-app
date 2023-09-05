@@ -1,20 +1,24 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit';
 
-const initialState = [
-  {
-    name: 'Github',
-    userLink: 'https://www.github.com/hidalest',
-  },
-];
+type UserLink = {
+  name: string;
+  userLink: string;
+  linkId: number;
+};
+
+// type arrayOfLinks = undefined | UserLink | [];
+
+const initialState: UserLink[] = [];
 
 const mainStore = createSlice({
   name: 'links',
   initialState,
   reducers: {
-    addingNewLink() {
-      initialState.push({
+    addingNewLink(state) {
+      state.push({
         name: 'Github',
         userLink: 'https://www.github.com/hidalest',
+        linkId: Math.random(),
       });
     },
   },

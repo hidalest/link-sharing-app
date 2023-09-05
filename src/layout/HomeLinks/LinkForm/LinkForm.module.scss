@@ -1,0 +1,14 @@
+@import '../../../sassStyles/variables';
+@import '../../../sassStyles/mixins';
+
+.platformLink {
+  & .actionButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & button {
+      text-transform: capitalize;
+    }
+  }
+}
