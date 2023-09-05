@@ -1,20 +1,8 @@
 import { Link } from 'react-router-dom';
 import Button from '../UI/Button/Button';
+import { NavBarProps } from '../../interfaces';
 
 import styles from './Navbar.module.scss';
-
-interface NavBarProps {
-  navbarProps: {
-    mainLogoDesktop: string;
-    mainLogoSmall: string;
-    logoLinkPage: string;
-    logoProfilePage: string;
-    linkPageCopy: string;
-    profileDetailsPageCopy: string;
-    buttonPreviewCopy: string;
-    buttonPreviewIcon: string;
-  };
-}
 
 function Navbar(props: NavBarProps) {
   const {
