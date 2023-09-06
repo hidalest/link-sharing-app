@@ -52,10 +52,8 @@ function DropdownContainer({ children, icon, name }: DropdownContainerProps) {
 
 function DropdownItems({
   platforms,
-  platformId,
   onUpdateCurrentPlatformHandler,
 }: DropdownContainerItems) {
-  console.log(platformId);
   return (
     <Card className={`${styles.dropdownItems}`} priority='white'>
       {platforms.map((platform, index) => {
@@ -84,7 +82,6 @@ function Dropdown(props: DropdownProps) {
   } = props;
 
   const blah = (name: string) => {
-    console.log(name);
     onUpdateCurrentPlatformHandler(name);
   };
 

@@ -36,14 +36,11 @@ function LinkForm(props: LinkFormProps) {
   const onUpdateCurrentPlatformHandler = (name: string) => {
     const findPlatform = sources.find((source) => source.name === name);
     setCurrentLink(findPlatform ? findPlatform : defaultLink);
-    console.log(linkId);
   };
 
   const onRemoveLinkHandler = (linkId: number) => {
     dispatch(linkActions.removeLink(linkId));
   };
-
-  console.log('From Linkform', userLinks);
 
   return (
     <Card priority='grey' className={styles.platformLink}>

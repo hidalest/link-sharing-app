@@ -30,7 +30,6 @@ const mainStore = createSlice({
     },
 
     removeLink(state, action: PayloadAction<number>) {
-      console.log('executed remove link');
       state.links = state.links.filter(
         (link) => link.linkId !== action.payload
       );

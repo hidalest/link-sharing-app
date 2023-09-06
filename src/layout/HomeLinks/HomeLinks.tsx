@@ -32,7 +32,6 @@ function HomeLinks(props: HomeLinksProps) {
 
   const areUserLinksEmpty = userLinks.length === 0;
   const defaultLink = userLinks[0];
-  console.log(defaultLink);
 
   const onAddNewLinkHandler = () => dispatch(linkActions.addingNewLink());
 
