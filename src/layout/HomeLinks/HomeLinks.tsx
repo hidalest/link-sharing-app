@@ -35,6 +35,8 @@ function HomeLinks(props: HomeLinksProps) {
 
   const onAddNewLinkHandler = () => dispatch(linkActions.addingNewLink());
 
+  console.log('Home', userLinks);
+
   return (
     <>
       <Navbar navbarProps={navbarProps} />

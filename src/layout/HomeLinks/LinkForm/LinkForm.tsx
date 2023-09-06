@@ -31,11 +31,18 @@ function LinkForm(props: LinkFormProps) {
 
   const [currentLink, setCurrentLink] = useState(defaultLink);
   const dispatch = useAppDispatch();
-  const userLinks = useAppSelector((state) => state.links);
 
   const onUpdateCurrentPlatformHandler = (name: string) => {
     const findPlatform = sources.find((source) => source.name === name);
+
+    if (!findPlatform) return;
+    const payload = {
+      linkId,
+      findPlatform,
+    };
+    console.log('find platform', findPlatform);
     setCurrentLink(findPlatform ? findPlatform : defaultLink);
+    dispatch(linkActions.updateTheLinkPlatform(payload));
   };
 
   const onRemoveLinkHandler = (linkId: number) => {
