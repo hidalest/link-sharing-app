@@ -8,8 +8,6 @@ type UserLink = {
   icon: string;
 };
 
-// type arrayOfLinks = undefined | UserLink | [];
-
 const initialState: UserLink[] = [];
 
 const mainStore = createSlice({

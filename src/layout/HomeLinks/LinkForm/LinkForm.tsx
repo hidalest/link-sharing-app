@@ -36,6 +36,7 @@ function LinkForm(props: LinkFormProps) {
   const onUpdateCurrentPlatformHandler = (name: string) => {
     const findPlatform = sources.find((source) => source.name === name);
     setCurrentLink(findPlatform ? findPlatform : defaultLink);
+    console.log(linkId);
   };
 
   return (
