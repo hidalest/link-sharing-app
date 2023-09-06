@@ -22,7 +22,7 @@ function HomeLinks(props: HomeLinksProps) {
     linkFormProps,
   } = props.homeLinksData;
 
-  const userLinks = useAppSelector((state) => state.links);
+  const userLinks = useAppSelector((state) => state.links.links);
   const dispatch = useAppDispatch();
 
   const { secondaryHeader, secondaryMainImage, secondaryInstructions } =
@@ -70,7 +70,7 @@ function HomeLinks(props: HomeLinksProps) {
             userLinks.map((link, index) => (
               <LinkForm
                 linkFormProps={linkFormProps}
-                linkId={link.linkId + 1}
+                linkId={link.linkId}
                 key={link.linkId}
                 enumeration={index + 1}
                 defaultLink={defaultLink}

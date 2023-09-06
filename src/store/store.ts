@@ -1,4 +1,4 @@
-import { createSlice, configureStore } from '@reduxjs/toolkit';
+import { createSlice, configureStore, PayloadAction } from '@reduxjs/toolkit';
 
 type UserLink = {
   name: string;
@@ -8,20 +8,32 @@ type UserLink = {
   icon: string;
 };
 
-const initialState: UserLink[] = [];
+type AppState = {
+  links: UserLink[];
+};
+const initialState: AppState = {
+  links: [],
+};
 
 const mainStore = createSlice({
   name: 'links',
   initialState,
   reducers: {
     addingNewLink(state) {
-      state.push({
+      state.links.push({
         name: 'Github',
         userLink: 'https://www.github.com/hidalest',
         linkId: Math.random(),
         placeholderLink: 'https://www.github.com/hidalest',
         icon: '/src/assets/images/icon-github.svg',
       });
+    },
+
+    removeLink(state, action: PayloadAction<number>) {
+      console.log('executed remove link');
+      state.links = state.links.filter(
+        (link) => link.linkId !== action.payload
+      );
     },
   },
 });

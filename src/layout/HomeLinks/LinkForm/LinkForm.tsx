@@ -3,6 +3,8 @@ import Button from '../../../components/UI/Button/Button';
 import Card from '../../../components/UI/Card/Card';
 import Dropdown from '../../../components/UI/Dropdown/Dropdown';
 import styles from './LinkForm.module.scss';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import { linkActions } from '../../../store/store';
 
 type LinkType = {
   icon: string;
@@ -23,21 +25,25 @@ interface LinkFormProps {
   defaultLink: LinkType;
 }
 
-const onRemoveLinkHandler = (linkId: number) => {
-  console.log(linkId);
-};
-
 function LinkForm(props: LinkFormProps) {
   const { linkId, linkFormProps, enumeration, defaultLink } = props;
   const { removeButton, sources } = linkFormProps;
 
   const [currentLink, setCurrentLink] = useState(defaultLink);
+  const dispatch = useAppDispatch();
+  const userLinks = useAppSelector((state) => state.links);
 
   const onUpdateCurrentPlatformHandler = (name: string) => {
     const findPlatform = sources.find((source) => source.name === name);
     setCurrentLink(findPlatform ? findPlatform : defaultLink);
     console.log(linkId);
   };
+
+  const onRemoveLinkHandler = (linkId: number) => {
+    dispatch(linkActions.removeLink(linkId));
+  };
+
+  console.log('From Linkform', userLinks);
 
   return (
     <Card priority='grey' className={styles.platformLink}>
