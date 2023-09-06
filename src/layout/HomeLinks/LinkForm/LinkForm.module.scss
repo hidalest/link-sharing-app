@@ -2,6 +2,8 @@
 @import '../../../sassStyles/mixins';
 
 .platformLink {
+  display: flex;
+  flex-direction: column;
   & .actionButtons {
     display: flex;
     justify-content: space-between;

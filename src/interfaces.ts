@@ -1,4 +1,10 @@
 // Main HomeLinks
+
+export type LinkType = {
+  icon: string;
+  name: string;
+  placeholderLink: string;
+};
 export interface HomeLinksProps {
   homeLinksData: {
     phoneMockupImage: string;
@@ -34,6 +40,7 @@ export interface HomeLinksProps {
       removeButton: string;
       platformHeading: string;
       linkSubheading: string;
+      sources: LinkType[];
     };
   };
 }
