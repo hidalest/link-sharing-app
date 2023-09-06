@@ -24,7 +24,6 @@ function HomeLinks(props: HomeLinksProps) {
 
   const userLinks = useAppSelector((state) => state.links);
   const dispatch = useAppDispatch();
-  console.log(userLinks);
 
   const { secondaryHeader, secondaryMainImage, secondaryInstructions } =
     welcomeMessage;
@@ -32,6 +31,8 @@ function HomeLinks(props: HomeLinksProps) {
   const { btnCopy } = saveButton;
 
   const areUserLinksEmpty = userLinks.length === 0;
+  const defaultLink = userLinks[0];
+  console.log(defaultLink);
 
   const onAddNewLinkHandler = () => dispatch(linkActions.addingNewLink());
 
@@ -72,6 +73,7 @@ function HomeLinks(props: HomeLinksProps) {
                 linkId={link.linkId + 1}
                 key={link.linkId}
                 enumeration={index + 1}
+                defaultLink={defaultLink}
               />
             ))}
         </Card>

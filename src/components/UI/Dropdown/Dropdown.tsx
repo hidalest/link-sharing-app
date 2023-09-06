@@ -3,12 +3,14 @@ import { LinkType } from '../../../interfaces';
 import styles from './Dropdown.module.scss';
 import Button from '../Button/Button';
 import Card from '../Card/Card';
-import { useAppSelector } from '../../../hooks/hooks';
 
 interface DropdownProps {
   platforms: LinkType[];
   platformId: number;
-  onClick: () => void;
+  placeholder: string;
+  name: string;
+  icon: string;
+  onUpdateCurrentPlatformHandler: (name: string) => void;
 }
 
 interface DropdownContainerProps {
@@ -17,12 +19,18 @@ interface DropdownContainerProps {
     name: string;
     icon: string;
   };
+  placeholder: string;
+  name: string;
+  icon: string;
 }
 
-function DropdownContainer({
-  children,
-  defaultPlatform,
-}: DropdownContainerProps) {
+interface DropdownContainerItems {
+  platforms: LinkType[];
+  platformId: number;
+  onUpdateCurrentPlatformHandler: (name: string) => void;
+}
+
+function DropdownContainer({ children, icon, name }: DropdownContainerProps) {
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
   const onToggleDropdownHandler = () => setToggleDropdown(!toggleDropdown);
@@ -35,23 +43,27 @@ function DropdownContainer({
       onClick={onToggleDropdownHandler}
       className={`${styles.dropdownContainer} ${styles[dropdownStatus]}`}
     >
-      <img
-        src={defaultPlatform.icon}
-        alt={`icon for ${defaultPlatform.name}`}
-      />
-      <span>{defaultPlatform.name}</span>
+      <img src={icon} alt={`icon for ${name}`} />
+      <span>{name}</span>
       {children}
     </Button>
   );
 }
 
-function DropdownItems({ platforms, platformId, onClick }: DropdownProps) {
+function DropdownItems({
+  platforms,
+  platformId,
+  onUpdateCurrentPlatformHandler,
+}: DropdownContainerItems) {
   console.log(platformId);
   return (
     <Card className={`${styles.dropdownItems}`} priority='white'>
       {platforms.map((platform, index) => {
         return (
-          <article key={index} onClick={onClick}>
+          <article
+            key={index}
+            onClick={() => onUpdateCurrentPlatformHandler(platform.name)}
+          >
             <img src={platform.icon} alt={`icon for ${platform.name}`} />
             <span>{platform.name}</span>
           </article>
@@ -62,15 +74,31 @@ function DropdownItems({ platforms, platformId, onClick }: DropdownProps) {
 }
 
 function Dropdown(props: DropdownProps) {
-  const { platforms, platformId, onClick } = props;
-  // const userLinks = useAppSelector(state => state.links)
+  const {
+    platforms,
+    platformId,
+    name,
+    placeholder,
+    icon,
+    onUpdateCurrentPlatformHandler,
+  } = props;
+
+  const blah = (name: string) => {
+    console.log(name);
+    onUpdateCurrentPlatformHandler(name);
+  };
 
   return (
-    <DropdownContainer defaultPlatform={platforms[0]}>
+    <DropdownContainer
+      defaultPlatform={platforms[0]}
+      name={name}
+      placeholder={placeholder}
+      icon={icon}
+    >
       <DropdownItems
         platforms={platforms}
         platformId={platformId}
-        onClick={onClick}
+        onUpdateCurrentPlatformHandler={blah}
       />
     </DropdownContainer>
   );

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Button from '../../../components/UI/Button/Button';
 import Card from '../../../components/UI/Card/Card';
 import Dropdown from '../../../components/UI/Dropdown/Dropdown';
@@ -19,19 +20,24 @@ interface LinkFormProps {
   };
   linkId: number;
   enumeration: number;
+  defaultLink: LinkType;
 }
 
 const onRemoveLinkHandler = (linkId: number) => {
   console.log(linkId);
 };
 
-const onSelectPlatformHandler = (id: number) => {
-  console.log('The current id is: ', id);
-};
-
 function LinkForm(props: LinkFormProps) {
-  const { linkId, linkFormProps, enumeration } = props;
+  const { linkId, linkFormProps, enumeration, defaultLink } = props;
   const { removeButton, sources } = linkFormProps;
+
+  const [currentLink, setCurrentLink] = useState(defaultLink);
+
+  const onUpdateCurrentPlatformHandler = (name: string) => {
+    const findPlatform = sources.find((source) => source.name === name);
+    setCurrentLink(findPlatform ? findPlatform : defaultLink);
+  };
+
   return (
     <Card priority='grey' className={styles.platformLink}>
       <section className={styles.actionButtons}>
@@ -43,7 +49,10 @@ function LinkForm(props: LinkFormProps) {
       <Dropdown
         platforms={sources}
         platformId={linkId}
-        onClick={() => onSelectPlatformHandler(linkId)}
+        placeholder={currentLink.placeholderLink}
+        name={currentLink.name}
+        icon={currentLink.icon}
+        onUpdateCurrentPlatformHandler={onUpdateCurrentPlatformHandler}
       />
     </Card>
   );

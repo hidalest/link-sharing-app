@@ -30,11 +30,8 @@ export interface HomeLinksProps {
     saveButton: {
       btnCopy: string;
     };
-    defaultLink: {
-      icon: string;
-      name: string;
-      placeholderLink: string;
-    };
+    defaultLink: LinkType;
+
     linkFormProps: {
       heading: string;
       removeButton: string;

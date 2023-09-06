@@ -4,6 +4,8 @@ type UserLink = {
   name: string;
   userLink: string;
   linkId: number;
+  placeholderLink: string;
+  icon: string;
 };
 
 // type arrayOfLinks = undefined | UserLink | [];
@@ -19,6 +21,8 @@ const mainStore = createSlice({
         name: 'Github',
         userLink: 'https://www.github.com/hidalest',
         linkId: Math.random(),
+        placeholderLink: 'https://www.github.com/hidalest',
+        icon: '/src/assets/images/icon-github.svg',
       });
     },
   },
