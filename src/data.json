@@ -37,66 +37,79 @@
             "linkSubheading": "Platform",
             "sources": [
                 {
+                    "id": 1,
                     "icon": "/src/assets/images/icon-codepen.svg",
                     "name": "Codepen",
                     "placeholderLink": "https://www.codepen.com/hidalest"
                 },
                 {
+                    "id": 2,
                     "icon": "/src/assets/images/icon-codewars.svg",
                     "name": "Codewars",
                     "placeholderLink": "https://www.codewars.com/hidalest"
                 },
                 {
+                    "id": 3,
                     "icon": "/src/assets/images/icon-facebook.svg",
                     "name": "Facebook",
                     "placeholderLink": "https://www.facebook.com/hidalest"
                 },
                 {
+                    "id": 4,
                     "icon": "/src/assets/images/icon-freecodecamp.svg",
                     "name": "Freecodecamp",
                     "placeholderLink": "https://www.freecodecamp.com/hidalest"
                 },
                 {
+                    "id": 5,
                     "icon": "/src/assets/images/icon-frontend-mentor.svg",
                     "name": "Front End Mentor",
                     "placeholderLink": "https://www.frontendmentor.com/hidalest"
                 },
                 {
+                    "id": 6,
                     "icon": "/src/assets/images/icon-gitlab.svg",
                     "name": "Gitlab",
                     "placeholderLink": "https://www.gitlab.com/hidalest"
                 },
                 {
+                    "id": 7,
                     "icon": "/src/assets/images/icon-hashnode.svg",
                     "name": "Hashnode",
                     "placeholderLink": "https://www.hashnode.com/hidalest"
                 },
                 {
+                    "id": 8,
                     "icon": "/src/assets/images/icon-linkedin.svg",
                     "name": "LinkedIn",
                     "placeholderLink": "https://www.Linkedin.com/hidalest"
                 },
                 {
+                    "id": 9,
                     "icon": "/src/assets/images/icon-stack-overflow.svg",
                     "name": "StackOverflow",
                     "placeholderLink": "https://www.stackoverflow.com/hidalest"
                 },
                 {
+                    "id": 10,
                     "icon": "/src/assets/images/icon-twitch.svg",
                     "name": "Twitch",
                     "placeholderLink": "https://www.twitch.com/hidalest"
                 },
                 {
+                    "id": 11,
                     "icon": "/src/assets/images/icon-youtube.svg",
                     "name": "Youtube",
                     "placeholderLink": "https://www.youtube.com/hidalest"
                 },
                 {
+                    "id": 12,
                     "icon": "/src/assets/images/icon-devto.svg",
                     "name": "DevTo",
                     "placeholderLink": "https://www.devto.com/hidalest"
                 },
                 {
+                    "id": 13,
                     "icon": "/src/assets/images/icon-github.svg",
                     "name": "Github",
                     "placeholderLink": "https://www.github.com/hidalest"

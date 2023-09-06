@@ -3,9 +3,12 @@ import { LinkType } from '../../../interfaces';
 import styles from './Dropdown.module.scss';
 import Button from '../Button/Button';
 import Card from '../Card/Card';
+import { useAppSelector } from '../../../hooks/hooks';
 
 interface DropdownProps {
   platforms: LinkType[];
+  platformId: number;
+  onClick: () => void;
 }
 
 interface DropdownContainerProps {
@@ -42,25 +45,33 @@ function DropdownContainer({
   );
 }
 
-function DropdownItems({ platforms }: DropdownProps) {
+function DropdownItems({ platforms, platformId, onClick }: DropdownProps) {
+  console.log(platformId);
   return (
     <Card className={`${styles.dropdownItems}`} priority='white'>
-      {platforms.map((platform, index) => (
-        <article key={index}>
-          <img src={platform.icon} alt={`icon for ${platform.name}`} />
-          <span>{platform.name}</span>
-        </article>
-      ))}
+      {platforms.map((platform, index) => {
+        return (
+          <article key={index} onClick={onClick}>
+            <img src={platform.icon} alt={`icon for ${platform.name}`} />
+            <span>{platform.name}</span>
+          </article>
+        );
+      })}
     </Card>
   );
 }
 
 function Dropdown(props: DropdownProps) {
-  const { platforms } = props;
+  const { platforms, platformId, onClick } = props;
+  // const userLinks = useAppSelector(state => state.links)
 
   return (
     <DropdownContainer defaultPlatform={platforms[0]}>
-      <DropdownItems platforms={platforms} />
+      <DropdownItems
+        platforms={platforms}
+        platformId={platformId}
+        onClick={onClick}
+      />
     </DropdownContainer>
   );
 }

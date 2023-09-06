@@ -25,6 +25,10 @@ const onRemoveLinkHandler = (linkId: number) => {
   console.log(linkId);
 };
 
+const onSelectPlatformHandler = (id: number) => {
+  console.log('The current id is: ', id);
+};
+
 function LinkForm(props: LinkFormProps) {
   const { linkId, linkFormProps, enumeration } = props;
   const { removeButton, sources } = linkFormProps;
@@ -36,7 +40,11 @@ function LinkForm(props: LinkFormProps) {
           {removeButton}
         </Button>
       </section>
-      <Dropdown platforms={sources} />
+      <Dropdown
+        platforms={sources}
+        platformId={linkId}
+        onClick={() => onSelectPlatformHandler(linkId)}
+      />
     </Card>
   );
 }
