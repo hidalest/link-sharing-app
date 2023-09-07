@@ -72,6 +72,10 @@ function HomeLinks(props: HomeLinksProps) {
               <LinkForm
                 linkFormProps={linkFormProps}
                 linkId={link.linkId}
+                linkName={link.name}
+                linkUserLink={link.userLink}
+                linkPlaceholder={link.placeholderLink}
+                linkIcon={link.icon}
                 key={link.linkId}
                 enumeration={index + 1}
                 defaultLink={defaultLink}

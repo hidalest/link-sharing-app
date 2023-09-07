@@ -1,9 +1,8 @@
-import { useState } from 'react';
 import Button from '../../../components/UI/Button/Button';
 import Card from '../../../components/UI/Card/Card';
 import Dropdown from '../../../components/UI/Dropdown/Dropdown';
 import styles from './LinkForm.module.scss';
-import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import { useAppDispatch } from '../../../hooks/hooks';
 import { linkActions } from '../../../store/store';
 
 type LinkType = {
@@ -21,15 +20,27 @@ interface LinkFormProps {
     sources: LinkType[];
   };
   linkId: number;
+  linkName: string;
+  linkUserLink: string;
+  linkPlaceholder: string;
+  linkIcon: string;
   enumeration: number;
   defaultLink: LinkType;
 }
 
 function LinkForm(props: LinkFormProps) {
-  const { linkId, linkFormProps, enumeration, defaultLink } = props;
+  const {
+    linkId,
+    linkFormProps,
+    enumeration,
+    linkName,
+    linkPlaceholder,
+    linkIcon,
+    linkUserLink,
+  } = props;
   const { removeButton, sources } = linkFormProps;
 
-  const [currentLink, setCurrentLink] = useState(defaultLink);
+  // const [currentLink, setCurrentLink] = useState(defaultLink);
   const dispatch = useAppDispatch();
 
   const onUpdateCurrentPlatformHandler = (name: string) => {
@@ -41,7 +52,6 @@ function LinkForm(props: LinkFormProps) {
       findPlatform,
     };
     console.log('find platform', findPlatform);
-    setCurrentLink(findPlatform ? findPlatform : defaultLink);
     dispatch(linkActions.updateTheLinkPlatform(payload));
   };
 
@@ -60,9 +70,9 @@ function LinkForm(props: LinkFormProps) {
       <Dropdown
         platforms={sources}
         platformId={linkId}
-        placeholder={currentLink.placeholderLink}
-        name={currentLink.name}
-        icon={currentLink.icon}
+        placeholder={linkPlaceholder}
+        name={linkName}
+        icon={linkIcon}
         onUpdateCurrentPlatformHandler={onUpdateCurrentPlatformHandler}
       />
     </Card>
