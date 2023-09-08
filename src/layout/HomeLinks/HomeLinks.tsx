@@ -22,9 +22,8 @@ function HomeLinks(props: HomeLinksProps) {
     linkFormProps,
   } = props.homeLinksData;
 
-  const userLinks = useAppSelector((state) => state.links);
+  const userLinks = useAppSelector((state) => state.links.links);
   const dispatch = useAppDispatch();
-  console.log(userLinks);
 
   const { secondaryHeader, secondaryMainImage, secondaryInstructions } =
     welcomeMessage;
@@ -32,8 +31,11 @@ function HomeLinks(props: HomeLinksProps) {
   const { btnCopy } = saveButton;
 
   const areUserLinksEmpty = userLinks.length === 0;
+  const defaultLink = userLinks[0];
 
   const onAddNewLinkHandler = () => dispatch(linkActions.addingNewLink());
+
+  console.log('Home', userLinks);
 
   return (
     <>
@@ -69,9 +71,14 @@ function HomeLinks(props: HomeLinksProps) {
             userLinks.map((link, index) => (
               <LinkForm
                 linkFormProps={linkFormProps}
-                linkId={link.linkId + 1}
+                linkId={link.linkId}
+                linkName={link.name}
+                linkUserLink={link.userLink}
+                linkPlaceholder={link.placeholderLink}
+                linkIcon={link.icon}
                 key={link.linkId}
                 enumeration={index + 1}
+                defaultLink={defaultLink}
               />
             ))}
         </Card>

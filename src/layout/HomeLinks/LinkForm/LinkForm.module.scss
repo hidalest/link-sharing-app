@@ -2,6 +2,8 @@
 @import '../../../sassStyles/mixins';
 
 .platformLink {
+  display: flex;
+  flex-direction: column;
   & .actionButtons {
     display: flex;
     justify-content: space-between;
@@ -9,6 +11,25 @@
 
     & button {
       text-transform: capitalize;
+    }
+  }
+
+  .platformSubheadings {
+    margin: 0.4rem 0;
+    font-weight: lighter;
+    font-size: 12px;
+  }
+
+  .platformContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .linkContainer {
+    margin-top: 2rem;
+
+    & input {
+      width: 100%;
     }
   }
 }

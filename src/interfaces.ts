@@ -1,4 +1,11 @@
 // Main HomeLinks
+
+export type LinkType = {
+  icon: string;
+  name: string;
+  placeholderLink: string;
+  userLink?: string;
+};
 export interface HomeLinksProps {
   homeLinksData: {
     phoneMockupImage: string;
@@ -24,16 +31,15 @@ export interface HomeLinksProps {
     saveButton: {
       btnCopy: string;
     };
-    defaultLink: {
-      icon: string;
-      name: string;
-      placeholderLink: string;
-    };
+    defaultLink: LinkType;
+
     linkFormProps: {
       heading: string;
       removeButton: string;
       platformHeading: string;
       linkSubheading: string;
+      inputLinkIcon: string;
+      sources: LinkType[];
     };
   };
 }
@@ -58,3 +64,22 @@ export type UserLink = {
   userLink: string;
   linkId: number;
 };
+
+// Link form interface
+export interface LinkFormProps {
+  linkFormProps: {
+    removeButton: string;
+    heading: string;
+    platformHeading: string;
+    linkSubheading: string;
+    inputLinkIcon: string;
+    sources: LinkType[];
+  };
+  linkId: number;
+  linkName: string;
+  linkUserLink: string;
+  linkPlaceholder: string;
+  linkIcon: string;
+  enumeration: number;
+  defaultLink: LinkType;
+}

@@ -1,25 +1,66 @@
-import { createSlice, configureStore } from '@reduxjs/toolkit';
+import { createSlice, configureStore, PayloadAction } from '@reduxjs/toolkit';
 
 type UserLink = {
   name: string;
   userLink: string;
   linkId: number;
+  placeholderLink: string;
+  icon: string;
 };
 
-// type arrayOfLinks = undefined | UserLink | [];
+type AppState = {
+  links: UserLink[];
+};
 
-const initialState: UserLink[] = [];
+type PayloadReplaceLink = {
+  linkId: number;
+  findPlatform: UserLink;
+};
+
+type updateUserLinkProps = {
+  linkId: number;
+  inputValue: string;
+};
+const initialState: AppState = {
+  links: [],
+};
 
 const mainStore = createSlice({
   name: 'links',
   initialState,
   reducers: {
     addingNewLink(state) {
-      state.push({
+      state.links.push({
         name: 'Github',
-        userLink: 'https://www.github.com/hidalest',
+        userLink: '',
         linkId: Math.random(),
+        placeholderLink: 'https://www.github.com/hidalest',
+        icon: '/src/assets/images/icon-github.svg',
       });
+    },
+
+    removeLink(state, action: PayloadAction<number>) {
+      state.links = state.links.filter(
+        (link) => link.linkId !== action.payload
+      );
+    },
+
+    updateTheLinkPlatform(state, action: PayloadAction<PayloadReplaceLink>) {
+      const { linkId, findPlatform } = action.payload;
+      const linkFound = state.links.find((link) => link.linkId === linkId);
+      if (linkFound) {
+        linkFound.name = findPlatform.name;
+        linkFound.placeholderLink = findPlatform.placeholderLink;
+        linkFound.icon = findPlatform.icon;
+        linkFound.userLink = findPlatform.userLink;
+      }
+    },
+    updateTheUserLink(state, action: PayloadAction<updateUserLinkProps>) {
+      const { linkId, inputValue } = action.payload;
+      const linkFound = state.links.find((link) => link.linkId === linkId);
+      if (linkFound) {
+        linkFound.userLink = inputValue;
+      }
     },
   },
 });
