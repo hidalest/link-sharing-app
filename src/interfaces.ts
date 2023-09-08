@@ -37,6 +37,7 @@ export interface HomeLinksProps {
       removeButton: string;
       platformHeading: string;
       linkSubheading: string;
+      inputLinkIcon: string;
       sources: LinkType[];
     };
   };

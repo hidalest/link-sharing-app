@@ -27,7 +27,7 @@ const mainStore = createSlice({
     addingNewLink(state) {
       state.links.push({
         name: 'Github',
-        userLink: 'https://www.github.com/hidalest',
+        userLink: '',
         linkId: Math.random(),
         placeholderLink: 'https://www.github.com/hidalest',
         icon: '/src/assets/images/icon-github.svg',

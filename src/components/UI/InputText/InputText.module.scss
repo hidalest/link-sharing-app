@@ -1,0 +1,19 @@
+@import '../../../sassStyles/variables';
+
+.inputContainer {
+  position: relative;
+  & .inputIcon {
+    position: absolute;
+    top: 35%;
+    left: 1rem;
+  }
+}
+.inputText {
+  padding: 1rem 2.5rem;
+  border: 1px solid $light-grey;
+  border-radius: 5px;
+}
+.inputText:focus {
+  box-shadow: 0 0 20px 5px rgba($color: $purple, $alpha: 0.4);
+  outline: 1px solid $purple;
+}

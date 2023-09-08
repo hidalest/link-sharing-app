@@ -4,6 +4,7 @@ import Dropdown from '../../../components/UI/Dropdown/Dropdown';
 import styles from './LinkForm.module.scss';
 import { useAppDispatch } from '../../../hooks/hooks';
 import { linkActions } from '../../../store/store';
+import InputText from '../../../components/UI/InputText/InputText';
 
 type LinkType = {
   icon: string;
@@ -17,6 +18,7 @@ interface LinkFormProps {
     heading: string;
     platformHeading: string;
     linkSubheading: string;
+    inputLinkIcon: string;
     sources: LinkType[];
   };
   linkId: number;
@@ -38,20 +40,26 @@ function LinkForm(props: LinkFormProps) {
     linkIcon,
     linkUserLink,
   } = props;
-  const { removeButton, sources } = linkFormProps;
+  const {
+    removeButton,
+    sources,
+    linkSubheading,
+    platformHeading,
+    inputLinkIcon,
+  } = linkFormProps;
 
-  // const [currentLink, setCurrentLink] = useState(defaultLink);
   const dispatch = useAppDispatch();
 
   const onUpdateCurrentPlatformHandler = (name: string) => {
     const findPlatform = sources.find((source) => source.name === name);
 
-    if (!findPlatform) return;
     const payload = {
       linkId,
       findPlatform,
     };
     console.log('find platform', findPlatform);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
     dispatch(linkActions.updateTheLinkPlatform(payload));
   };
 
@@ -67,14 +75,24 @@ function LinkForm(props: LinkFormProps) {
           {removeButton}
         </Button>
       </section>
-      <Dropdown
-        platforms={sources}
-        platformId={linkId}
-        placeholder={linkPlaceholder}
-        name={linkName}
-        icon={linkIcon}
-        onUpdateCurrentPlatformHandler={onUpdateCurrentPlatformHandler}
-      />
+      <section className={styles.platformContainer}>
+        <p className={styles.platformSubheadings}>{platformHeading}</p>
+        <Dropdown
+          platforms={sources}
+          platformId={linkId}
+          name={linkName}
+          icon={linkIcon}
+          onUpdateCurrentPlatformHandler={onUpdateCurrentPlatformHandler}
+        />
+      </section>
+      <section className={styles.linkContainer}>
+        <p className={styles.platformSubheadings}>{linkSubheading}</p>
+        <InputText
+          placeholder={linkPlaceholder}
+          inputValue={linkUserLink}
+          inputLinkIcon={inputLinkIcon}
+        />
+      </section>
     </Card>
   );
 }

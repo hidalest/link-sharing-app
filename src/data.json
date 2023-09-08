@@ -34,7 +34,7 @@
             "heading": "Link",
             "removeButton": "Remove",
             "platformHeading": "Platform",
-            "linkSubheading": "Platform",
+            "linkSubheading": "Link",
             "sources": [
                 {
                     "id": 1,
@@ -114,7 +114,8 @@
                     "name": "Github",
                     "placeholderLink": "https://www.github.com/hidalest"
                 }
-            ]
+            ],
+            "inputLinkIcon": "/src/assets/images/icon-link.svg"
         }
     }
 }

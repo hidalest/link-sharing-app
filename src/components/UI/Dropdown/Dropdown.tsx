@@ -7,7 +7,6 @@ import Card from '../Card/Card';
 interface DropdownProps {
   platforms: LinkType[];
   platformId: number;
-  placeholder: string;
   name: string;
   icon: string;
   onUpdateCurrentPlatformHandler: (name: string) => void;
@@ -19,7 +18,6 @@ interface DropdownContainerProps {
     name: string;
     icon: string;
   };
-  placeholder: string;
   name: string;
   icon: string;
 }
@@ -72,30 +70,19 @@ function DropdownItems({
 }
 
 function Dropdown(props: DropdownProps) {
-  const {
-    platforms,
-    platformId,
-    name,
-    placeholder,
-    icon,
-    onUpdateCurrentPlatformHandler,
-  } = props;
+  const { platforms, platformId, name, icon, onUpdateCurrentPlatformHandler } =
+    props;
 
-  const blah = (name: string) => {
+  const updateThePlatform = (name: string) => {
     onUpdateCurrentPlatformHandler(name);
   };
 
   return (
-    <DropdownContainer
-      defaultPlatform={platforms[0]}
-      name={name}
-      placeholder={placeholder}
-      icon={icon}
-    >
+    <DropdownContainer defaultPlatform={platforms[0]} name={name} icon={icon}>
       <DropdownItems
         platforms={platforms}
         platformId={platformId}
-        onUpdateCurrentPlatformHandler={blah}
+        onUpdateCurrentPlatformHandler={updateThePlatform}
       />
     </DropdownContainer>
   );
