@@ -5,30 +5,8 @@ import styles from './LinkForm.module.scss';
 import { useAppDispatch } from '../../../hooks/hooks';
 import { linkActions } from '../../../store/store';
 import InputText from '../../../components/UI/InputText/InputText';
-
-type LinkType = {
-  icon: string;
-  name: string;
-  placeholderLink: string;
-};
-
-interface LinkFormProps {
-  linkFormProps: {
-    removeButton: string;
-    heading: string;
-    platformHeading: string;
-    linkSubheading: string;
-    inputLinkIcon: string;
-    sources: LinkType[];
-  };
-  linkId: number;
-  linkName: string;
-  linkUserLink: string;
-  linkPlaceholder: string;
-  linkIcon: string;
-  enumeration: number;
-  defaultLink: LinkType;
-}
+import { FormEvent } from 'react';
+import { LinkFormProps } from '../../../interfaces';
 
 function LinkForm(props: LinkFormProps) {
   const {
@@ -57,7 +35,6 @@ function LinkForm(props: LinkFormProps) {
       linkId,
       findPlatform,
     };
-    console.log('find platform', findPlatform);
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
     dispatch(linkActions.updateTheLinkPlatform(payload));
@@ -65,6 +42,17 @@ function LinkForm(props: LinkFormProps) {
 
   const onRemoveLinkHandler = (linkId: number) => {
     dispatch(linkActions.removeLink(linkId));
+  };
+
+  const onSubmitInputHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const inputValue = form.inputLink.value;
+    const payload = {
+      linkId,
+      inputValue,
+    };
+    dispatch(linkActions.updateTheUserLink(payload));
   };
 
   return (
@@ -91,6 +79,7 @@ function LinkForm(props: LinkFormProps) {
           placeholder={linkPlaceholder}
           inputValue={linkUserLink}
           inputLinkIcon={inputLinkIcon}
+          onSubmit={onSubmitInputHandler}
         />
       </section>
     </Card>

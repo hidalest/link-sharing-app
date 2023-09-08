@@ -16,6 +16,11 @@ type PayloadReplaceLink = {
   linkId: number;
   findPlatform: UserLink;
 };
+
+type updateUserLinkProps = {
+  linkId: number;
+  inputValue: string;
+};
 const initialState: AppState = {
   links: [],
 };
@@ -47,6 +52,14 @@ const mainStore = createSlice({
         linkFound.name = findPlatform.name;
         linkFound.placeholderLink = findPlatform.placeholderLink;
         linkFound.icon = findPlatform.icon;
+        linkFound.userLink = findPlatform.userLink;
+      }
+    },
+    updateTheUserLink(state, action: PayloadAction<updateUserLinkProps>) {
+      const { linkId, inputValue } = action.payload;
+      const linkFound = state.links.find((link) => link.linkId === linkId);
+      if (linkFound) {
+        linkFound.userLink = inputValue;
       }
     },
   },
