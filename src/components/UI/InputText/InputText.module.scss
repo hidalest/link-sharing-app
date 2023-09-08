@@ -7,11 +7,25 @@
     top: 35%;
     left: 1rem;
   }
+
+  .errorMessage {
+    position: absolute;
+    right: 10px;
+    top: 30%;
+    font-size: 12px;
+    color: $red;
+  }
 }
 .inputText {
   padding: 1rem 2.5rem;
   border: 1px solid $light-grey;
   border-radius: 5px;
+
+  &.inputInvalid {
+    box-shadow: none;
+    outline: 1px solid $red;
+    transition: all 200ms ease-out;
+  }
 }
 .inputText:focus {
   box-shadow: 0 0 20px 5px rgba($color: $purple, $alpha: 0.4);
