@@ -47,6 +47,7 @@
     }
 
     & .link-copy {
+      font-size: 1.6rem;
       @include responsiveMax($phone) {
         display: none;
       }

@@ -15,25 +15,32 @@ function InputText(props: InputTextProps) {
   const [isInputValid, setIsInputValid] = useState<boolean | null>(null);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const onInputFocus = () => {
-    if (inputText.trim() !== '' || isInputValid) {
+  const onValidateInput = function (text: string, textValid: boolean | null) {
+    const isURLValid = httpRegex.test(text);
+    if (!isURLValid && text !== '') {
+      setIsInputValid(false);
+      setErrorMessage('Enter a valid URL');
+    } else if (text.trim() !== '' && isURLValid) {
       setIsInputValid(true);
-      setErrorMessage('');
-    } else {
+    } else if (text.trim() === '' && textValid !== null) {
       setIsInputValid(false);
       setErrorMessage("Can't be empty");
     }
   };
 
+  const onInputFocus = () => {
+    onValidateInput(inputText, isInputValid);
+  };
+
   useEffect(() => {
-    if (inputText.trim() !== '') {
-      setIsInputValid(true);
-    }
-    if (!httpRegex.test(inputText) && inputText !== '') {
-      setIsInputValid(false);
-      setErrorMessage('Enter a valid URL');
-    }
-  }, [inputText]);
+    const typingTimeout = setTimeout(() => {
+      onValidateInput(inputText, isInputValid);
+    }, 500);
+
+    return () => {
+      clearTimeout(typingTimeout);
+    };
+  }, [inputText, isInputValid]);
 
   const errorClass = isInputValid === false ? 'inputInvalid' : '';
   return (
