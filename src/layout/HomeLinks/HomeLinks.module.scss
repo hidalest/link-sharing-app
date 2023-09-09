@@ -5,10 +5,10 @@
   display: grid;
   gap: 2rem;
   grid-template-areas:
-    'mockup homeLinks'
-    'mockup buttonSave';
+    'mockup homeLinks homeLinks'
+    'mockup buttonSave buttonSave';
 
-  @include responsiveMax($phone) {
+  @include responsiveMax($tablet) {
     grid-template-areas:
       'homeLinks'
       'buttonSave';
@@ -20,7 +20,7 @@
   display: flex;
   align-items: center;
   grid-area: mockup;
-  @include responsiveMax($phone) {
+  @include responsiveMax($tablet) {
     display: none;
   }
 }
