@@ -23,16 +23,26 @@ function Navbar(props: NavBarProps) {
         <img src={mainLogoSmall} className={styles['mainLogo-small']}></img>
       </Link>
       <section className={styles.navbarLinks}>
-        <Link to={'/links'} className={styles.navbarLinks}>
+        <Link
+          to={'/home'}
+          className={`${styles.navbarLinks} ${styles.routeLink} ${
+            location.pathname === '/home' ? styles.activeRoute : ''
+          }`}
+        >
           <img src={logoLinkPage}></img>
           <span className={styles['link-copy']}>{linkPageCopy}</span>
         </Link>
-        <Link to={'/profileDetails'} className={styles.navbarLinks}>
+        <Link
+          to={'/profileDetails'}
+          className={`${styles.navbarLinks} ${styles.routeLink} ${
+            location.pathname === '/profile' ? styles.activeRoute : ''
+          }`}
+        >
           <img src={logoProfilePage}></img>
           <span className={styles['link-copy']}>{profileDetailsPageCopy}</span>
         </Link>
       </section>
-      <Link to={'/preview'} className={`${styles.navbarLinks} `}>
+      <Link to={'/preview'} className={`${styles.navbarLinks}`}>
         <Button priority='secondary' className={styles.previewBtn}>
           <span className={styles['link-copy']}>{buttonPreviewCopy}</span>
           <img
