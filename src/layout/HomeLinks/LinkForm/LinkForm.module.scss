@@ -4,6 +4,12 @@
 .platformLink {
   display: flex;
   flex-direction: column;
+  padding: 2rem;
+
+  & .enumeration {
+    font-size: 1.6rem;
+    color: $grey;
+  }
   & .actionButtons {
     display: flex;
     justify-content: space-between;
@@ -11,6 +17,9 @@
 
     & button {
       text-transform: capitalize;
+      font-size: 1.6rem;
+      color: $grey;
+      font-weight: lighter;
     }
   }
 
@@ -26,7 +35,7 @@
   }
 
   .linkContainer {
-    margin-top: 2rem;
+    margin-top: 1.2rem;
 
     & input {
       width: 100%;

@@ -32,6 +32,20 @@
     align-items: center;
     text-decoration: none;
 
+    &.routeLink {
+      padding: 1.1rem 2.3rem;
+      border-radius: $border-radius;
+
+      &.activeRoute {
+        color: $purple;
+        background-color: $purple-light;
+      }
+    }
+
+    &.activeRoute {
+      color: $purple;
+    }
+
     &:hover {
       & svg {
         fill: $purple;
@@ -47,6 +61,8 @@
     }
 
     & .link-copy {
+      font-size: 1.6rem;
+      margin-left: 0.8rem;
       @include responsiveMax($phone) {
         display: none;
       }

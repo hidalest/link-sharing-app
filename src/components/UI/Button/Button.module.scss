@@ -7,12 +7,12 @@
   padding: 1rem;
   border-radius: 5px;
   text-decoration: none;
+  text-transform: capitalize;
 }
 
 .button-primary {
   background-color: $purple;
   color: whitesmoke;
-  text-transform: uppercase;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   transition: all 200ms ease-out;
 }
@@ -26,7 +26,6 @@
 .button-secondary {
   background-color: transparent;
   color: $purple;
-  text-transform: uppercase;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   transition: all 200ms ease-out;
@@ -46,7 +45,6 @@
 
 .button-tertiary {
   color: black;
-  text-transform: uppercase;
   border: none;
   font-size: inherit;
 }
