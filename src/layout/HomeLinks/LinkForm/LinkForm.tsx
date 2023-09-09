@@ -58,7 +58,7 @@ function LinkForm(props: LinkFormProps) {
   return (
     <Card priority='grey' className={styles.platformLink}>
       <section className={styles.actionButtons}>
-        <p>{`Link #${enumeration}`}</p>
+        <p className={styles.enumeration}>{`Link #${enumeration}`}</p>
         <Button priority='tertiary' onClick={() => onRemoveLinkHandler(linkId)}>
           {removeButton}
         </Button>

@@ -34,6 +34,15 @@
   border-bottom-right-radius: 0;
   border-bottom: 1px solid $light-grey;
 
+  & h1 {
+    font-size: 3.2rem;
+    color: $dark-grey;
+
+    @include responsiveMax($tablet) {
+      font-size: 2.4rem;
+    }
+  }
+
   @include responsiveMax($phone) {
     margin-top: 0;
   }
@@ -43,12 +52,18 @@
     font-weight: lighter;
     margin-top: 0.8rem;
     line-height: 2.3rem;
+    font-size: 1.2rem;
+
+    @include responsiveMax($tablet) {
+      font-size: 1.6rem;
+    }
   }
 
   &-buttonAdd {
     text-align: center;
     margin-top: 4rem;
     margin-bottom: 2.4rem;
+    font-size: 1.6rem;
   }
 }
 

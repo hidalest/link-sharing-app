@@ -26,7 +26,6 @@ function InputText(props: InputTextProps) {
   };
 
   useEffect(() => {
-    console.log('first render');
     if (inputText.trim() !== '') {
       setIsInputValid(true);
     }
