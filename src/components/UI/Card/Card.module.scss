@@ -4,6 +4,9 @@
 .card {
   border-radius: $border-radius;
   padding: 4rem;
+  @include responsiveMax($phone-mini) {
+    padding: 2rem;
+  }
 }
 
 .grey {

@@ -67,23 +67,26 @@ function HomeLinks(props: HomeLinksProps) {
               secondaryMainImage={secondaryMainImage}
             />
           )}
-          {!areUserLinksEmpty &&
-            userLinks.map((link, index) => (
-              <LinkForm
-                linkFormProps={linkFormProps}
-                linkId={link.linkId}
-                linkName={link.name}
-                linkUserLink={link.userLink}
-                linkPlaceholder={link.placeholderLink}
-                linkIcon={link.icon}
-                key={link.linkId}
-                enumeration={index + 1}
-                defaultLink={defaultLink}
-              />
-            ))}
-        </Card>
-        <Card priority='white' className={styles['buttonSave--container']}>
-          <Button priority={'primary'}>{btnCopy}</Button>
+          {!areUserLinksEmpty && (
+            <div className={styles.linksContainer}>
+              {userLinks.map((link, index) => (
+                <LinkForm
+                  linkFormProps={linkFormProps}
+                  linkId={link.linkId}
+                  linkName={link.name}
+                  linkUserLink={link.userLink}
+                  linkPlaceholder={link.placeholderLink}
+                  linkIcon={link.icon}
+                  key={link.linkId}
+                  enumeration={index + 1}
+                  defaultLink={defaultLink}
+                />
+              ))}
+            </div>
+          )}
+          <Card priority='white' className={styles['buttonSave--container']}>
+            <Button priority={'primary'}>{btnCopy}</Button>
+          </Card>
         </Card>
       </section>
     </>
