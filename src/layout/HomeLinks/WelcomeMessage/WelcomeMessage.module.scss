@@ -2,6 +2,11 @@
 
 .welcomeMessage {
   text-align: center;
+  height: 43.3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   & img {
     width: 12.4rem;
