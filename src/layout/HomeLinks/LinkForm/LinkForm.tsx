@@ -24,6 +24,7 @@ function LinkForm(props: LinkFormProps) {
     linkSubheading,
     platformHeading,
     inputLinkIcon,
+    dragAndDropIcon,
   } = linkFormProps;
 
   const dispatch = useAppDispatch();
@@ -58,7 +59,12 @@ function LinkForm(props: LinkFormProps) {
   return (
     <Card priority='grey' className={styles.platformLink}>
       <section className={styles.actionButtons}>
-        <p className={styles.enumeration}>{`Link #${enumeration}`}</p>
+        <div className={styles.dragContainer}>
+          <Button priority='tertiary'>
+            <img src={dragAndDropIcon} />
+          </Button>
+          <p className={styles.enumeration}>{`Link #${enumeration}`}</p>
+        </div>
         <Button priority='tertiary' onClick={() => onRemoveLinkHandler(linkId)}>
           {removeButton}
         </Button>

@@ -40,6 +40,7 @@ export interface HomeLinksProps {
       linkSubheading: string;
       inputLinkIcon: string;
       sources: LinkType[];
+      dragAndDropIcon: string;
     };
   };
 }
@@ -74,6 +75,7 @@ export interface LinkFormProps {
     linkSubheading: string;
     inputLinkIcon: string;
     sources: LinkType[];
+    dragAndDropIcon: string;
   };
   linkId: number;
   linkName: string;
