@@ -64,7 +64,7 @@ const mainStore = createSlice({
     },
 
     updateWholeLinksOrder(state, action: PayloadAction<UserLink[]>) {
-      console.log(action.payload);
+      state.links = action.payload;
     },
   },
 });
