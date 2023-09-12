@@ -12,15 +12,24 @@ interface CardProps {
   priority: 'grey' | 'white' | 'transparent';
   draggableProps?: DraggableProvidedDraggableProps;
   dragHandleProps?: DraggableProvidedDragHandleProps;
+  isDragging?: boolean;
 }
 
 const Card = React.forwardRef(
   (props: CardProps, forwardRef: ForwardedRef<HTMLDivElement>) => {
-    const { children, className, priority, draggableProps, dragHandleProps } =
-      props;
+    const {
+      children,
+      className,
+      priority,
+      draggableProps,
+      dragHandleProps,
+      isDragging,
+    } = props;
+
+    const draggingClass = isDragging ? 'card-dragging' : '';
     return (
       <div
-        className={`${styles.card} ${styles[priority]} ${className}`}
+        className={`${styles.card} ${styles[priority]} ${styles[draggingClass]} ${className}`}
         ref={forwardRef}
         {...dragHandleProps}
         {...draggableProps}

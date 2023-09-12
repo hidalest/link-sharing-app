@@ -20,6 +20,7 @@ const LinkForm = forwardRef(
       linkUserLink,
       draggableProps,
       dragHandleProps,
+      isDragging,
     } = props;
     const {
       removeButton,
@@ -62,6 +63,7 @@ const LinkForm = forwardRef(
     return (
       <Card
         priority='grey'
+        isDragging={isDragging}
         className={styles.platformLink}
         ref={forwardRef}
         {...draggableProps}

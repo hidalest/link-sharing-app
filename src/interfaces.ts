@@ -93,4 +93,5 @@ export interface LinkFormProps {
   ref?: any;
   draggableProps?: DraggableProvidedDraggableProps;
   dragHandleProps?: DraggableProvidedDragHandleProps;
+  isDragging: boolean;
 }

@@ -97,12 +97,16 @@ function HomeLinks(props: HomeLinksProps) {
                           key={link.linkId}
                           index={index}
                         >
-                          {(provided) => {
+                          {(provided, snapshot) => {
                             return (
                               <div
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
                                 ref={provided.innerRef}
+                                // style={getItemStyle(
+                                //   snapshot.isDragging,
+                                //   provided.draggableProps.style
+                                // )}
                               >
                                 <LinkForm
                                   linkFormProps={linkFormProps}
@@ -113,6 +117,7 @@ function HomeLinks(props: HomeLinksProps) {
                                   linkIcon={link.icon}
                                   enumeration={index + 1}
                                   defaultLink={defaultLink}
+                                  isDragging={snapshot.isDragging}
                                 />
                               </div>
                             );
