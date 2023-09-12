@@ -6,23 +6,10 @@ import WelcomeMessage from './WelcomeMessage/WelcomeMessage';
 import LinkForm from './LinkForm/LinkForm';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { linkActions } from '../../store/store';
-import {
-  DragDropContext,
-  Draggable,
-  DropResult,
-  Droppable,
-} from 'react-beautiful-dnd';
+import { DragDropContext, Draggable, DropResult } from 'react-beautiful-dnd';
 
 import styles from './HomeLinks.module.scss';
 import { StrictModeDroppable } from '../../components/StrictModeDroppableWrapper/StrictoModeDroppableWrapper';
-
-const getItemStyle = (isDragging: boolean, draggableStyles: any) => ({
-  padding: 10,
-  margin: '10px',
-  background: isDragging ? 'red' : 'grey',
-  color: isDragging ? 'white' : 'black',
-  ...draggableStyles,
-});
 
 function HomeLinks(props: HomeLinksProps) {
   const {
@@ -110,12 +97,16 @@ function HomeLinks(props: HomeLinksProps) {
                           key={link.linkId}
                           index={index}
                         >
-                          {(provided) => {
+                          {(provided, snapshot) => {
                             return (
                               <div
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
                                 ref={provided.innerRef}
+                                // style={getItemStyle(
+                                //   snapshot.isDragging,
+                                //   provided.draggableProps.style
+                                // )}
                               >
                                 <LinkForm
                                   linkFormProps={linkFormProps}
@@ -126,6 +117,7 @@ function HomeLinks(props: HomeLinksProps) {
                                   linkIcon={link.icon}
                                   enumeration={index + 1}
                                   defaultLink={defaultLink}
+                                  isDragging={snapshot.isDragging}
                                 />
                               </div>
                             );
