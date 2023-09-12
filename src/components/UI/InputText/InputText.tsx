@@ -7,10 +7,17 @@ interface InputTextProps {
   inputValue: string;
   inputLinkIcon: string;
   onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
+  returnIsInputValid: (isValid: boolean) => void;
 }
 
 function InputText(props: InputTextProps) {
-  const { placeholder, inputValue, inputLinkIcon, onSubmit } = props;
+  const {
+    placeholder,
+    inputValue,
+    inputLinkIcon,
+    onSubmit,
+    returnIsInputValid,
+  } = props;
   const [inputText, setInputText] = useState(inputValue);
   const [isInputValid, setIsInputValid] = useState<boolean | null>(null);
   const [errorMessage, setErrorMessage] = useState('');
@@ -20,11 +27,14 @@ function InputText(props: InputTextProps) {
     if (!isURLValid && text !== '') {
       setIsInputValid(false);
       setErrorMessage('Enter a valid URL');
+      returnIsInputValid(false);
     } else if (text.trim() !== '' && isURLValid) {
       setIsInputValid(true);
+      returnIsInputValid(true);
     } else if (text.trim() === '' && textValid !== null) {
       setIsInputValid(false);
       setErrorMessage("Can't be empty");
+      returnIsInputValid(false);
     }
   };
 

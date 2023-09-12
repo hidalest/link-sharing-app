@@ -17,12 +17,10 @@ export const PhoneMockup = ({
       <section className={styles.linkContainer}>
         {userLinks.map(({ name, userLink, icon }) => {
           return (
-            <article className={styles.link}>
+            <a className={styles.link} href={userLink} target='_blank'>
               <img src={icon} alt='platform icon' />
-              <a href={userLink} className={styles['linkContainer--link']}>
-                {name}
-              </a>
-            </article>
+              <span>{name}</span>
+            </a>
           );
         })}
       </section>
