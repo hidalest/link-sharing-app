@@ -3,12 +3,17 @@ import Button from '../../components/UI/Button/Button';
 import Card from '../../components/UI/Card/Card';
 import { HomeLinksProps } from '../../interfaces';
 import WelcomeMessage from './WelcomeMessage/WelcomeMessage';
-
 import LinkForm from './LinkForm/LinkForm';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { linkActions } from '../../store/store';
 
 import styles from './HomeLinks.module.scss';
+import {
+  DragDropContext,
+  Draggable,
+  DropResult,
+  Droppable,
+} from 'react-beautiful-dnd';
 
 function HomeLinks(props: HomeLinksProps) {
   const {
@@ -36,6 +41,18 @@ function HomeLinks(props: HomeLinksProps) {
   const onAddNewLinkHandler = () => dispatch(linkActions.addingNewLink());
 
   console.log('Home', userLinks);
+
+  const onDragEnd = (result: DropResult) => {
+    const { source, destination } = result;
+
+    if (!destination) return;
+    const userLinksCopy = [...userLinks];
+    dispatch(linkActions.updateWholeLinksOrder(userLinksCopy));
+    const [newOrder] = userLinksCopy.splice(source.index, 1);
+    userLinksCopy.splice(destination.index, 0, newOrder);
+
+    console.log(userLinksCopy);
+  };
 
   return (
     <>
@@ -68,21 +85,42 @@ function HomeLinks(props: HomeLinksProps) {
             />
           )}
           {!areUserLinksEmpty && (
-            <div className={styles.linksContainer}>
-              {userLinks.map((link, index) => (
-                <LinkForm
-                  linkFormProps={linkFormProps}
-                  linkId={link.linkId}
-                  linkName={link.name}
-                  linkUserLink={link.userLink}
-                  linkPlaceholder={link.placeholderLink}
-                  linkIcon={link.icon}
-                  key={link.linkId}
-                  enumeration={index + 1}
-                  defaultLink={defaultLink}
-                />
-              ))}
-            </div>
+            <DragDropContext onDragEnd={onDragEnd}>
+              <Droppable droppableId='userLinks'>
+                {(provided) => (
+                  <div
+                    className={styles.linksContainer}
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                  >
+                    {userLinks.map((link, index) => (
+                      <Draggable
+                        draggableId={link.linkId}
+                        key={link.linkId}
+                        index={index}
+                      >
+                        {(provided) => (
+                          <LinkForm
+                            linkFormProps={linkFormProps}
+                            linkId={link.linkId}
+                            linkName={link.name}
+                            linkUserLink={link.userLink}
+                            linkPlaceholder={link.placeholderLink}
+                            linkIcon={link.icon}
+                            key={link.linkId}
+                            enumeration={index + 1}
+                            defaultLink={defaultLink}
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          />
+                        )}
+                      </Draggable>
+                    ))}
+                  </div>
+                )}
+              </Droppable>
+            </DragDropContext>
           )}
           <Card priority='white' className={styles['buttonSave--container']}>
             <Button priority={'primary'}>{btnCopy}</Button>

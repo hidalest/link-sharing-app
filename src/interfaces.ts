@@ -1,5 +1,10 @@
 // Main HomeLinks
 
+import {
+  DraggableProvidedDragHandleProps,
+  DraggableProvidedDraggableProps,
+} from 'react-beautiful-dnd';
+
 export type LinkType = {
   icon: string;
   name: string;
@@ -84,4 +89,8 @@ export interface LinkFormProps {
   linkIcon: string;
   enumeration: number;
   defaultLink: LinkType;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ref?: any;
+  draggableProps?: DraggableProvidedDraggableProps;
+  dragHandleProps?: DraggableProvidedDragHandleProps;
 }
