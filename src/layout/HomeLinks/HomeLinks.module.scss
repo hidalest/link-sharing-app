@@ -6,21 +6,12 @@
   justify-content: space-between;
 }
 
-.phone-mockup {
-  margin-top: 2rem;
-  display: flex;
-  align-items: center;
-  @include responsiveMax($tablet) {
-    display: none;
-  }
-}
-
 .homeLinks {
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 65%;
+  width: 63%;
   height: 80rem;
 
   @include responsiveMax($tablet) {

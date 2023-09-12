@@ -1,0 +1,33 @@
+@import '../../sassStyles/mixins';
+@import '../../sassStyles/variables';
+.phone-mockup {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 43.5rem;
+
+  position: relative;
+
+  .linkContainer {
+    position: absolute;
+    top: 30.8rem;
+    width: 25rem;
+    height: 33rem;
+    overflow-y: auto;
+
+    .link {
+      background-color: $red;
+      height: 5rem;
+      padding: 1.4rem 1.6rem;
+      border-radius: $border-radius;
+      margin: 1rem 0 1.3rem;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  @include responsiveMax($tablet) {
+    display: none;
+  }
+}
