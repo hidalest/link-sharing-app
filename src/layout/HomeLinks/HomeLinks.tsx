@@ -6,23 +6,10 @@ import WelcomeMessage from './WelcomeMessage/WelcomeMessage';
 import LinkForm from './LinkForm/LinkForm';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { linkActions } from '../../store/store';
-import {
-  DragDropContext,
-  Draggable,
-  DropResult,
-  Droppable,
-} from 'react-beautiful-dnd';
+import { DragDropContext, Draggable, DropResult } from 'react-beautiful-dnd';
 
 import styles from './HomeLinks.module.scss';
 import { StrictModeDroppable } from '../../components/StrictModeDroppableWrapper/StrictoModeDroppableWrapper';
-
-const getItemStyle = (isDragging: boolean, draggableStyles: any) => ({
-  padding: 10,
-  margin: '10px',
-  background: isDragging ? 'red' : 'grey',
-  color: isDragging ? 'white' : 'black',
-  ...draggableStyles,
-});
 
 function HomeLinks(props: HomeLinksProps) {
   const {
