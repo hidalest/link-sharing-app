@@ -44,7 +44,7 @@ const LinkForm = forwardRef(
       dispatch(linkActions.updateTheLinkPlatform(payload));
     };
 
-    const onRemoveLinkHandler = (linkId: number) => {
+    const onRemoveLinkHandler = (linkId: string) => {
       dispatch(linkActions.removeLink(linkId));
     };
 

@@ -68,7 +68,7 @@ export interface NavBarProps {
 export type UserLink = {
   name: string;
   userLink: string;
-  linkId: number;
+  linkId: string;
 };
 
 // Link form interface
@@ -82,7 +82,7 @@ export interface LinkFormProps {
     sources: LinkType[];
     dragAndDropIcon: string;
   };
-  linkId: number;
+  linkId: string;
   linkName: string;
   linkUserLink: string;
   linkPlaceholder: string;

@@ -6,14 +6,22 @@ import WelcomeMessage from './WelcomeMessage/WelcomeMessage';
 import LinkForm from './LinkForm/LinkForm';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { linkActions } from '../../store/store';
-
-import styles from './HomeLinks.module.scss';
 import {
   DragDropContext,
   Draggable,
   DropResult,
   Droppable,
 } from 'react-beautiful-dnd';
+
+import styles from './HomeLinks.module.scss';
+
+const getItemStyle = (isDragging: boolean, draggableStyles: any) => ({
+  padding: 10,
+  margin: '10px',
+  background: isDragging ? 'red' : 'grey',
+  color: isDragging ? 'white' : 'black',
+  ...draggableStyles,
+});
 
 function HomeLinks(props: HomeLinksProps) {
   const {
@@ -47,11 +55,11 @@ function HomeLinks(props: HomeLinksProps) {
 
     if (!destination) return;
     const userLinksCopy = [...userLinks];
-    dispatch(linkActions.updateWholeLinksOrder(userLinksCopy));
     const [newOrder] = userLinksCopy.splice(source.index, 1);
     userLinksCopy.splice(destination.index, 0, newOrder);
+    dispatch(linkActions.updateWholeLinksOrder(userLinksCopy));
 
-    console.log(userLinksCopy);
+    console.log('usersLinksCopy', userLinksCopy);
   };
 
   return (
@@ -93,30 +101,41 @@ function HomeLinks(props: HomeLinksProps) {
                     {...provided.droppableProps}
                     ref={provided.innerRef}
                   >
-                    {userLinks.map((link, index) => (
-                      <Draggable
-                        draggableId={link.linkId}
-                        key={link.linkId}
-                        index={index}
-                      >
-                        {(provided) => (
-                          <LinkForm
-                            linkFormProps={linkFormProps}
-                            linkId={link.linkId}
-                            linkName={link.name}
-                            linkUserLink={link.userLink}
-                            linkPlaceholder={link.placeholderLink}
-                            linkIcon={link.icon}
-                            key={link.linkId}
-                            enumeration={index + 1}
-                            defaultLink={defaultLink}
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                          />
-                        )}
-                      </Draggable>
-                    ))}
+                    {userLinks.map((link, index) => {
+                      console.log('Link.LinkId', link.linkId);
+                      return (
+                        <Draggable
+                          draggableId={link.linkId}
+                          key={link.linkId}
+                          index={index}
+                        >
+                          {(provided, snapshot) => {
+                            return (
+                              <div
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                                ref={provided.innerRef}
+                                style={getItemStyle(
+                                  snapshot.isDragging,
+                                  provided.dragHandleProps.style
+                                )}
+                              >
+                                <LinkForm
+                                  linkFormProps={linkFormProps}
+                                  linkId={link.linkId}
+                                  linkName={link.name}
+                                  linkUserLink={link.userLink}
+                                  linkPlaceholder={link.placeholderLink}
+                                  linkIcon={link.icon}
+                                  enumeration={index + 1}
+                                  defaultLink={defaultLink}
+                                />
+                              </div>
+                            );
+                          }}
+                        </Draggable>
+                      );
+                    })}
                   </div>
                 )}
               </Droppable>
