@@ -3,7 +3,7 @@ import { createSlice, configureStore, PayloadAction } from '@reduxjs/toolkit';
 type UserLink = {
   name: string;
   userLink: string;
-  linkId: number;
+  linkId: string;
   placeholderLink: string;
   icon: string;
 };
@@ -13,12 +13,12 @@ type AppState = {
 };
 
 type PayloadReplaceLink = {
-  linkId: number;
+  linkId: string;
   findPlatform: UserLink;
 };
 
 type updateUserLinkProps = {
-  linkId: number;
+  linkId: string;
   inputValue: string;
 };
 const initialState: AppState = {
@@ -33,13 +33,13 @@ const mainStore = createSlice({
       state.links.push({
         name: 'Github',
         userLink: '',
-        linkId: Math.random(),
+        linkId: Math.random().toString(),
         placeholderLink: 'https://www.github.com/hidalest',
         icon: '/src/assets/images/icon-github.svg',
       });
     },
 
-    removeLink(state, action: PayloadAction<number>) {
+    removeLink(state, action: PayloadAction<string>) {
       state.links = state.links.filter(
         (link) => link.linkId !== action.payload
       );
@@ -61,6 +61,10 @@ const mainStore = createSlice({
       if (linkFound) {
         linkFound.userLink = inputValue;
       }
+    },
+
+    updateWholeLinksOrder(state, action: PayloadAction<UserLink[]>) {
+      state.links = action.payload;
     },
   },
 });

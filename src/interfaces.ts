@@ -1,5 +1,10 @@
 // Main HomeLinks
 
+import {
+  DraggableProvidedDragHandleProps,
+  DraggableProvidedDraggableProps,
+} from 'react-beautiful-dnd';
+
 export type LinkType = {
   icon: string;
   name: string;
@@ -40,6 +45,7 @@ export interface HomeLinksProps {
       linkSubheading: string;
       inputLinkIcon: string;
       sources: LinkType[];
+      dragAndDropIcon: string;
     };
   };
 }
@@ -62,7 +68,7 @@ export interface NavBarProps {
 export type UserLink = {
   name: string;
   userLink: string;
-  linkId: number;
+  linkId: string;
 };
 
 // Link form interface
@@ -74,12 +80,17 @@ export interface LinkFormProps {
     linkSubheading: string;
     inputLinkIcon: string;
     sources: LinkType[];
+    dragAndDropIcon: string;
   };
-  linkId: number;
+  linkId: string;
   linkName: string;
   linkUserLink: string;
   linkPlaceholder: string;
   linkIcon: string;
   enumeration: number;
   defaultLink: LinkType;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ref?: any;
+  draggableProps?: DraggableProvidedDraggableProps;
+  dragHandleProps?: DraggableProvidedDragHandleProps;
 }

@@ -6,7 +6,7 @@ import Card from '../Card/Card';
 
 interface DropdownProps {
   platforms: LinkType[];
-  platformId: number;
+  platformId: string;
   name: string;
   icon: string;
   onUpdateCurrentPlatformHandler: (name: string) => void;
@@ -24,7 +24,7 @@ interface DropdownContainerProps {
 
 interface DropdownContainerItems {
   platforms: LinkType[];
-  platformId: number;
+  platformId: string;
   onUpdateCurrentPlatformHandler: (name: string) => void;
 }
 

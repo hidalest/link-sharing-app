@@ -35,6 +35,7 @@
             "removeButton": "Remove",
             "platformHeading": "Platform",
             "linkSubheading": "Link",
+            "dragAndDropIcon": "/src/assets/images/icon-drag-and-drop.svg",
             "sources": [
                 {
                     "id": 1,
