@@ -14,6 +14,7 @@ import {
 } from 'react-beautiful-dnd';
 
 import styles from './HomeLinks.module.scss';
+import { StrictModeDroppable } from '../../components/StrictModeDroppableWrapper/StrictoModeDroppableWrapper';
 
 const getItemStyle = (isDragging: boolean, draggableStyles: any) => ({
   padding: 10,
@@ -94,7 +95,7 @@ function HomeLinks(props: HomeLinksProps) {
           )}
           {!areUserLinksEmpty && (
             <DragDropContext onDragEnd={onDragEnd}>
-              <Droppable droppableId='userLinks'>
+              <StrictModeDroppable droppableId='userLinks'>
                 {(provided) => (
                   <div
                     className={styles.linksContainer}
@@ -109,16 +110,12 @@ function HomeLinks(props: HomeLinksProps) {
                           key={link.linkId}
                           index={index}
                         >
-                          {(provided, snapshot) => {
+                          {(provided) => {
                             return (
                               <div
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
                                 ref={provided.innerRef}
-                                style={getItemStyle(
-                                  snapshot.isDragging,
-                                  provided.dragHandleProps.style
-                                )}
                               >
                                 <LinkForm
                                   linkFormProps={linkFormProps}
@@ -138,7 +135,7 @@ function HomeLinks(props: HomeLinksProps) {
                     })}
                   </div>
                 )}
-              </Droppable>
+              </StrictModeDroppable>
             </DragDropContext>
           )}
           <Card priority='white' className={styles['buttonSave--container']}>
