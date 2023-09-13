@@ -31,7 +31,7 @@ const LinkForm = (props: LinkFormProps) => {
   } = linkFormProps;
 
   const dispatch = useAppDispatch();
-  const [isInputValid, setisInputValid] = useState<boolean | null>(null);
+  const [isInputValid, setisInputValid] = useState<boolean>(false);
 
   const onUpdateCurrentPlatformHandler = (name: string) => {
     const findPlatform = sources.find((source) => source.name === name);
@@ -55,13 +55,15 @@ const LinkForm = (props: LinkFormProps) => {
 
   const onSubmitInputHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!isInputValid) return;
+
+    console.log('IsInputValid from the onSubmit', isInputValid);
 
     const form = e.target as HTMLFormElement;
     const inputValue = form.inputLink.value;
     const payload = {
       linkId,
       inputValue,
+      isValid: isInputValid,
     };
     dispatch(linkActions.updateTheUserLink(payload));
   };

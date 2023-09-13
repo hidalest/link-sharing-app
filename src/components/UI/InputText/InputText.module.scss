@@ -9,6 +9,11 @@
     left: 1rem;
   }
 
+  .label {
+    position: absolute;
+    left: -90000px;
+  }
+
   .errorMessage {
     position: absolute;
     right: 10px;

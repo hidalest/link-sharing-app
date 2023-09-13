@@ -21,6 +21,7 @@ type PayloadReplaceLink = {
 type updateUserLinkProps = {
   linkId: string;
   inputValue: string;
+  isValid: boolean;
 };
 const initialState: AppState = {
   links: [],
@@ -58,11 +59,11 @@ const mainStore = createSlice({
       }
     },
     updateTheUserLink(state, action: PayloadAction<updateUserLinkProps>) {
-      const { linkId, inputValue } = action.payload;
+      const { linkId, inputValue, isValid } = action.payload;
       const linkFound = state.links.find((link) => link.linkId === linkId);
       if (linkFound) {
         linkFound.userLink = inputValue;
-        linkFound.isValid = true;
+        linkFound.isValid = isValid;
       }
     },
 

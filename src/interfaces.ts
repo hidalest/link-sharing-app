@@ -10,7 +10,7 @@ export type LinkType = {
   name: string;
   placeholderLink: string;
   userLink?: string;
-  isValid: boolean;
+  isValid?: boolean;
 };
 export interface HomeLinksProps {
   homeLinksData: {

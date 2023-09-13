@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 import styles from './InputText.module.scss';
 import { httpRegex } from '../../../utils/regex';
 
@@ -21,6 +21,7 @@ function InputText(props: InputTextProps) {
   const [inputText, setInputText] = useState(inputValue);
   const [isInputValid, setIsInputValid] = useState<boolean | null>(null);
   const [errorMessage, setErrorMessage] = useState('');
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const onValidateInput = function (text: string, textValid: boolean | null) {
     const isURLValid = httpRegex.test(text);
@@ -45,17 +46,35 @@ function InputText(props: InputTextProps) {
   useEffect(() => {
     const typingTimeout = setTimeout(() => {
       onValidateInput(inputText, isInputValid);
-    }, 500);
+    }, 300);
 
     return () => {
       clearTimeout(typingTimeout);
     };
   }, [inputText, isInputValid]);
 
+  const onSubmitFormHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (onSubmit) {
+      onSubmit(e);
+      if (isInputValid) {
+        inputRef.current?.blur();
+      }
+    }
+  };
+
   const errorClass = isInputValid === false ? 'inputInvalid' : '';
   return (
-    <form className={styles.inputContainer} onSubmit={onSubmit}>
-      <img src={inputLinkIcon} alt='link icon' className={styles.inputIcon} />
+    <form className={styles.inputContainer} onSubmit={onSubmitFormHandler}>
+      <label htmlFor='inputLink' className={styles.label}>
+        Link:
+      </label>
+      <img
+        src={inputLinkIcon}
+        alt='link icon'
+        className={styles.inputIcon}
+        aria-hidden='true'
+      />
       <input
         type='text'
         value={inputText}
@@ -64,6 +83,9 @@ function InputText(props: InputTextProps) {
         className={`${styles.inputText} ${styles[errorClass]}`}
         name='inputLink'
         onBlur={onInputFocus}
+        ref={inputRef}
+        aria-invalid={isInputValid === false ? 'true' : 'false'} // Set ARIA attributes
+        aria-describedby={isInputValid === false ? 'error-message' : undefined}
       />
       {!isInputValid && (
         <span className={styles.errorMessage}>{errorMessage}</span>
