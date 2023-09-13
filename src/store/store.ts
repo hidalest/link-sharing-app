@@ -6,6 +6,7 @@ type UserLink = {
   linkId: string;
   placeholderLink: string;
   icon: string;
+  isValid: boolean;
 };
 
 type AppState = {
@@ -36,6 +37,7 @@ const mainStore = createSlice({
         linkId: Math.random().toString(),
         placeholderLink: 'https://www.github.com/hidalest',
         icon: '/src/assets/images/icon-github.svg',
+        isValid: false,
       });
     },
 
@@ -60,6 +62,7 @@ const mainStore = createSlice({
       const linkFound = state.links.find((link) => link.linkId === linkId);
       if (linkFound) {
         linkFound.userLink = inputValue;
+        linkFound.isValid = true;
       }
     },
 
