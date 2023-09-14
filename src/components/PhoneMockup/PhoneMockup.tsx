@@ -1,6 +1,7 @@
 import Card from '../UI/Card/Card';
 import styles from './PhoneMockup.module.scss';
 import { LinkType } from '../../interfaces';
+import { SVGWrapper } from '../UI/SVGWrapper/SVGWrapper';
 
 interface phoneMockupProps {
   userLinks: LinkType[];
@@ -26,6 +27,7 @@ export const PhoneMockup = ({
                 key={index}
               >
                 <img src={icon} alt='platform icon' />
+                <SVGWrapper markup={icon} color='blue' />
                 <span>{name}</span>
               </a>
             );
