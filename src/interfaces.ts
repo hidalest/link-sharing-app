@@ -11,6 +11,8 @@ export type LinkType = {
   placeholderLink: string;
   userLink?: string;
   isValid?: boolean;
+  backgroundColor?: string;
+  fontColor?: string;
 };
 export interface HomeLinksProps {
   homeLinksData: {

@@ -7,6 +7,8 @@ type UserLink = {
   placeholderLink: string;
   icon: string;
   isValid: boolean;
+  backgroundColor: string;
+  fontColor: string;
 };
 
 type AppState = {
@@ -22,6 +24,12 @@ type updateUserLinkProps = {
   linkId: string;
   inputValue: string;
   isValid: boolean;
+};
+
+type updateColorProps = {
+  linkId: string;
+  attributeElement: string;
+  elementValue: string;
 };
 const initialState: AppState = {
   links: [],
@@ -39,6 +47,8 @@ const mainStore = createSlice({
         placeholderLink: 'https://www.github.com/hidalest',
         icon: '/src/assets/images/icon-github.svg',
         isValid: false,
+        backgroundColor: '#333333',
+        fontColor: '#ffffff',
       });
     },
 
@@ -69,6 +79,20 @@ const mainStore = createSlice({
 
     updateWholeLinksOrder(state, action: PayloadAction<UserLink[]>) {
       state.links = action.payload;
+    },
+
+    updateLinkColor(state, action: PayloadAction<updateColorProps>) {
+      const { linkId, attributeElement, elementValue } = action.payload;
+      // console.log(
+      //   '🚀 ~ file: store.ts:85 ~ updateLinkColor ~ inputElement:',
+      //   inputElement
+      // );
+
+      const foundLink = state.links.find((link) => link.linkId === linkId);
+
+      if (foundLink) {
+        foundLink[attributeElement] = elementValue;
+      }
     },
   },
 });

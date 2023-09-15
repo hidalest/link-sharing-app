@@ -7,6 +7,7 @@ import { linkActions } from '../../../store/store';
 import InputText from '../../../components/UI/InputText/InputText';
 import { FormEvent, useState } from 'react';
 import { LinkFormProps } from '../../../interfaces';
+import { InputColor } from '../../../components/UI/InputColor/InputColor';
 
 const LinkForm = (props: LinkFormProps) => {
   const {
@@ -51,6 +52,19 @@ const LinkForm = (props: LinkFormProps) => {
 
   const onIsInputValidHandler = (isValid: boolean) => {
     setisInputValid(isValid);
+  };
+
+  const onColorChange = (inputElement: HTMLInputElement) => {
+    const attributeElement = inputElement.name;
+
+    const elementValue = inputElement.value;
+
+    const payload = {
+      linkId,
+      attributeElement,
+      elementValue,
+    };
+    dispatch(linkActions.updateLinkColor(payload));
   };
 
   const onSubmitInputHandler = (e: FormEvent<HTMLFormElement>) => {
@@ -105,6 +119,13 @@ const LinkForm = (props: LinkFormProps) => {
           inputLinkIcon={inputLinkIcon}
           onSubmit={onSubmitInputHandler}
           returnIsInputValid={onIsInputValidHandler}
+        />
+      </section>
+      <section>
+        <InputColor
+          label={'background'}
+          onColorChange={onColorChange}
+          name={'backgroundColor'}
         />
       </section>
     </Card>

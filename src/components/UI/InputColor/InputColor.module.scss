@@ -1,0 +1,14 @@
+.inputColor {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+
+  input {
+    margin-right: 1rem;
+    cursor: pointer;
+  }
+
+  label {
+    text-transform: capitalize;
+  }
+}

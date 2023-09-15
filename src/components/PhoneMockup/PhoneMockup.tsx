@@ -18,20 +18,22 @@ export const PhoneMockup = ({
       <section className={styles.linkContainer}>
         {userLinks
           .filter((link) => link.isValid === true)
-          .map(({ name, userLink, icon }, index) => {
-            return (
-              <a
-                className={styles.link}
-                href={userLink}
-                target='_blank'
-                key={index}
-              >
-                <img src={icon} alt='platform icon' />
-                <SVGWrapper markup={icon} color='blue' />
-                <span>{name}</span>
-              </a>
-            );
-          })}
+          .map(
+            ({ name, userLink, icon, backgroundColor, fontColor }, index) => {
+              return (
+                <a
+                  className={styles.link}
+                  href={userLink}
+                  target='_blank'
+                  key={index}
+                  style={{ backgroundColor }}
+                >
+                  <SVGWrapper markup={icon} color={fontColor || '#fff'} />
+                  <span>{name}</span>
+                </a>
+              );
+            }
+          )}
       </section>
     </Card>
   );
