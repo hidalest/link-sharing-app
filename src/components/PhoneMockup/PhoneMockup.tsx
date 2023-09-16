@@ -6,12 +6,17 @@ import { SVGWrapper } from '../UI/SVGWrapper/SVGWrapper';
 interface phoneMockupProps {
   userLinks: LinkType[];
   phoneMockupImage: string;
+  phoneMockupProps: {
+    arrowIconLinks: string;
+  };
 }
 
 export const PhoneMockup = ({
   userLinks,
   phoneMockupImage,
+  phoneMockupProps,
 }: phoneMockupProps) => {
+  const { arrowIconLinks } = phoneMockupProps;
   return (
     <Card priority='white' className={styles['phone-mockup']}>
       <img src={phoneMockupImage} alt='' />
@@ -28,13 +33,21 @@ export const PhoneMockup = ({
                   key={index}
                   style={{ backgroundColor }}
                 >
-                  <SVGWrapper markup={icon} color={fontColor || '#ffffff'} />
-                  <span
-                    style={{ color: fontColor }}
-                    className={styles.platformName}
-                  >
-                    {name}
-                  </span>
+                  <div className={styles.linkInfoContainer}>
+                    <SVGWrapper markup={icon} color={fontColor || '#ffffff'} />
+                    <span
+                      style={{ color: fontColor }}
+                      className={styles.platformName}
+                    >
+                      {name}
+                    </span>
+                  </div>
+                  <div>
+                    <SVGWrapper
+                      markup={arrowIconLinks}
+                      color={fontColor || '#ffffff'}
+                    />
+                  </div>
                 </a>
               );
             }

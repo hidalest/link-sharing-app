@@ -50,6 +50,9 @@ export interface HomeLinksProps {
       sources: LinkType[];
       dragAndDropIcon: string;
     };
+    phoneMockupProps: {
+      arrowIconLinks: string;
+    };
   };
 }
 

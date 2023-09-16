@@ -23,6 +23,7 @@ function HomeLinks(props: HomeLinksProps) {
     saveButton,
     navbarProps,
     linkFormProps,
+    phoneMockupProps,
   } = props.homeLinksData;
 
   const userLinks = useAppSelector((state) => state.links.links);
@@ -62,6 +63,7 @@ function HomeLinks(props: HomeLinksProps) {
         <PhoneMockup
           userLinks={userLinks}
           phoneMockupImage={phoneMockupImage}
+          phoneMockupProps={phoneMockupProps}
         />
         <Card priority='white' className={styles.homeLinks}>
           <header>

@@ -117,6 +117,9 @@
                 }
             ],
             "inputLinkIcon": "/src/assets/images/icon-link.svg"
+        },
+        "phoneMockupProps": {
+            "arrowIconLinks": "/src/assets/images/icon-arrow-right.svg"
         }
     }
 }

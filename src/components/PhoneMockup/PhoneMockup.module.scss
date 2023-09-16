@@ -24,8 +24,14 @@
       border-radius: $border-radius;
       margin: 1rem 0 1.3rem;
       display: flex;
+      justify-content: space-between;
       align-items: center;
       text-decoration: none;
+
+      .linkInfoContainer {
+        display: flex;
+        align-items: center;
+      }
 
       .platformName {
         margin-left: 1rem;
