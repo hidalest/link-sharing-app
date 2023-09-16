@@ -5,13 +5,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 43.5rem;
 
   position: relative;
 
   .linkContainer {
     position: absolute;
-    top: 30.8rem;
+    top: 35rem;
     width: 25rem;
     height: 33rem;
     overflow-y: auto;
