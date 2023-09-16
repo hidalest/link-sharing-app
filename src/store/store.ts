@@ -6,6 +6,9 @@ type UserLink = {
   linkId: string;
   placeholderLink: string;
   icon: string;
+  isValid: boolean;
+  backgroundColor: string;
+  fontColor: string;
 };
 
 type AppState = {
@@ -20,6 +23,13 @@ type PayloadReplaceLink = {
 type updateUserLinkProps = {
   linkId: string;
   inputValue: string;
+  isValid: boolean;
+};
+
+type updateColorProps = {
+  linkId: string;
+  attributeElement: string;
+  elementValue: string;
 };
 const initialState: AppState = {
   links: [],
@@ -36,6 +46,9 @@ const mainStore = createSlice({
         linkId: Math.random().toString(),
         placeholderLink: 'https://www.github.com/hidalest',
         icon: '/src/assets/images/icon-github.svg',
+        isValid: false,
+        backgroundColor: '#333333',
+        fontColor: '#ffffff',
       });
     },
 
@@ -56,23 +69,30 @@ const mainStore = createSlice({
       }
     },
     updateTheUserLink(state, action: PayloadAction<updateUserLinkProps>) {
-      const { linkId, inputValue } = action.payload;
+      const { linkId, inputValue, isValid } = action.payload;
       const linkFound = state.links.find((link) => link.linkId === linkId);
       if (linkFound) {
         linkFound.userLink = inputValue;
+        linkFound.isValid = isValid;
       }
     },
 
     updateWholeLinksOrder(state, action: PayloadAction<UserLink[]>) {
       state.links = action.payload;
     },
+
+    updateLinkColor(state, action: PayloadAction<updateColorProps>) {
+      const { linkId, attributeElement, elementValue } = action.payload;
+
+      const foundLink = state.links.find((link) => link.linkId === linkId);
+
+      if (foundLink) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (foundLink as any)[attributeElement] = elementValue;
+      }
+    },
   },
 });
-
-// Use the PayloadAction type to declare the contents of `action.payload`
-/*incrementByAmount: (state, action: PayloadAction<number>) => {
-        state.value += action.payload
-      },*/
 
 const store = configureStore({
   reducer: {

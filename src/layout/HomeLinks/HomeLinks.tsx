@@ -10,6 +10,8 @@ import { DragDropContext, Draggable, DropResult } from 'react-beautiful-dnd';
 
 import styles from './HomeLinks.module.scss';
 import { StrictModeDroppable } from '../../components/StrictModeDroppableWrapper/StrictoModeDroppableWrapper';
+import { useLocation } from 'react-router-dom';
+import { PhoneMockup } from '../../components/PhoneMockup/PhoneMockup';
 
 function HomeLinks(props: HomeLinksProps) {
   const {
@@ -25,6 +27,7 @@ function HomeLinks(props: HomeLinksProps) {
 
   const userLinks = useAppSelector((state) => state.links.links);
   const dispatch = useAppDispatch();
+  const URL = useLocation();
 
   const { secondaryHeader, secondaryMainImage, secondaryInstructions } =
     welcomeMessage;
@@ -36,6 +39,10 @@ function HomeLinks(props: HomeLinksProps) {
 
   const onAddNewLinkHandler = () => dispatch(linkActions.addingNewLink());
 
+  const showLinksForm = !areUserLinksEmpty && URL.pathname === '/home';
+  // const showProfileForm =
+  //   !areUserLinksEmpty && URL.pathname === '/profileDetails';
+
   console.log('Home', userLinks);
 
   const onDragEnd = (result: DropResult) => {
@@ -46,17 +53,16 @@ function HomeLinks(props: HomeLinksProps) {
     const [newOrder] = userLinksCopy.splice(source.index, 1);
     userLinksCopy.splice(destination.index, 0, newOrder);
     dispatch(linkActions.updateWholeLinksOrder(userLinksCopy));
-
-    console.log('usersLinksCopy', userLinksCopy);
   };
 
   return (
     <>
       <Navbar navbarProps={navbarProps} />
       <section className={styles.mainContainer}>
-        <Card priority='white' className={styles['phone-mockup']}>
-          <img src={phoneMockupImage} alt='phone mockup' />
-        </Card>
+        <PhoneMockup
+          userLinks={userLinks}
+          phoneMockupImage={phoneMockupImage}
+        />
         <Card priority='white' className={styles.homeLinks}>
           <header>
             <h1>{mainHeader}</h1>
@@ -80,7 +86,7 @@ function HomeLinks(props: HomeLinksProps) {
               secondaryMainImage={secondaryMainImage}
             />
           )}
-          {!areUserLinksEmpty && (
+          {showLinksForm && (
             <DragDropContext onDragEnd={onDragEnd}>
               <StrictModeDroppable droppableId='userLinks'>
                 {(provided) => (
@@ -103,10 +109,6 @@ function HomeLinks(props: HomeLinksProps) {
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
                                 ref={provided.innerRef}
-                                // style={getItemStyle(
-                                //   snapshot.isDragging,
-                                //   provided.draggableProps.style
-                                // )}
                               >
                                 <LinkForm
                                   linkFormProps={linkFormProps}

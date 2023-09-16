@@ -1,0 +1,41 @@
+@import '../../sassStyles/mixins';
+@import '../../sassStyles/variables';
+.phone-mockup {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 43.5rem;
+
+  position: relative;
+
+  .linkContainer {
+    position: absolute;
+    top: 35rem;
+    width: 25rem;
+    height: 33rem;
+    overflow-y: auto;
+
+    .link {
+      background-color: $red;
+      height: 5rem;
+      padding: 1.4rem 1.6rem;
+      border-radius: $border-radius;
+      margin: 1rem 0 1.3rem;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+
+      .platformName {
+        margin-left: 1rem;
+        font-size: 1.2rem;
+        font-weight: 400;
+      }
+    }
+  }
+
+  @include responsiveMax($tablet) {
+    display: none;
+  }
+}
