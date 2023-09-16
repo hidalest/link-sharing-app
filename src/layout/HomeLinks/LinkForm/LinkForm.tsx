@@ -72,8 +72,6 @@ const LinkForm = (props: LinkFormProps) => {
   const onSubmitInputHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log('IsInputValid from the onSubmit', isInputValid);
-
     const form = e.target as HTMLFormElement;
     const inputValue = form.inputLink.value;
     const payload = {

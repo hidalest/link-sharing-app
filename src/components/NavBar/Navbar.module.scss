@@ -43,6 +43,9 @@
     }
 
     &.activeRoute {
+      span {
+        color: $purple;
+      }
       color: $purple;
     }
 

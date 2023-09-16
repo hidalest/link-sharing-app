@@ -8,10 +8,11 @@ import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { linkActions } from '../../store/store';
 import { DragDropContext, Draggable, DropResult } from 'react-beautiful-dnd';
 
-import styles from './HomeLinks.module.scss';
 import { StrictModeDroppable } from '../../components/StrictModeDroppableWrapper/StrictoModeDroppableWrapper';
 import { useLocation } from 'react-router-dom';
 import { PhoneMockup } from '../../components/PhoneMockup/PhoneMockup';
+
+import styles from './HomeLinks.module.scss';
 
 function HomeLinks(props: HomeLinksProps) {
   const {
@@ -29,6 +30,7 @@ function HomeLinks(props: HomeLinksProps) {
   const userLinks = useAppSelector((state) => state.links.links);
   const dispatch = useAppDispatch();
   const URL = useLocation();
+  const view = useAppSelector((state) => state.app.currentView);
 
   const { secondaryHeader, secondaryMainImage, secondaryInstructions } =
     welcomeMessage;
@@ -40,7 +42,8 @@ function HomeLinks(props: HomeLinksProps) {
 
   const onAddNewLinkHandler = () => dispatch(linkActions.addingNewLink());
 
-  const showLinksForm = !areUserLinksEmpty && URL.pathname === '/home';
+  const showLinksForm =
+    !areUserLinksEmpty && URL.pathname === '/home' && view === 'links';
   // const showProfileForm =
   //   !areUserLinksEmpty && URL.pathname === '/profileDetails';
 
@@ -98,7 +101,6 @@ function HomeLinks(props: HomeLinksProps) {
                     ref={provided.innerRef}
                   >
                     {userLinks.map((link, index) => {
-                      console.log('Link.LinkId', link.linkId);
                       return (
                         <Draggable
                           draggableId={link.linkId}
