@@ -24,6 +24,13 @@
       margin: 1rem 0 1.3rem;
       display: flex;
       align-items: center;
+      text-decoration: none;
+
+      .platformName {
+        margin-left: 1rem;
+        font-size: 1.2rem;
+        font-weight: 400;
+      }
     }
   }
 

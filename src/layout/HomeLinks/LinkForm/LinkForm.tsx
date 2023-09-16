@@ -55,7 +55,9 @@ const LinkForm = (props: LinkFormProps) => {
   };
 
   const onColorChange = (inputElement: HTMLInputElement) => {
-    const attributeElement = inputElement.name;
+    const attributeElement = inputElement.name as
+      | 'backgroundColor'
+      | 'fontColor';
 
     const elementValue = inputElement.value;
 
@@ -121,11 +123,20 @@ const LinkForm = (props: LinkFormProps) => {
           returnIsInputValid={onIsInputValidHandler}
         />
       </section>
-      <section>
+      <section className={styles.inputColorContainer}>
         <InputColor
           label={'background'}
           onColorChange={onColorChange}
           name={'backgroundColor'}
+          defaultColor={'#333333'}
+          className={styles.test}
+        />
+        <InputColor
+          label={'Font'}
+          onColorChange={onColorChange}
+          name={'fontColor'}
+          defaultColor={'#ffffff'}
+          className={styles.test}
         />
       </section>
     </Card>

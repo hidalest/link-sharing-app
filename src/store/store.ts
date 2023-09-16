@@ -83,24 +83,16 @@ const mainStore = createSlice({
 
     updateLinkColor(state, action: PayloadAction<updateColorProps>) {
       const { linkId, attributeElement, elementValue } = action.payload;
-      // console.log(
-      //   '🚀 ~ file: store.ts:85 ~ updateLinkColor ~ inputElement:',
-      //   inputElement
-      // );
 
       const foundLink = state.links.find((link) => link.linkId === linkId);
 
       if (foundLink) {
-        foundLink[attributeElement] = elementValue;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (foundLink as any)[attributeElement] = elementValue;
       }
     },
   },
 });
-
-// Use the PayloadAction type to declare the contents of `action.payload`
-/*incrementByAmount: (state, action: PayloadAction<number>) => {
-        state.value += action.payload
-      },*/
 
 const store = configureStore({
   reducer: {

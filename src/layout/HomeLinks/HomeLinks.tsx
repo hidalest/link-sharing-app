@@ -109,10 +109,6 @@ function HomeLinks(props: HomeLinksProps) {
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
                                 ref={provided.innerRef}
-                                // style={getItemStyle(
-                                //   snapshot.isDragging,
-                                //   provided.draggableProps.style
-                                // )}
                               >
                                 <LinkForm
                                   linkFormProps={linkFormProps}

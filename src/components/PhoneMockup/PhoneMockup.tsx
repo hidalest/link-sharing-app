@@ -28,8 +28,13 @@ export const PhoneMockup = ({
                   key={index}
                   style={{ backgroundColor }}
                 >
-                  <SVGWrapper markup={icon} color={fontColor || '#fff'} />
-                  <span>{name}</span>
+                  <SVGWrapper markup={icon} color={fontColor || '#ffffff'} />
+                  <span
+                    style={{ color: fontColor }}
+                    className={styles.platformName}
+                  >
+                    {name}
+                  </span>
                 </a>
               );
             }

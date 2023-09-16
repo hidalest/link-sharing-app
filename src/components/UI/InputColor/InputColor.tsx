@@ -5,10 +5,18 @@ interface InputColorProps {
   label: string;
   onColorChange: (inputEl: HTMLInputElement) => void;
   name: string;
+  defaultColor: string;
+  className?: string;
 }
 
-export const InputColor = ({ label, onColorChange, name }: InputColorProps) => {
-  const [inputColor, setInputColor] = useState('#333333');
+export const InputColor = ({
+  label,
+  onColorChange,
+  name,
+  defaultColor,
+  className = '',
+}: InputColorProps) => {
+  const [inputColor, setInputColor] = useState(defaultColor);
 
   const onChangeHandlerInput = (e: ChangeEvent<HTMLInputElement>) => {
     setInputColor(e.target.value);
@@ -16,7 +24,7 @@ export const InputColor = ({ label, onColorChange, name }: InputColorProps) => {
   };
 
   return (
-    <div className={styles.inputColor}>
+    <div className={`${styles.inputColor} ${styles[className]}`}>
       <input
         type='color'
         name={name}
