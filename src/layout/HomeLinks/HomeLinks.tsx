@@ -44,8 +44,8 @@ function HomeLinks(props: HomeLinksProps) {
 
   const showLinksForm =
     !areUserLinksEmpty && URL.pathname === '/home' && view === 'links';
-  // const showProfileForm =
-  //   !areUserLinksEmpty && URL.pathname === '/profileDetails';
+  const showProfileForm =
+    !areUserLinksEmpty && URL.pathname === '/home' && view === 'profileDetails';
 
   console.log('Home', userLinks);
 
@@ -69,72 +69,73 @@ function HomeLinks(props: HomeLinksProps) {
           phoneMockupProps={phoneMockupProps}
         />
         <Card priority='white' className={styles.homeLinks}>
-          <header>
-            <h1>{mainHeader}</h1>
-            <p className={styles['homeLinks-mainInstructions']}>
-              {mainInstructions}
-            </p>
-          </header>
-
-          <Button
-            priority='secondary'
-            className={styles['homeLinks-buttonAdd']}
-            onClick={onAddNewLinkHandler}
-          >
-            {addNewLinkButtonCopy}
-          </Button>
-
-          {areUserLinksEmpty && (
-            <WelcomeMessage
-              secondaryHeader={secondaryHeader}
-              secondaryInstructions={secondaryInstructions}
-              secondaryMainImage={secondaryMainImage}
-            />
-          )}
           {showLinksForm && (
-            <DragDropContext onDragEnd={onDragEnd}>
-              <StrictModeDroppable droppableId='userLinks'>
-                {(provided) => (
-                  <div
-                    className={styles.linksContainer}
-                    {...provided.droppableProps}
-                    ref={provided.innerRef}
-                  >
-                    {userLinks.map((link, index) => {
-                      return (
-                        <Draggable
-                          draggableId={link.linkId}
-                          key={link.linkId}
-                          index={index}
-                        >
-                          {(provided, snapshot) => {
-                            return (
-                              <div
-                                {...provided.draggableProps}
-                                {...provided.dragHandleProps}
-                                ref={provided.innerRef}
-                              >
-                                <LinkForm
-                                  linkFormProps={linkFormProps}
-                                  linkId={link.linkId}
-                                  linkName={link.name}
-                                  linkUserLink={link.userLink}
-                                  linkPlaceholder={link.placeholderLink}
-                                  linkIcon={link.icon}
-                                  enumeration={index + 1}
-                                  defaultLink={defaultLink}
-                                  isDragging={snapshot.isDragging}
-                                />
-                              </div>
-                            );
-                          }}
-                        </Draggable>
-                      );
-                    })}
-                  </div>
-                )}
-              </StrictModeDroppable>
-            </DragDropContext>
+            <>
+              <header>
+                <h1>{mainHeader}</h1>
+                <p className={styles['homeLinks-mainInstructions']}>
+                  {mainInstructions}
+                </p>
+              </header>
+
+              {areUserLinksEmpty && (
+                <WelcomeMessage
+                  secondaryHeader={secondaryHeader}
+                  secondaryInstructions={secondaryInstructions}
+                  secondaryMainImage={secondaryMainImage}
+                />
+              )}
+              <Button
+                priority='secondary'
+                className={styles['homeLinks-buttonAdd']}
+                onClick={onAddNewLinkHandler}
+              >
+                {addNewLinkButtonCopy}
+              </Button>
+              <DragDropContext onDragEnd={onDragEnd}>
+                <StrictModeDroppable droppableId='userLinks'>
+                  {(provided) => (
+                    <div
+                      className={styles.linksContainer}
+                      {...provided.droppableProps}
+                      ref={provided.innerRef}
+                    >
+                      {userLinks.map((link, index) => {
+                        return (
+                          <Draggable
+                            draggableId={link.linkId}
+                            key={link.linkId}
+                            index={index}
+                          >
+                            {(provided, snapshot) => {
+                              return (
+                                <div
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                  ref={provided.innerRef}
+                                >
+                                  <LinkForm
+                                    linkFormProps={linkFormProps}
+                                    linkId={link.linkId}
+                                    linkName={link.name}
+                                    linkUserLink={link.userLink}
+                                    linkPlaceholder={link.placeholderLink}
+                                    linkIcon={link.icon}
+                                    enumeration={index + 1}
+                                    defaultLink={defaultLink}
+                                    isDragging={snapshot.isDragging}
+                                  />
+                                </div>
+                              );
+                            }}
+                          </Draggable>
+                        );
+                      })}
+                    </div>
+                  )}
+                </StrictModeDroppable>
+              </DragDropContext>
+            </>
           )}
           <Card priority='white' className={styles['buttonSave--container']}>
             <Button priority={'primary'}>{btnCopy}</Button>
