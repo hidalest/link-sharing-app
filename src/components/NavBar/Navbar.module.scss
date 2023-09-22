@@ -35,22 +35,21 @@
     &.routeLink {
       padding: 1.1rem 2.3rem;
       border-radius: $border-radius;
+      span {
+        color: $grey;
+      }
 
       &.activeRoute {
         color: $purple;
         background-color: $purple-light;
+        span {
+          color: $purple;
+        }
       }
-    }
-
-    &.activeRoute {
-      span {
-        color: $purple;
-      }
-      color: $purple;
     }
 
     &:hover {
-      & svg {
+      & span {
         fill: $purple;
       }
       transition: all 200ms ease-in;

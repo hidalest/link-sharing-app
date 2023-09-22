@@ -53,9 +53,23 @@ export interface HomeLinksProps {
     phoneMockupProps: {
       arrowIconLinks: string;
     };
+    profileDetailsProps: profileDetailsProps;
   };
 }
-
+export interface profileDetailsProps {
+  heading: string;
+  headingInstructions: string;
+  profilePictureImageLabel: string;
+  profilePictureImageInstructions: string;
+  profilePictureImageIcon: string;
+  profilePictureImagePlaceholder: string;
+  firstNameLabel: string;
+  firstNamePlaceholder: string;
+  secondLastNameLabel: string;
+  secondLastNamePlaceholder: string;
+  emailLabel: string;
+  emailPlaceholder: string;
+}
 // Navigation Bar Props
 
 export interface NavBarProps {

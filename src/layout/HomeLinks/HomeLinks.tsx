@@ -13,6 +13,7 @@ import { useLocation } from 'react-router-dom';
 import { PhoneMockup } from '../../components/PhoneMockup/PhoneMockup';
 
 import styles from './HomeLinks.module.scss';
+import { ProfileDetailsForm } from './ProfileDetailsForm/ProfileDetailsForm';
 
 function HomeLinks(props: HomeLinksProps) {
   const {
@@ -25,6 +26,7 @@ function HomeLinks(props: HomeLinksProps) {
     navbarProps,
     linkFormProps,
     phoneMockupProps,
+    profileDetailsProps,
   } = props.homeLinksData;
 
   const userLinks = useAppSelector((state) => state.links.links);
@@ -42,10 +44,8 @@ function HomeLinks(props: HomeLinksProps) {
 
   const onAddNewLinkHandler = () => dispatch(linkActions.addingNewLink());
 
-  const showLinksForm =
-    !areUserLinksEmpty && URL.pathname === '/home' && view === 'links';
-  const showProfileForm =
-    !areUserLinksEmpty && URL.pathname === '/home' && view === 'profileDetails';
+  const showLinksForm = URL.pathname === '/home' && view === 'links';
+  const showProfileForm = URL.pathname === '/home' && view === 'profileDetails';
 
   console.log('Home', userLinks);
 
@@ -78,13 +78,6 @@ function HomeLinks(props: HomeLinksProps) {
                 </p>
               </header>
 
-              {areUserLinksEmpty && (
-                <WelcomeMessage
-                  secondaryHeader={secondaryHeader}
-                  secondaryInstructions={secondaryInstructions}
-                  secondaryMainImage={secondaryMainImage}
-                />
-              )}
               <Button
                 priority='secondary'
                 className={styles['homeLinks-buttonAdd']}
@@ -92,6 +85,14 @@ function HomeLinks(props: HomeLinksProps) {
               >
                 {addNewLinkButtonCopy}
               </Button>
+
+              {areUserLinksEmpty && (
+                <WelcomeMessage
+                  secondaryHeader={secondaryHeader}
+                  secondaryInstructions={secondaryInstructions}
+                  secondaryMainImage={secondaryMainImage}
+                />
+              )}
               <DragDropContext onDragEnd={onDragEnd}>
                 <StrictModeDroppable droppableId='userLinks'>
                   {(provided) => (
@@ -137,6 +138,9 @@ function HomeLinks(props: HomeLinksProps) {
               </DragDropContext>
             </>
           )}
+
+          {showProfileForm && <ProfileDetailsForm {...profileDetailsProps} />}
+
           <Card priority='white' className={styles['buttonSave--container']}>
             <Button priority={'primary'}>{btnCopy}</Button>
           </Card>

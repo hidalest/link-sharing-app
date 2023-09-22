@@ -1,0 +1,21 @@
+@import '../../../sassStyles/variables';
+
+.profileDetails {
+  .heading {
+    /* Heading M */
+    color: $dark-grey;
+    font-size: 3.2rem;
+    font-style: normal;
+    font-weight: 700;
+    // line-height: 150%; /* 48px */
+  }
+
+  .heading-instructions {
+    color: var(--Grey, #737373);
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: lighter;
+    line-height: 2.3rem;
+    margin-top: 0.8rem;
+  }
+}

@@ -4,7 +4,7 @@ import { NavBarProps } from '../../interfaces';
 
 import styles from './Navbar.module.scss';
 import { SVGWrapper } from '../UI/SVGWrapper/SVGWrapper';
-import { useAppDispatch } from '../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { appActions } from '../../store/store';
 
 function Navbar(props: NavBarProps) {
@@ -20,6 +20,7 @@ function Navbar(props: NavBarProps) {
     buttonPreviewIcon,
   } = props.navbarProps;
 
+  const view = useAppSelector((state) => state.app.currentView);
   const onChangeLinksViewHandler = () =>
     dispatch(appActions.changeView('links'));
   const onChangeProfileDetailsViewHandler = () => {
@@ -37,7 +38,9 @@ function Navbar(props: NavBarProps) {
           onClick={onChangeLinksViewHandler}
           to={'/home'}
           className={`${styles.navbarLinks} ${styles.routeLink} ${
-            location.pathname === '/home' ? styles.activeRoute : ''
+            location.pathname === '/home' && view === 'links'
+              ? styles.activeRoute
+              : ''
           }`}
         >
           <SVGWrapper markup={logoLinkPage} color='' />
@@ -47,10 +50,12 @@ function Navbar(props: NavBarProps) {
           onClick={onChangeProfileDetailsViewHandler}
           to={'/home'}
           className={`${styles.navbarLinks} ${styles.routeLink} ${
-            location.pathname === '/profile' ? styles.activeRoute : ''
+            location.pathname === '/home' && view === 'profileDetails'
+              ? styles.activeRoute
+              : ''
           }`}
         >
-          <img src={logoProfilePage}></img>
+          <SVGWrapper markup={logoProfilePage} color='' />
           <span className={styles['link-copy']}>{profileDetailsPageCopy}</span>
         </Link>
       </section>

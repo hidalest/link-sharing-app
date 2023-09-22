@@ -120,6 +120,20 @@
         },
         "phoneMockupProps": {
             "arrowIconLinks": "/src/assets/images/icon-arrow-right.svg"
+        },
+        "profileDetailsProps": {
+            "heading": "Profile Details",
+            "headingInstructions": "Add your details to create a personal touch to your profile.",
+            "profilePictureImageLabel": "Profile Picture",
+            "profilePictureImageInstructions": "Image must be below 1024x1024px. Use PNG or JPG format.",
+            "profilePictureImageIcon": "/src/assets/images/icon-upload-image.svg",
+            "profilePictureImagePlaceholder": "+ Upload Image",
+            "firstNameLabel": "First Name",
+            "firstNamePlaceholder": "e.g. John",
+            "secondLastNameLabel": "Last Name",
+            "secondLastNamePlaceholder": "e.g. Appleseed",
+            "emailLabel": "Email",
+            "emailPlaceholder": "e.g. email@example.com"
         }
     }
 }
