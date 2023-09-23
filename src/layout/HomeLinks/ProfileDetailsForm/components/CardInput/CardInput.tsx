@@ -61,7 +61,7 @@ export const CardInputImage = ({
               alt='not found'
               src={URL.createObjectURL(profilePicture)}
               width={'146px'}
-              height={'200px'}
+              height={'175px'}
               className={`${styles.userImg} ${
                 showIcons ? styles['userImg--hover'] : ''
               }`}

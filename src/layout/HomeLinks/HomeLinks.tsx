@@ -9,7 +9,6 @@ import { linkActions } from '../../store/store';
 import { DragDropContext, Draggable, DropResult } from 'react-beautiful-dnd';
 
 import { StrictModeDroppable } from '../../components/StrictModeDroppableWrapper/StrictoModeDroppableWrapper';
-import { useLocation } from 'react-router-dom';
 import { PhoneMockup } from '../../components/PhoneMockup/PhoneMockup';
 
 import styles from './HomeLinks.module.scss';
@@ -31,7 +30,6 @@ function HomeLinks(props: HomeLinksProps) {
 
   const userLinks = useAppSelector((state) => state.links.links);
   const dispatch = useAppDispatch();
-  const URL = useLocation();
   const view = useAppSelector((state) => state.app.currentView);
 
   const { secondaryHeader, secondaryMainImage, secondaryInstructions } =
