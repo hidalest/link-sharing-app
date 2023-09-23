@@ -3,6 +3,7 @@ import Card from '../../../../../components/UI/Card/Card';
 
 import styles from './CardInput.module.scss';
 import { SVGWrapper } from '../../../../../components/UI/SVGWrapper/SVGWrapper';
+import Button from '../../../../../components/UI/Button/Button';
 
 interface CardInputImageProps {
   profilePictureImageLabel: string;
@@ -55,17 +56,26 @@ export const CardInputImage = ({
           className={styles.inputPicture}
         />
         {profilePicture && (
-          <img
-            alt='not found'
-            src={URL.createObjectURL(profilePicture)}
-            width={'146px'}
-            height={'174px'}
-            className={`${styles.userImg} ${
-              showIcons ? styles['userImg--hover'] : ''
-            }`}
-            onMouseEnter={onMouseEnterHandler}
-            onMouseLeave={onMouseLeaveHandler}
-          />
+          <article className={styles.profilePicCombo}>
+            <img
+              alt='not found'
+              src={URL.createObjectURL(profilePicture)}
+              width={'146px'}
+              height={'200px'}
+              className={`${styles.userImg} ${
+                showIcons ? styles['userImg--hover'] : ''
+              }`}
+              onMouseEnter={onMouseEnterHandler}
+              onMouseLeave={onMouseLeaveHandler}
+            />
+            <Button
+              priority='primary'
+              className={styles.removePic}
+              onClick={() => setProfilePicture(null)}
+            >
+              Remove
+            </Button>
+          </article>
         )}
 
         <div
