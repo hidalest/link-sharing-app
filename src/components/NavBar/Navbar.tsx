@@ -3,8 +3,12 @@ import Button from '../UI/Button/Button';
 import { NavBarProps } from '../../interfaces';
 
 import styles from './Navbar.module.scss';
+import { SVGWrapper } from '../UI/SVGWrapper/SVGWrapper';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { appActions } from '../../store/store';
 
 function Navbar(props: NavBarProps) {
+  const dispatch = useAppDispatch();
   const {
     mainLogoDesktop,
     mainLogoSmall,
@@ -16,6 +20,13 @@ function Navbar(props: NavBarProps) {
     buttonPreviewIcon,
   } = props.navbarProps;
 
+  const view = useAppSelector((state) => state.app.currentView);
+  const onChangeLinksViewHandler = () =>
+    dispatch(appActions.changeView('links'));
+  const onChangeProfileDetailsViewHandler = () => {
+    dispatch(appActions.changeView('profileDetails'));
+  };
+
   return (
     <nav className={styles.navbar}>
       <Link to={'/'}>
@@ -24,21 +35,27 @@ function Navbar(props: NavBarProps) {
       </Link>
       <section className={styles.navbarLinks}>
         <Link
+          onClick={onChangeLinksViewHandler}
           to={'/home'}
           className={`${styles.navbarLinks} ${styles.routeLink} ${
-            location.pathname === '/home' ? styles.activeRoute : ''
+            location.pathname === '/home' && view === 'links'
+              ? styles.activeRoute
+              : ''
           }`}
         >
-          <img src={logoLinkPage}></img>
+          <SVGWrapper markup={logoLinkPage} color='' />
           <span className={styles['link-copy']}>{linkPageCopy}</span>
         </Link>
         <Link
-          to={'/profileDetails'}
+          onClick={onChangeProfileDetailsViewHandler}
+          to={'/home'}
           className={`${styles.navbarLinks} ${styles.routeLink} ${
-            location.pathname === '/profile' ? styles.activeRoute : ''
+            location.pathname === '/home' && view === 'profileDetails'
+              ? styles.activeRoute
+              : ''
           }`}
         >
-          <img src={logoProfilePage}></img>
+          <SVGWrapper markup={logoProfilePage} color='' />
           <span className={styles['link-copy']}>{profileDetailsPageCopy}</span>
         </Link>
       </section>

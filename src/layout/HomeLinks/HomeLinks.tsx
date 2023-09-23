@@ -8,10 +8,11 @@ import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { linkActions } from '../../store/store';
 import { DragDropContext, Draggable, DropResult } from 'react-beautiful-dnd';
 
-import styles from './HomeLinks.module.scss';
 import { StrictModeDroppable } from '../../components/StrictModeDroppableWrapper/StrictoModeDroppableWrapper';
-import { useLocation } from 'react-router-dom';
 import { PhoneMockup } from '../../components/PhoneMockup/PhoneMockup';
+
+import styles from './HomeLinks.module.scss';
+import { ProfileDetailsForm } from './ProfileDetailsForm/ProfileDetailsForm';
 
 function HomeLinks(props: HomeLinksProps) {
   const {
@@ -24,11 +25,12 @@ function HomeLinks(props: HomeLinksProps) {
     navbarProps,
     linkFormProps,
     phoneMockupProps,
+    profileDetailsProps,
   } = props.homeLinksData;
 
   const userLinks = useAppSelector((state) => state.links.links);
   const dispatch = useAppDispatch();
-  const URL = useLocation();
+  const view = useAppSelector((state) => state.app.currentView);
 
   const { secondaryHeader, secondaryMainImage, secondaryInstructions } =
     welcomeMessage;
@@ -40,9 +42,8 @@ function HomeLinks(props: HomeLinksProps) {
 
   const onAddNewLinkHandler = () => dispatch(linkActions.addingNewLink());
 
-  const showLinksForm = !areUserLinksEmpty && URL.pathname === '/home';
-  // const showProfileForm =
-  //   !areUserLinksEmpty && URL.pathname === '/profileDetails';
+  const showLinksForm = view === 'links';
+  const showProfileForm = view === 'profileDetails';
 
   console.log('Home', userLinks);
 
@@ -66,74 +67,78 @@ function HomeLinks(props: HomeLinksProps) {
           phoneMockupProps={phoneMockupProps}
         />
         <Card priority='white' className={styles.homeLinks}>
-          <header>
-            <h1>{mainHeader}</h1>
-            <p className={styles['homeLinks-mainInstructions']}>
-              {mainInstructions}
-            </p>
-          </header>
-
-          <Button
-            priority='secondary'
-            className={styles['homeLinks-buttonAdd']}
-            onClick={onAddNewLinkHandler}
-          >
-            {addNewLinkButtonCopy}
-          </Button>
-
-          {areUserLinksEmpty && (
-            <WelcomeMessage
-              secondaryHeader={secondaryHeader}
-              secondaryInstructions={secondaryInstructions}
-              secondaryMainImage={secondaryMainImage}
-            />
-          )}
           {showLinksForm && (
-            <DragDropContext onDragEnd={onDragEnd}>
-              <StrictModeDroppable droppableId='userLinks'>
-                {(provided) => (
-                  <div
-                    className={styles.linksContainer}
-                    {...provided.droppableProps}
-                    ref={provided.innerRef}
-                  >
-                    {userLinks.map((link, index) => {
-                      console.log('Link.LinkId', link.linkId);
-                      return (
-                        <Draggable
-                          draggableId={link.linkId}
-                          key={link.linkId}
-                          index={index}
-                        >
-                          {(provided, snapshot) => {
-                            return (
-                              <div
-                                {...provided.draggableProps}
-                                {...provided.dragHandleProps}
-                                ref={provided.innerRef}
-                              >
-                                <LinkForm
-                                  linkFormProps={linkFormProps}
-                                  linkId={link.linkId}
-                                  linkName={link.name}
-                                  linkUserLink={link.userLink}
-                                  linkPlaceholder={link.placeholderLink}
-                                  linkIcon={link.icon}
-                                  enumeration={index + 1}
-                                  defaultLink={defaultLink}
-                                  isDragging={snapshot.isDragging}
-                                />
-                              </div>
-                            );
-                          }}
-                        </Draggable>
-                      );
-                    })}
-                  </div>
-                )}
-              </StrictModeDroppable>
-            </DragDropContext>
+            <>
+              <header>
+                <h1>{mainHeader}</h1>
+                <p className={styles['homeLinks-mainInstructions']}>
+                  {mainInstructions}
+                </p>
+              </header>
+
+              <Button
+                priority='secondary'
+                className={styles['homeLinks-buttonAdd']}
+                onClick={onAddNewLinkHandler}
+              >
+                {addNewLinkButtonCopy}
+              </Button>
+
+              {areUserLinksEmpty && (
+                <WelcomeMessage
+                  secondaryHeader={secondaryHeader}
+                  secondaryInstructions={secondaryInstructions}
+                  secondaryMainImage={secondaryMainImage}
+                />
+              )}
+              <DragDropContext onDragEnd={onDragEnd}>
+                <StrictModeDroppable droppableId='userLinks'>
+                  {(provided) => (
+                    <div
+                      className={styles.linksContainer}
+                      {...provided.droppableProps}
+                      ref={provided.innerRef}
+                    >
+                      {userLinks.map((link, index) => {
+                        return (
+                          <Draggable
+                            draggableId={link.linkId}
+                            key={link.linkId}
+                            index={index}
+                          >
+                            {(provided, snapshot) => {
+                              return (
+                                <div
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                  ref={provided.innerRef}
+                                >
+                                  <LinkForm
+                                    linkFormProps={linkFormProps}
+                                    linkId={link.linkId}
+                                    linkName={link.name}
+                                    linkUserLink={link.userLink}
+                                    linkPlaceholder={link.placeholderLink}
+                                    linkIcon={link.icon}
+                                    enumeration={index + 1}
+                                    defaultLink={defaultLink}
+                                    isDragging={snapshot.isDragging}
+                                  />
+                                </div>
+                              );
+                            }}
+                          </Draggable>
+                        );
+                      })}
+                    </div>
+                  )}
+                </StrictModeDroppable>
+              </DragDropContext>
+            </>
           )}
+
+          {showProfileForm && <ProfileDetailsForm {...profileDetailsProps} />}
+
           <Card priority='white' className={styles['buttonSave--container']}>
             <Button priority={'primary'}>{btnCopy}</Button>
           </Card>

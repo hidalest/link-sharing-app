@@ -31,13 +31,13 @@ type updateColorProps = {
   attributeElement: string;
   elementValue: string;
 };
-const initialState: AppState = {
+const linkStoreInitialState: AppState = {
   links: [],
 };
 
-const mainStore = createSlice({
+const linksStore = createSlice({
   name: 'links',
-  initialState,
+  initialState: linkStoreInitialState,
   reducers: {
     addingNewLink(state) {
       state.links.push({
@@ -94,9 +94,30 @@ const mainStore = createSlice({
   },
 });
 
+interface appStoreInitialStateProps {
+  theme: 'light' | 'dark';
+  currentView: 'links' | 'profileDetails';
+}
+
+const appStoreInitialState: appStoreInitialStateProps = {
+  theme: 'dark',
+  currentView: 'links',
+};
+
+const appSlice = createSlice({
+  name: 'app',
+  initialState: appStoreInitialState,
+  reducers: {
+    changeView(state, action: PayloadAction<'links' | 'profileDetails'>) {
+      state.currentView = action.payload;
+    },
+  },
+});
+
 const store = configureStore({
   reducer: {
-    links: mainStore.reducer,
+    links: linksStore.reducer,
+    app: appSlice.reducer,
     //anotherSlice: ....
   },
 });
@@ -106,6 +127,7 @@ export type RootState = ReturnType<typeof store.getState>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
 
-export const linkActions = mainStore.actions;
+export const linkActions = linksStore.actions;
+export const appActions = appSlice.actions;
 
 export default store;
