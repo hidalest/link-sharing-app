@@ -44,8 +44,8 @@ function HomeLinks(props: HomeLinksProps) {
 
   const onAddNewLinkHandler = () => dispatch(linkActions.addingNewLink());
 
-  const showLinksForm = URL.pathname === '/home' && view === 'links';
-  const showProfileForm = URL.pathname === '/home' && view === 'profileDetails';
+  const showLinksForm = view === 'links';
+  const showProfileForm = view === 'profileDetails';
 
   console.log('Home', userLinks);
 
