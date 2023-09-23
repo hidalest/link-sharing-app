@@ -2,7 +2,7 @@ import Button from '../../../components/UI/Button/Button';
 import Card from '../../../components/UI/Card/Card';
 import Dropdown from '../../../components/UI/Dropdown/Dropdown';
 import styles from './LinkForm.module.scss';
-import { useAppDispatch } from '../../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { linkActions } from '../../../store/store';
 import InputText from '../../../components/UI/InputText/InputText';
 import { FormEvent, useState } from 'react';
@@ -32,6 +32,9 @@ const LinkForm = (props: LinkFormProps) => {
   } = linkFormProps;
 
   const dispatch = useAppDispatch();
+  const currentLink = useAppSelector((state) =>
+    state.links.links.find((link) => link.linkId === linkId)
+  );
   const [isInputValid, setisInputValid] = useState<boolean>(false);
 
   const onUpdateCurrentPlatformHandler = (name: string) => {
@@ -126,14 +129,20 @@ const LinkForm = (props: LinkFormProps) => {
           label={'background'}
           onColorChange={onColorChange}
           name={'backgroundColor'}
-          defaultColor={'#333333'}
+          defaultColor={`${
+            currentLink?.backgroundColor
+              ? currentLink.backgroundColor
+              : '#333333'
+          }`}
           className={styles.test}
         />
         <InputColor
           label={'Font'}
           onColorChange={onColorChange}
           name={'fontColor'}
-          defaultColor={'#ffffff'}
+          defaultColor={`${
+            currentLink?.fontColor ? currentLink.fontColor : '#ffffff'
+          }`}
           className={styles.test}
         />
       </section>
