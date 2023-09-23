@@ -33,17 +33,6 @@ export const CardInputImage = ({
   const showIconsComponent = !profilePicture || showIcons;
   return (
     <Card priority='grey' className={styles.profilePicture}>
-      {/* {profilePicture && (
-        <div>
-          <img
-            alt='not found'
-            width={'250px'}
-            src={URL.createObjectURL(profilePicture)}
-          />
-          <button onClick={() => setProfilePicture(null)}>Remove</button>
-        </div>
-      )} */}
-
       <p className={styles['profilePicture--label']}>
         {profilePictureImageLabel}
       </p>
