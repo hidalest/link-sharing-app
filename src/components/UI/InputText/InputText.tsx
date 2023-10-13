@@ -1,37 +1,38 @@
-import { FormEvent, useEffect, useRef, useState } from 'react';
+import { FormEvent, Ref, forwardRef, useEffect, useState } from 'react';
 import styles from './InputText.module.scss';
-import { httpRegex } from '../../../utils/regex';
 
 interface InputTextProps {
   placeholder: string;
   inputValue: string;
   inputLinkIcon: string;
+  validationregex: RegExp
+  errorMessageProp: string
   onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
-  returnIsInputValid: (isValid: boolean) => void;
+  returnIsInputValid: (isValid: boolean, inputValue?: string) => void;
 }
 
-function InputText(props: InputTextProps) {
+const InputText = forwardRef((props: InputTextProps, ref:Ref<HTMLInputElement>) => {
   const {
     placeholder,
     inputValue,
     inputLinkIcon,
-    onSubmit,
     returnIsInputValid,
+    validationregex,
+    errorMessageProp
   } = props;
   const [inputText, setInputText] = useState(inputValue);
   const [isInputValid, setIsInputValid] = useState<boolean | null>(null);
   const [errorMessage, setErrorMessage] = useState('');
-  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const onValidateInput = function (text: string, textValid: boolean | null) {
-    const isURLValid = httpRegex.test(text);
-    if (!isURLValid && text !== '') {
+    const isInputValidWithRegex = validationregex.test(text);
+    if (!isInputValidWithRegex && text !== '') {
       setIsInputValid(false);
-      setErrorMessage('Enter a valid URL');
+      setErrorMessage(errorMessageProp);
       returnIsInputValid(false);
-    } else if (text.trim() !== '' && isURLValid) {
+    } else if (text.trim() !== '' && isInputValidWithRegex) {
       setIsInputValid(true);
-      returnIsInputValid(true);
+      returnIsInputValid(true, inputText);
     } else if (text.trim() === '' && textValid !== null) {
       setIsInputValid(false);
       setErrorMessage("Can't be empty");
@@ -53,19 +54,9 @@ function InputText(props: InputTextProps) {
     };
   }, [inputText, isInputValid]);
 
-  const onSubmitFormHandler = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (onSubmit) {
-      onSubmit(e);
-      if (isInputValid) {
-        inputRef.current?.blur();
-      }
-    }
-  };
-
   const errorClass = isInputValid === false ? 'inputInvalid' : '';
   return (
-    <form className={styles.inputContainer} onSubmit={onSubmitFormHandler}>
+    <div className={styles.inputContainer}>
       <label htmlFor='inputLink' className={styles.label}>
         Link:
       </label>
@@ -83,15 +74,16 @@ function InputText(props: InputTextProps) {
         className={`${styles.inputText} ${styles[errorClass]}`}
         name='inputLink'
         onBlur={onInputFocus}
-        ref={inputRef}
+        ref={ref}
         aria-invalid={isInputValid === false ? 'true' : 'false'} // Set ARIA attributes
         aria-describedby={isInputValid === false ? 'error-message' : undefined}
+        
       />
       {!isInputValid && (
         <span className={styles.errorMessage}>{errorMessage}</span>
       )}
-    </form>
+    </div>
   );
-}
+})
 
 export default InputText;
