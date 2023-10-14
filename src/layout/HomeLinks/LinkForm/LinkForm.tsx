@@ -127,6 +127,7 @@ const LinkForm = (props: LinkFormProps) => {
           returnIsInputValid={onIsInputValidHandler}
           errorMessageProp='Please enter a valid URL'
           validationregex={httpRegex}
+          label={'Link'}
           ref={inputRef}
 
         />

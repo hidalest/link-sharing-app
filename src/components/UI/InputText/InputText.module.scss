@@ -10,8 +10,21 @@
   }
 
   .label {
-    position: absolute;
-    left: -90000px;
+    color: var(--Grey, #737373);
+    /* Body M */
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: lighter;
+    line-height: 150%; /* 24px */
+    padding-right: 2rem;
+
+    &.hideLabel {
+      position: absolute;
+      left: -90000px;
+    }
+    &.showLabel {
+      position: relative;
+    }
   }
 
   .errorMessage {
