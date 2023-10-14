@@ -9,6 +9,7 @@ interface InputTextProps {
   errorMessageProp: string;
   showLabel?: boolean;
   label: string;
+  timeOnCheck: number;
   onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
   returnIsInputValid: (isValid: boolean, inputValue?: string) => void;
 }
@@ -24,6 +25,7 @@ const InputText = forwardRef(
       inputValue,
       showLabel = false,
       label,
+      timeOnCheck = 300,
     } = props;
     const [inputText, setInputText] = useState(inputValue || '');
     const [isInputValid, setIsInputValid] = useState<boolean | null>(null);
@@ -52,7 +54,7 @@ const InputText = forwardRef(
     useEffect(() => {
       const typingTimeout = setTimeout(() => {
         onValidateInput(inputText, isInputValid);
-      }, 300);
+      }, timeOnCheck);
 
       return () => {
         clearTimeout(typingTimeout);

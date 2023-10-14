@@ -76,7 +76,7 @@ const LinkForm = (props: LinkFormProps) => {
 
   const onSubmitInputHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    inputRef.current?.blur()
+    inputRef.current?.blur();
 
     const form = e.target as HTMLFormElement;
     const inputValue = form.inputLink.value;
@@ -129,7 +129,7 @@ const LinkForm = (props: LinkFormProps) => {
           validationregex={httpRegex}
           label={'Link'}
           ref={inputRef}
-
+          timeOnCheck={500}
         />
       </form>
       <section className={styles.inputColorContainer}>
