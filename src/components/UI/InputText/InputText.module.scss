@@ -17,6 +17,7 @@
     font-weight: lighter;
     line-height: 150%; /* 24px */
     padding-right: 2rem;
+    position: relative;
 
     &.hideLabel {
       position: absolute;
@@ -25,6 +26,11 @@
     &.showLabel {
       position: relative;
     }
+  }
+
+  .isRequiredStar {
+    position: absolute;
+    right: 1rem;
   }
 
   .errorMessage {

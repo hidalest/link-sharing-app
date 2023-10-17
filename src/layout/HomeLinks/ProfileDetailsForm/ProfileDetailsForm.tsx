@@ -129,6 +129,7 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
             showLabel
             timeOnCheck={500}
             className={styles.inputTextContainer}
+            isRequired
           />
           <InputText
             placeholder={secondLastNamePlaceholder}
@@ -139,6 +140,7 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
             showLabel
             timeOnCheck={500}
             className={styles.inputTextContainer}
+            isRequired
           />
           <InputText
             placeholder={emailPlaceholder}
@@ -149,6 +151,7 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
             showLabel
             timeOnCheck={500}
             className={styles.inputTextContainer}
+            isRequired
           />
 
           <Button priority='primary'>SUBMIT</Button>

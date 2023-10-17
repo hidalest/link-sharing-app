@@ -11,6 +11,7 @@ interface InputTextProps {
   label: string;
   timeOnCheck: number;
   className?: string;
+  isRequired: boolean;
   onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
   returnIsInputValid: (isValid: boolean, inputValue?: string) => void;
 }
@@ -28,6 +29,7 @@ const InputText = forwardRef(
       label,
       timeOnCheck = 300,
       className,
+      isRequired,
     } = props;
     const [inputText, setInputText] = useState(inputValue || '');
     const [isInputValid, setIsInputValid] = useState<boolean | null>(null);
@@ -35,6 +37,7 @@ const InputText = forwardRef(
 
     const onValidateInput = function (text: string, textValid: boolean | null) {
       const isInputValidWithRegex = validationregex.test(text);
+
       if (!isInputValidWithRegex && text !== '') {
         setIsInputValid(false);
         setErrorMessage(errorMessageProp);
@@ -42,10 +45,15 @@ const InputText = forwardRef(
       } else if (text.trim() !== '' && isInputValidWithRegex) {
         setIsInputValid(true);
         returnIsInputValid(true, inputText);
-      } else if (text.trim() === '' && textValid !== null) {
+        setErrorMessage('');
+      } else if (text.trim() === '' && textValid !== null && isRequired) {
         setIsInputValid(false);
         setErrorMessage("Can't be empty");
         returnIsInputValid(false);
+      } else if (text.trim() === '' && !isRequired) {
+        setIsInputValid(true);
+        returnIsInputValid(true, inputText);
+        setErrorMessage('');
       }
     };
 
@@ -76,6 +84,7 @@ const InputText = forwardRef(
           className={`${styles.label} ${styles[showLabelClass]}`}
         >
           {label}
+          {isRequired && <span className={styles.isRequiredStar}>*</span>}
         </label>
         {inputLinkIcon && (
           <img
