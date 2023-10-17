@@ -10,6 +10,7 @@ interface InputTextProps {
   showLabel?: boolean;
   label: string;
   timeOnCheck: number;
+  className?: string;
   onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
   returnIsInputValid: (isValid: boolean, inputValue?: string) => void;
 }
@@ -26,6 +27,7 @@ const InputText = forwardRef(
       showLabel = false,
       label,
       timeOnCheck = 300,
+      className,
     } = props;
     const [inputText, setInputText] = useState(inputValue || '');
     const [isInputValid, setIsInputValid] = useState<boolean | null>(null);
@@ -63,8 +65,12 @@ const InputText = forwardRef(
 
     const errorClass = isInputValid === false ? 'inputInvalid' : '';
     const showLabelClass = showLabel ? 'showLabel' : 'hideLabel';
+
+    console.log('className: ', className);
+    console.log('typeof className: ', typeof className);
+
     return (
-      <div className={styles.inputContainer}>
+      <div className={`${styles.inputContainer} ${className}`}>
         <label
           htmlFor='inputLink'
           className={`${styles.label} ${styles[showLabelClass]}`}

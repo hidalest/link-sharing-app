@@ -5,8 +5,8 @@ import { profileDetailsProps } from '../../../interfaces';
 import { emailRegex, usernameRegex } from '../../../utils/regex';
 import { CardInputImage } from './components/CardInput/CardInput';
 
-import styles from './ProfileDetails.module.scss';
 import Button from '../../../components/UI/Button/Button';
+import styles from './ProfileDetails.module.scss';
 
 interface InputsDataProps {
   firstNameInputData: {
@@ -128,6 +128,7 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
             label={firstNameLabel}
             showLabel
             timeOnCheck={500}
+            className={styles.inputTextContainer}
           />
           <InputText
             placeholder={secondLastNamePlaceholder}
@@ -137,6 +138,7 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
             label={secondLastNameLabel}
             showLabel
             timeOnCheck={500}
+            className={styles.inputTextContainer}
           />
           <InputText
             placeholder={emailPlaceholder}
@@ -146,6 +148,7 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
             label={emailLabel}
             showLabel
             timeOnCheck={500}
+            className={styles.inputTextContainer}
           />
 
           <Button priority='primary'>SUBMIT</Button>
