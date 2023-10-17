@@ -6,6 +6,7 @@ import { emailRegex, usernameRegex } from '../../../utils/regex';
 import { CardInputImage } from './components/CardInput/CardInput';
 
 import styles from './ProfileDetails.module.scss';
+import Button from '../../../components/UI/Button/Button';
 
 interface InputsDataProps {
   firstNameInputData: {
@@ -117,7 +118,7 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
         <p className={styles['heading-instructions']}>{headingInstructions}</p>
       </header>
       <CardInputImage {...CardInputImageProps} />
-      <Card priority='grey'>
+      <Card priority='grey' className={styles.inputFormContainer}>
         <form onSubmit={onSubmitFormHandler}>
           <InputText
             placeholder={firstNamePlaceholder}
@@ -147,7 +148,7 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
             timeOnCheck={500}
           />
 
-          <button type='submit'>Goo</button>
+          <Button priority='primary'>SUBMIT</Button>
         </form>
       </Card>
     </section>
