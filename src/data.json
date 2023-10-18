@@ -130,10 +130,13 @@
             "profilePictureImagePlaceholder": "+ Upload Image",
             "firstNameLabel": "First Name",
             "firstNamePlaceholder": "e.g. John",
+            "firstNameErrorMessage": "Please enter a valid name",
             "secondLastNameLabel": "Last Name",
             "secondLastNamePlaceholder": "e.g. Appleseed",
+            "secondNameErrorMessage": "Please enter a valid name",
             "emailLabel": "Email",
-            "emailPlaceholder": "e.g. email@example.com"
+            "emailPlaceholder": "e.g. email@example.com",
+            "emailErrorMessage": "Please enter a valid email"
         }
     }
 }

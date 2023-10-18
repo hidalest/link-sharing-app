@@ -65,10 +65,13 @@ export interface profileDetailsProps {
   profilePictureImagePlaceholder: string;
   firstNameLabel: string;
   firstNamePlaceholder: string;
+  firstNameErrorMessage: string;
   secondLastNameLabel: string;
   secondLastNamePlaceholder: string;
+  secondNameErrorMessage: string;
   emailLabel: string;
   emailPlaceholder: string;
+  emailErrorMessage: string;
 }
 // Navigation Bar Props
 

@@ -10,8 +10,27 @@
   }
 
   .label {
+    color: var(--Grey, #737373);
+    /* Body M */
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: lighter;
+    line-height: 150%; /* 24px */
+    padding-right: 2rem;
+    position: relative;
+
+    &.hideLabel {
+      position: absolute;
+      left: -90000px;
+    }
+    &.showLabel {
+      position: relative;
+    }
+  }
+
+  .isRequiredStar {
     position: absolute;
-    left: -90000px;
+    right: 1rem;
   }
 
   .errorMessage {
@@ -28,6 +47,7 @@
 }
 .inputText {
   padding: 1rem 3rem;
+  padding: 1.6rem 1.2rem;
   border: 1px solid $light-grey;
   border-radius: 5px;
 

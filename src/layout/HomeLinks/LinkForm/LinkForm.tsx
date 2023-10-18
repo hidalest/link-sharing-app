@@ -5,9 +5,10 @@ import styles from './LinkForm.module.scss';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { linkActions } from '../../../store/store';
 import InputText from '../../../components/UI/InputText/InputText';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useRef, useState } from 'react';
 import { LinkFormProps } from '../../../interfaces';
 import { InputColor } from '../../../components/UI/InputColor/InputColor';
+import { httpRegex } from '../../../utils/regex';
 
 const LinkForm = (props: LinkFormProps) => {
   const {
@@ -32,6 +33,7 @@ const LinkForm = (props: LinkFormProps) => {
   } = linkFormProps;
 
   const dispatch = useAppDispatch();
+  const inputRef = useRef<null | HTMLInputElement>(null);
   const currentLink = useAppSelector((state) =>
     state.links.links.find((link) => link.linkId === linkId)
   );
@@ -74,6 +76,7 @@ const LinkForm = (props: LinkFormProps) => {
 
   const onSubmitInputHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    inputRef.current?.blur();
 
     const form = e.target as HTMLFormElement;
     const inputValue = form.inputLink.value;
@@ -114,7 +117,7 @@ const LinkForm = (props: LinkFormProps) => {
           onUpdateCurrentPlatformHandler={onUpdateCurrentPlatformHandler}
         />
       </section>
-      <section className={styles.linkContainer}>
+      <form className={styles.linkContainer} onSubmit={onSubmitInputHandler}>
         <p className={styles.platformSubheadings}>{linkSubheading}</p>
         <InputText
           placeholder={linkPlaceholder}
@@ -122,8 +125,13 @@ const LinkForm = (props: LinkFormProps) => {
           inputLinkIcon={inputLinkIcon}
           onSubmit={onSubmitInputHandler}
           returnIsInputValid={onIsInputValidHandler}
+          errorMessageProp='Please enter a valid URL'
+          validationregex={httpRegex}
+          label={'Link'}
+          ref={inputRef}
+          timeOnCheck={500}
         />
-      </section>
+      </form>
       <section className={styles.inputColorContainer}>
         <InputColor
           label={'background'}
