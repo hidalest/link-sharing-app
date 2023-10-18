@@ -7,7 +7,7 @@
   align-items: center;
   margin-top: 2rem;
 
-  @include responsiveMax($phone) {
+  @include responsiveMax($tablet-land) {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
@@ -52,7 +52,7 @@
     width: 145px;
     height: 175px;
 
-    @include responsiveMax($phone) {
+    @include responsiveMax($tablet-land) {
       margin: 1.6rem 0;
       margin-bottom: 2rem;
     }

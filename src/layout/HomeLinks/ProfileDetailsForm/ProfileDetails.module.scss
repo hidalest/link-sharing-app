@@ -32,7 +32,7 @@
     button {
       align-self: flex-end;
 
-      @include responsiveMax($phone) {
+      @include responsiveMax($tablet-land) {
         align-self: flex-start;
       }
     }
@@ -45,7 +45,7 @@
     justify-content: space-between;
     margin: 1.2rem 0;
 
-    @include responsiveMax($phone) {
+    @include responsiveMax($tablet-land) {
       flex-direction: column;
       align-items: flex-start;
     }
@@ -53,7 +53,7 @@
     & input {
       width: 60%;
 
-      @include responsiveMax($phone) {
+      @include responsiveMax($tablet-land) {
         width: 100%;
       }
     }
