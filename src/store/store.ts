@@ -114,10 +114,39 @@ const appSlice = createSlice({
   },
 });
 
+interface userProfileInitialStateProps {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
+const userProfileInitialState = {
+  firsName: '',
+  lastName: '',
+  email: '',
+};
+
+const userProfileSlice = createSlice({
+  name: 'userProfileSlice',
+  initialState: userProfileInitialState,
+  reducers: {
+    updateUserProfile(
+      state,
+      action: PayloadAction<userProfileInitialStateProps>
+    ) {
+      const { firstName, lastName, email } = action.payload;
+      state.firsName = firstName;
+      state.lastName = lastName;
+      state.email = email;
+    },
+  },
+});
+
 const store = configureStore({
   reducer: {
     links: linksStore.reducer,
     app: appSlice.reducer,
+    userProfile: userProfileSlice.reducer,
     //anotherSlice: ....
   },
 });
@@ -129,5 +158,6 @@ export type AppDispatch = typeof store.dispatch;
 
 export const linkActions = linksStore.actions;
 export const appActions = appSlice.actions;
+export const userProfileActions = userProfileSlice.actions;
 
 export default store;
