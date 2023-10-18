@@ -119,7 +119,10 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
       </header>
       <CardInputImage {...CardInputImageProps} />
       <Card priority='grey' className={styles.inputFormContainer}>
-        <form onSubmit={onSubmitFormHandler}>
+        <form
+          onSubmit={onSubmitFormHandler}
+          className={styles.inputProfileForm}
+        >
           <InputText
             placeholder={firstNamePlaceholder}
             validationregex={usernameRegex}
@@ -154,7 +157,7 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
             isRequired
           />
 
-          <Button priority='primary'>SUBMIT</Button>
+          <Button priority='secondary'>SUBMIT</Button>
         </form>
       </Card>
     </section>

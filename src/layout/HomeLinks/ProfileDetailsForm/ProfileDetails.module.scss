@@ -21,6 +21,16 @@
 
   .inputFormContainer {
     margin-top: 2rem;
+    padding: 2rem 4rem;
+  }
+
+  .inputProfileForm {
+    display: flex;
+    flex-direction: column;
+
+    button {
+      align-self: flex-end;
+    }
   }
 
   .inputTextContainer {
