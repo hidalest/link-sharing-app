@@ -26,7 +26,7 @@ export const CardInputImage = ({
     if (files && files.length !== 0) setProfilePicture(files[0]);
   };
 
-  console.log(showIcons);
+  console.log('showIcons: ', showIcons);
 
   const onMouseEnterHandler = () => setShowIcons(true);
   const onMouseLeaveHandler = () => setShowIcons(false);

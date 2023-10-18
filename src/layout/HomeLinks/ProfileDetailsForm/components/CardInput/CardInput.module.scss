@@ -1,10 +1,17 @@
 @import '../../../../../sassStyles/variables';
+@import '../../../../../sassStyles/mixins';
 
 .profilePicture {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 2rem;
+
+  @include responsiveMax($phone) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
 
   input[type='file'] {
     display: none;
@@ -44,6 +51,11 @@
     position: relative;
     width: 145px;
     height: 175px;
+
+    @include responsiveMax($phone) {
+      margin: 1.6rem 0;
+      margin-bottom: 2rem;
+    }
 
     & .profilePicCombo {
       display: flex;
