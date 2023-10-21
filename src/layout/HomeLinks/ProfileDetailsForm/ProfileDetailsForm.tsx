@@ -7,6 +7,8 @@ import { CardInputImage } from './components/CardInput/CardInput';
 
 import Button from '../../../components/UI/Button/Button';
 import styles from './ProfileDetails.module.scss';
+import { useAppDispatch } from '../../../hooks/hooks';
+import { userProfileActions } from '../../../store/store';
 
 interface InputsDataProps {
   firstNameInputData: {
@@ -23,6 +25,7 @@ interface InputsDataProps {
   };
 }
 export const ProfileDetailsForm = (props: profileDetailsProps) => {
+  const userProfileDispatch = useAppDispatch();
   const {
     heading,
     headingInstructions,
@@ -106,9 +109,23 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
 
   const onSubmitFormHandler = (e: FormEvent) => {
     e.preventDefault();
-    console.log('firstName', inputsData.firstNameInputData);
-    console.log('lastName', inputsData.lastNameInputData);
-    console.log('email', inputsData.emailInputData);
+    const { firstNameInputData, lastNameInputData, emailInputData } =
+      inputsData;
+
+    const areInputsValid =
+      firstNameInputData.isValid &&
+      lastNameInputData.isValid &&
+      emailInputData.isValid;
+
+    if (areInputsValid) {
+      userProfileDispatch(
+        userProfileActions.updateUserProfile({
+          firstName: firstNameInputData.inputValue || '',
+          lastName: lastNameInputData.inputValue || '',
+          email: emailInputData.inputValue || '',
+        })
+      );
+    }
   };
 
   return (

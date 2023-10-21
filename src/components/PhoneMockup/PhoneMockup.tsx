@@ -20,6 +20,9 @@ export const PhoneMockup = ({
   return (
     <Card priority='white' className={styles['phone-mockup']}>
       <img src={phoneMockupImage} alt='' />
+      <section className={styles.profileInformationContainer}>
+        <p>TEsting</p>
+      </section>
       <section className={styles.linkContainer}>
         {userLinks
           .filter((link) => link.isValid === true)

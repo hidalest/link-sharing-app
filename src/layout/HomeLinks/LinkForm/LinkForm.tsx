@@ -130,6 +130,7 @@ const LinkForm = (props: LinkFormProps) => {
           label={'Link'}
           ref={inputRef}
           timeOnCheck={500}
+          isRequired
         />
       </form>
       <section className={styles.inputColorContainer}>

@@ -7,8 +7,20 @@
   align-items: center;
   justify-content: center;
   width: 43.5rem;
+  //TODO: delete this line
+  background-color: green;
 
   position: relative;
+
+  .profileInformationContainer {
+    position: absolute;
+    // TODO: delete this
+    background-color: red;
+    opacity: 0.5;
+    top: 10rem;
+    width: 23rem;
+    height: 23rem;
+  }
 
   .linkContainer {
     position: absolute;
@@ -16,6 +28,9 @@
     width: 25rem;
     height: 33rem;
     overflow-y: auto;
+    //TODO: delete this line
+    background-color: purple;
+    opacity: 0.5;
 
     .link {
       background-color: $red;
