@@ -74,9 +74,6 @@ const InputText = forwardRef(
     const errorClass = isInputValid === false ? 'inputInvalid' : '';
     const showLabelClass = showLabel ? 'showLabel' : 'hideLabel';
 
-    console.log('className: ', className);
-    console.log('typeof className: ', typeof className);
-
     return (
       <div className={`${styles.inputContainer} ${className}`}>
         <label

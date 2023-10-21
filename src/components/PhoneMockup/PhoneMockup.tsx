@@ -2,6 +2,7 @@ import Card from '../UI/Card/Card';
 import styles from './PhoneMockup.module.scss';
 import { LinkType } from '../../interfaces';
 import { SVGWrapper } from '../UI/SVGWrapper/SVGWrapper';
+import { useAppSelector } from '../../hooks/hooks';
 
 interface phoneMockupProps {
   userLinks: LinkType[];
@@ -16,6 +17,8 @@ export const PhoneMockup = ({
   phoneMockupImage,
   phoneMockupProps,
 }: phoneMockupProps) => {
+  const userProfileState = useAppSelector((state) => state.userProfile);
+  console.log(userProfileState.firsName);
   const { arrowIconLinks } = phoneMockupProps;
   return (
     <Card priority='white' className={styles['phone-mockup']}>

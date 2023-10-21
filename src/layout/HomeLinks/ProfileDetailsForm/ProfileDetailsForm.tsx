@@ -70,7 +70,6 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
     isValid: boolean,
     inputValue?: string
   ) => {
-    console.log(isValid, inputValue);
     setInputsData((prevState) => {
       return {
         ...prevState,
