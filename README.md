@@ -1,10 +1,8 @@
-# Frontend Mentor - Link-sharing app
+# Link-sharing app
 
 ![Design preview for the Link-sharing app coding challenge](./preview.jpg)
 
 ## Welcome! 👋
-
-## The challenge
 
 The project is about creating a link-sharing app and get it looking as close to the design as possible.
 
