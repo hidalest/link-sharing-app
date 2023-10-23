@@ -159,7 +159,7 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
             showLabel
             timeOnCheck={500}
             className={styles.inputTextContainer}
-            isRequired
+            isRequired={false}
           />
           <InputText
             placeholder={emailPlaceholder}

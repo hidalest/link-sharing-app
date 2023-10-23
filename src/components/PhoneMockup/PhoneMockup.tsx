@@ -22,13 +22,20 @@ export const PhoneMockup = ({
   const { arrowIconLinks } = phoneMockupProps;
   return (
     <Card priority='white' className={styles['phone-mockup']}>
-      <img src={phoneMockupImage} alt='' />
+      <img src={phoneMockupImage} alt='phone mockup' />
       <section className={styles.profileInformationContainer}>
-        <p>TEsting</p>
+        <article className={styles['profileInformationContainer--text']}>
+          <p className={styles['profileInformationContainer--name']}>
+            {userProfileState.firsName} {userProfileState.lastName}
+          </p>
+          <p className={styles['profileInformationContainer--email']}>
+            {userProfileState.email}
+          </p>
+        </article>
       </section>
       <section className={styles.linkContainer}>
         {userLinks
-          .filter((link) => link.isValid === true)
+          .filter((link) => link.isValid)
           .map(
             ({ name, userLink, icon, backgroundColor, fontColor }, index) => {
               return (

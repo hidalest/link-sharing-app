@@ -7,19 +7,44 @@
   align-items: center;
   justify-content: center;
   width: 43.5rem;
-  //TODO: delete this line
-  background-color: green;
 
   position: relative;
 
   .profileInformationContainer {
     position: absolute;
-    // TODO: delete this
-    background-color: red;
-    opacity: 0.5;
-    top: 10rem;
+    top: 26rem;
     width: 23rem;
-    height: 23rem;
+    height: 5rem;
+    background-color: white;
+
+    & .profileInformationContainer--text {
+      position: absolute;
+      width: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      border-radius: 1.5rem;
+
+      & .profileInformationContainer--name {
+        color: var(--Dark-Grey, #333);
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 150%; /* 27px */
+        border-radius: 15px;
+        text-transform: capitalize;
+      }
+
+      & .profileInformationContainer--email {
+        color: var(--Grey, #737373);
+        font-size: 1.4rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 150%; /* 21px */
+        width: 70%;
+        margin: 0 auto;
+      }
+    }
   }
 
   .linkContainer {
@@ -28,9 +53,6 @@
     width: 25rem;
     height: 33rem;
     overflow-y: auto;
-    //TODO: delete this line
-    background-color: purple;
-    opacity: 0.5;
 
     .link {
       background-color: $red;
