@@ -94,6 +94,7 @@ const linksStore = createSlice({
   },
 });
 
+// APP General Store
 interface appStoreInitialStateProps {
   theme: 'light' | 'dark';
   currentView: 'links' | 'profileDetails';
@@ -114,16 +115,19 @@ const appSlice = createSlice({
   },
 });
 
+// USER PROFILE SLICE
 interface userProfileInitialStateProps {
   firstName: string;
   lastName: string;
   email: string;
+  profileImgURL?: null | File;
 }
 
 const userProfileInitialState = {
   firsName: '',
   lastName: '',
   email: '',
+  profileImgURL: null,
 };
 
 const userProfileSlice = createSlice({
@@ -138,6 +142,9 @@ const userProfileSlice = createSlice({
       state.firsName = firstName;
       state.lastName = lastName;
       state.email = email;
+    },
+    updateUserImage(state, action: PayloadAction<null | File>) {
+      state.profileImgURL = action.payload;
     },
   },
 });

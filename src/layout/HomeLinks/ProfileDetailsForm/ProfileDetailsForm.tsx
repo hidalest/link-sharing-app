@@ -3,7 +3,7 @@ import Card from '../../../components/UI/Card/Card';
 import InputText from '../../../components/UI/InputText/InputText';
 import { profileDetailsProps } from '../../../interfaces';
 import { emailRegex, usernameRegex } from '../../../utils/regex';
-import { CardInputImage } from './components/CardInput/CardInput';
+import { CardInputImage } from './components/CardInput/CardInputImage';
 
 import Button from '../../../components/UI/Button/Button';
 import styles from './ProfileDetails.module.scss';
@@ -159,7 +159,7 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
             showLabel
             timeOnCheck={500}
             className={styles.inputTextContainer}
-            isRequired={false}
+            isRequired
           />
           <InputText
             placeholder={emailPlaceholder}

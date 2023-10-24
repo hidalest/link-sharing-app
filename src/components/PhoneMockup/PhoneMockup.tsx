@@ -17,22 +17,30 @@ export const PhoneMockup = ({
   phoneMockupImage,
   phoneMockupProps,
 }: phoneMockupProps) => {
-  const userProfileState = useAppSelector((state) => state.userProfile);
-  console.log(userProfileState.firsName);
+  const { profileImgURL, firsName, lastName, email } = useAppSelector(
+    (state) => state.userProfile
+  );
   const { arrowIconLinks } = phoneMockupProps;
   return (
     <Card priority='white' className={styles['phone-mockup']}>
       <img src={phoneMockupImage} alt='phone mockup' />
-      <section className={styles.profileInformationContainer}>
-        <article className={styles['profileInformationContainer--text']}>
-          <p className={styles['profileInformationContainer--name']}>
-            {userProfileState.firsName} {userProfileState.lastName}
-          </p>
-          <p className={styles['profileInformationContainer--email']}>
-            {userProfileState.email}
-          </p>
-        </article>
-      </section>
+      {profileImgURL && (
+        <section className={styles.profileImageContainer}>
+          <img src={URL.createObjectURL(profileImgURL)} alt='user profile' />
+        </section>
+      )}
+      {firsName && (
+        <section className={styles.profileInformationContainer}>
+          <article className={styles['profileInformationContainer--text']}>
+            <p className={styles['profileInformationContainer--name']}>
+              {firsName} {lastName}
+            </p>
+            <p className={styles['profileInformationContainer--email']}>
+              {email}
+            </p>
+          </article>
+        </section>
+      )}
       <section className={styles.linkContainer}>
         {userLinks
           .filter((link) => link.isValid)
