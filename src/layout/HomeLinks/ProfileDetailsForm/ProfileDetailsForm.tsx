@@ -7,7 +7,7 @@ import { CardInputImage } from './components/CardInput/CardInputImage';
 
 import Button from '../../../components/UI/Button/Button';
 import styles from './ProfileDetails.module.scss';
-import { useAppDispatch } from '../../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { userProfileActions } from '../../../store/store';
 
 interface InputsDataProps {
@@ -26,6 +26,7 @@ interface InputsDataProps {
 }
 export const ProfileDetailsForm = (props: profileDetailsProps) => {
   const userProfileDispatch = useAppDispatch();
+  const { profileImgURL } = useAppSelector((state) => state.userProfile);
   const {
     heading,
     headingInstructions,
@@ -133,7 +134,10 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
         <h1 className={styles.heading}>{heading}</h1>
         <p className={styles['heading-instructions']}>{headingInstructions}</p>
       </header>
-      <CardInputImage {...CardInputImageProps} />
+      <CardInputImage
+        {...CardInputImageProps}
+        profilePictureImage={profileImgURL}
+      />
       <Card priority='grey' className={styles.inputFormContainer}>
         <form
           onSubmit={onSubmitFormHandler}

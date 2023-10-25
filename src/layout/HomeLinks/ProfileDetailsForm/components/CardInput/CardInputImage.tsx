@@ -7,11 +7,14 @@ import Button from '../../../../../components/UI/Button/Button';
 import { useAppDispatch } from '../../../../../hooks/hooks';
 import { userProfileActions } from '../../../../../store/store';
 
+type userProfilePictureState = File | string | null;
+
 interface CardInputImageProps {
   profilePictureImageLabel: string;
   profilePictureImageInstructions: string;
   profilePictureImageIcon: string;
   profilePictureImagePlaceholder: string;
+  profilePictureImage?: userProfilePictureState;
 }
 
 export const CardInputImage = ({
@@ -19,8 +22,11 @@ export const CardInputImage = ({
   profilePictureImageInstructions,
   profilePictureImageIcon,
   profilePictureImagePlaceholder,
+  profilePictureImage,
 }: CardInputImageProps) => {
-  const [profilePicture, setProfilePicture] = useState<File | null>(null);
+  const [profilePicture, setProfilePicture] = useState<userProfilePictureState>(
+    profilePictureImage || null
+  );
   const [showIcons, setShowIcons] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
@@ -57,7 +63,7 @@ export const CardInputImage = ({
             {/* TODO: Fix aspect ratio image */}
             <img
               alt='not found'
-              src={URL.createObjectURL(profilePicture)}
+              src={URL.createObjectURL(profilePicture)} // Error here
               width={'146px'}
               height={'175px'}
               className={`${styles.userImg} ${
