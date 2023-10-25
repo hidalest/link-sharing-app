@@ -26,7 +26,9 @@ interface InputsDataProps {
 }
 export const ProfileDetailsForm = (props: profileDetailsProps) => {
   const userProfileDispatch = useAppDispatch();
-  const { profileImgURL } = useAppSelector((state) => state.userProfile);
+  const { profileImgURL, firstName, lastName, email } = useAppSelector(
+    (state) => state.userProfile
+  );
   const {
     heading,
     headingInstructions,
@@ -153,6 +155,7 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
             timeOnCheck={500}
             className={styles.inputTextContainer}
             isRequired
+            inputValue={firstName}
           />
           <InputText
             placeholder={secondLastNamePlaceholder}
@@ -164,6 +167,7 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
             timeOnCheck={500}
             className={styles.inputTextContainer}
             isRequired
+            inputValue={lastName}
           />
           <InputText
             placeholder={emailPlaceholder}
@@ -175,6 +179,7 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
             timeOnCheck={500}
             className={styles.inputTextContainer}
             isRequired
+            inputValue={email}
           />
 
           <Button priority='secondary'>SUBMIT</Button>
