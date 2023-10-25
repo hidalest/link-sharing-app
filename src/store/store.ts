@@ -122,11 +122,11 @@ interface userProfileInitialStateProps {
   firstName: string;
   lastName: string;
   email: string;
-  profileImgURL?: profileImageType;
+  profileImgURL: profileImageType;
 }
 
-const userProfileInitialState = {
-  firsName: '',
+const userProfileInitialState: userProfileInitialStateProps = {
+  firstName: '',
   lastName: '',
   email: '',
   profileImgURL: null,
@@ -141,13 +141,13 @@ const userProfileSlice = createSlice({
       action: PayloadAction<userProfileInitialStateProps>
     ) {
       const { firstName, lastName, email } = action.payload;
-      state.firsName = firstName;
+      state.firstName = firstName;
       state.lastName = lastName;
       state.email = email;
     },
     updateUserImage(state, action: PayloadAction<profileImageType>) {
       // FIXME
-      state.profileImgURL = action.payload;
+      state.profileImgURL = action.payload; // Error here => Type 'profileImageType' is not assignable to type 'null'. Type 'File' is not assignable to type 'null'.ts(2322)
     },
   },
 });

@@ -7,7 +7,7 @@ import Button from '../../../../../components/UI/Button/Button';
 import { useAppDispatch } from '../../../../../hooks/hooks';
 import { userProfileActions } from '../../../../../store/store';
 
-type userProfilePictureState = File | string | null;
+type userProfilePictureState = File | null;
 
 interface CardInputImageProps {
   profilePictureImageLabel: string;
