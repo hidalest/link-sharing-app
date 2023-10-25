@@ -4,6 +4,8 @@ import Card from '../../../../../components/UI/Card/Card';
 import styles from './CardInput.module.scss';
 import { SVGWrapper } from '../../../../../components/UI/SVGWrapper/SVGWrapper';
 import Button from '../../../../../components/UI/Button/Button';
+import { useAppDispatch } from '../../../../../hooks/hooks';
+import { userProfileActions } from '../../../../../store/store';
 
 interface CardInputImageProps {
   profilePictureImageLabel: string;
@@ -20,14 +22,20 @@ export const CardInputImage = ({
 }: CardInputImageProps) => {
   const [profilePicture, setProfilePicture] = useState<File | null>(null);
   const [showIcons, setShowIcons] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
 
   const onUploadFile = (event: ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files as FileList;
     if (files && files.length !== 0) setProfilePicture(files[0]);
+    dispatch(userProfileActions.updateUserImage(files[0]));
   };
 
-  console.log('showIcons: ', showIcons);
+  const onRemoveProfilePic = () => {
+    setProfilePicture(null);
+    dispatch(userProfileActions.updateUserImage(null));
+  };
 
+  console.log('profilePiCTURE', profilePicture);
   const onMouseEnterHandler = () => setShowIcons(true);
   const onMouseLeaveHandler = () => setShowIcons(false);
   const showIconsComponent = !profilePicture || showIcons;
@@ -46,6 +54,7 @@ export const CardInputImage = ({
         />
         {profilePicture && (
           <article className={styles.profilePicCombo}>
+            {/* TODO: Fix aspect ratio image */}
             <img
               alt='not found'
               src={URL.createObjectURL(profilePicture)}
@@ -60,7 +69,7 @@ export const CardInputImage = ({
             <Button
               priority='primary'
               className={styles.removePic}
-              onClick={() => setProfilePicture(null)}
+              onClick={onRemoveProfilePic}
             >
               Remove
             </Button>

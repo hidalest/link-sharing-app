@@ -45,8 +45,6 @@ function HomeLinks(props: HomeLinksProps) {
   const showLinksForm = view === 'links';
   const showProfileForm = view === 'profileDetails';
 
-  console.log('Home', userLinks);
-
   const onDragEnd = (result: DropResult) => {
     const { source, destination } = result;
 

@@ -3,10 +3,12 @@ import Card from '../../../components/UI/Card/Card';
 import InputText from '../../../components/UI/InputText/InputText';
 import { profileDetailsProps } from '../../../interfaces';
 import { emailRegex, usernameRegex } from '../../../utils/regex';
-import { CardInputImage } from './components/CardInput/CardInput';
+import { CardInputImage } from './components/CardInput/CardInputImage';
 
 import Button from '../../../components/UI/Button/Button';
 import styles from './ProfileDetails.module.scss';
+import { useAppDispatch } from '../../../hooks/hooks';
+import { userProfileActions } from '../../../store/store';
 
 interface InputsDataProps {
   firstNameInputData: {
@@ -23,6 +25,7 @@ interface InputsDataProps {
   };
 }
 export const ProfileDetailsForm = (props: profileDetailsProps) => {
+  const userProfileDispatch = useAppDispatch();
   const {
     heading,
     headingInstructions,
@@ -67,7 +70,6 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
     isValid: boolean,
     inputValue?: string
   ) => {
-    console.log(isValid, inputValue);
     setInputsData((prevState) => {
       return {
         ...prevState,
@@ -106,9 +108,23 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
 
   const onSubmitFormHandler = (e: FormEvent) => {
     e.preventDefault();
-    console.log('firstName', inputsData.firstNameInputData);
-    console.log('lastName', inputsData.lastNameInputData);
-    console.log('email', inputsData.emailInputData);
+    const { firstNameInputData, lastNameInputData, emailInputData } =
+      inputsData;
+
+    const areInputsValid =
+      firstNameInputData.isValid &&
+      lastNameInputData.isValid &&
+      emailInputData.isValid;
+
+    if (areInputsValid) {
+      userProfileDispatch(
+        userProfileActions.updateUserProfile({
+          firstName: firstNameInputData.inputValue || '',
+          lastName: lastNameInputData.inputValue || '',
+          email: emailInputData.inputValue || '',
+        })
+      );
+    }
   };
 
   return (

@@ -2,6 +2,7 @@ import Card from '../UI/Card/Card';
 import styles from './PhoneMockup.module.scss';
 import { LinkType } from '../../interfaces';
 import { SVGWrapper } from '../UI/SVGWrapper/SVGWrapper';
+import { useAppSelector } from '../../hooks/hooks';
 
 interface phoneMockupProps {
   userLinks: LinkType[];
@@ -16,13 +17,34 @@ export const PhoneMockup = ({
   phoneMockupImage,
   phoneMockupProps,
 }: phoneMockupProps) => {
+  const { profileImgURL, firsName, lastName, email } = useAppSelector(
+    (state) => state.userProfile
+  );
   const { arrowIconLinks } = phoneMockupProps;
   return (
     <Card priority='white' className={styles['phone-mockup']}>
-      <img src={phoneMockupImage} alt='' />
+      <img src={phoneMockupImage} alt='phone mockup' />
+      {profileImgURL && (
+        <section className={styles.profileImageContainer}>
+          <img src={URL.createObjectURL(profileImgURL)} alt='user profile' />
+        </section>
+      )}
+      {/* // FIXME: Fix large email positioning. Using flexbox on the container */}
+      {firsName && (
+        <section className={styles.profileInformationContainer}>
+          <article className={styles['profileInformationContainer--text']}>
+            <p className={styles['profileInformationContainer--name']}>
+              {firsName} {lastName}
+            </p>
+            <p className={styles['profileInformationContainer--email']}>
+              {email}
+            </p>
+          </article>
+        </section>
+      )}
       <section className={styles.linkContainer}>
         {userLinks
-          .filter((link) => link.isValid === true)
+          .filter((link) => link.isValid)
           .map(
             ({ name, userLink, icon, backgroundColor, fontColor }, index) => {
               return (

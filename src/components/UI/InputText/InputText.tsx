@@ -12,6 +12,7 @@ interface InputTextProps {
   timeOnCheck: number;
   className?: string;
   isRequired: boolean;
+  maxLength?: number;
   onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
   returnIsInputValid: (isValid: boolean, inputValue?: string) => void;
 }
@@ -30,6 +31,7 @@ const InputText = forwardRef(
       timeOnCheck = 300,
       className,
       isRequired,
+      maxLength = 50,
     } = props;
     const [inputText, setInputText] = useState(inputValue || '');
     const [isInputValid, setIsInputValid] = useState<boolean | null>(null);
@@ -74,9 +76,6 @@ const InputText = forwardRef(
     const errorClass = isInputValid === false ? 'inputInvalid' : '';
     const showLabelClass = showLabel ? 'showLabel' : 'hideLabel';
 
-    console.log('className: ', className);
-    console.log('typeof className: ', typeof className);
-
     return (
       <div className={`${styles.inputContainer} ${className}`}>
         <label
@@ -107,6 +106,7 @@ const InputText = forwardRef(
           aria-describedby={
             isInputValid === false ? 'error-message' : undefined
           }
+          maxLength={maxLength}
         />
         {!isInputValid && (
           <span className={styles.errorMessage}>{errorMessage}</span>
