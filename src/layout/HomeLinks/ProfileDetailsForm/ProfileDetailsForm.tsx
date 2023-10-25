@@ -7,7 +7,7 @@ import { CardInputImage } from './components/CardInput/CardInputImage';
 
 import Button from '../../../components/UI/Button/Button';
 import styles from './ProfileDetails.module.scss';
-import { useAppDispatch } from '../../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { userProfileActions } from '../../../store/store';
 
 interface InputsDataProps {
@@ -26,6 +26,9 @@ interface InputsDataProps {
 }
 export const ProfileDetailsForm = (props: profileDetailsProps) => {
   const userProfileDispatch = useAppDispatch();
+  const { profileImgURL, firstName, lastName, email } = useAppSelector(
+    (state) => state.userProfile
+  );
   const {
     heading,
     headingInstructions,
@@ -133,7 +136,10 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
         <h1 className={styles.heading}>{heading}</h1>
         <p className={styles['heading-instructions']}>{headingInstructions}</p>
       </header>
-      <CardInputImage {...CardInputImageProps} />
+      <CardInputImage
+        {...CardInputImageProps}
+        profilePictureImage={profileImgURL}
+      />
       <Card priority='grey' className={styles.inputFormContainer}>
         <form
           onSubmit={onSubmitFormHandler}
@@ -149,6 +155,7 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
             timeOnCheck={500}
             className={styles.inputTextContainer}
             isRequired
+            inputValue={firstName}
           />
           <InputText
             placeholder={secondLastNamePlaceholder}
@@ -160,6 +167,7 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
             timeOnCheck={500}
             className={styles.inputTextContainer}
             isRequired
+            inputValue={lastName}
           />
           <InputText
             placeholder={emailPlaceholder}
@@ -171,6 +179,7 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
             timeOnCheck={500}
             className={styles.inputTextContainer}
             isRequired
+            inputValue={email}
           />
 
           <Button priority='secondary'>SUBMIT</Button>

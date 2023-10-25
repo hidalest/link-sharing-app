@@ -17,9 +17,11 @@ export const PhoneMockup = ({
   phoneMockupImage,
   phoneMockupProps,
 }: phoneMockupProps) => {
-  const { profileImgURL, firsName, lastName, email } = useAppSelector(
+  const { profileImgURL, firstName, lastName, email } = useAppSelector(
     (state) => state.userProfile
   );
+
+  const isUserInfoValid = firstName && lastName && email;
   const { arrowIconLinks } = phoneMockupProps;
   return (
     <Card priority='white' className={styles['phone-mockup']}>
@@ -29,12 +31,11 @@ export const PhoneMockup = ({
           <img src={URL.createObjectURL(profileImgURL)} alt='user profile' />
         </section>
       )}
-      {/* // FIXME: Fix large email positioning. Using flexbox on the container */}
-      {firsName && (
+      {isUserInfoValid && (
         <section className={styles.profileInformationContainer}>
           <article className={styles['profileInformationContainer--text']}>
             <p className={styles['profileInformationContainer--name']}>
-              {firsName} {lastName}
+              {firstName} {lastName}
             </p>
             <p className={styles['profileInformationContainer--email']}>
               {email}

@@ -125,8 +125,8 @@ interface userProfileInitialStateProps {
   profileImgURL?: profileImageType;
 }
 
-const userProfileInitialState = {
-  firsName: '',
+const userProfileInitialState: userProfileInitialStateProps = {
+  firstName: '',
   lastName: '',
   email: '',
   profileImgURL: null,
@@ -141,12 +141,11 @@ const userProfileSlice = createSlice({
       action: PayloadAction<userProfileInitialStateProps>
     ) {
       const { firstName, lastName, email } = action.payload;
-      state.firsName = firstName;
+      state.firstName = firstName;
       state.lastName = lastName;
       state.email = email;
     },
     updateUserImage(state, action: PayloadAction<profileImageType>) {
-      // FIXME
       state.profileImgURL = action.payload;
     },
   },

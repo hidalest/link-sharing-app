@@ -16,7 +16,7 @@
     border-radius: 50%;
     width: 10rem;
     height: 10rem;
-    background-color: $purple-light;
+    background-color: $purple;
     padding: 0.4rem;
 
     & img {
@@ -35,10 +35,11 @@
     & .profileInformationContainer--text {
       position: absolute;
       width: 100%;
-      left: 50%;
-      transform: translateX(-50%);
       text-align: center;
       border-radius: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-content: center;
 
       & .profileInformationContainer--name {
         color: var(--Dark-Grey, #333);
@@ -56,18 +57,27 @@
         font-style: normal;
         font-weight: 400;
         line-height: 150%; /* 21px */
-        width: 70%;
-        margin: 0 auto;
       }
     }
   }
 
   .linkContainer {
     position: absolute;
+    background-color: $white;
     top: 35rem;
     width: 25rem;
     height: 33rem;
     overflow-y: auto;
+    /* Hiding scrollbar for Chrome, Safari and Opera */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hiding scrollbar for IE, Edge and Firefox */
+    & {
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+    }
 
     .link {
       background-color: $red;
