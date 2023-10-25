@@ -54,6 +54,7 @@ export const CardInputImage = ({
         />
         {profilePicture && (
           <article className={styles.profilePicCombo}>
+            {/* TODO: Fix aspect ratio image */}
             <img
               alt='not found'
               src={URL.createObjectURL(profilePicture)}

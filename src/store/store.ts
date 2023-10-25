@@ -116,11 +116,13 @@ const appSlice = createSlice({
 });
 
 // USER PROFILE SLICE
+type profileImageType = File | null;
+
 interface userProfileInitialStateProps {
   firstName: string;
   lastName: string;
   email: string;
-  profileImgURL?: null | File;
+  profileImgURL?: profileImageType;
 }
 
 const userProfileInitialState = {
@@ -143,7 +145,8 @@ const userProfileSlice = createSlice({
       state.lastName = lastName;
       state.email = email;
     },
-    updateUserImage(state, action: PayloadAction<null | File>) {
+    updateUserImage(state, action: PayloadAction<profileImageType>) {
+      // FIXME
       state.profileImgURL = action.payload;
     },
   },

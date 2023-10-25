@@ -29,6 +29,7 @@ export const PhoneMockup = ({
           <img src={URL.createObjectURL(profileImgURL)} alt='user profile' />
         </section>
       )}
+      {/* // FIXME: Fix large email positioning. Using flexbox on the container */}
       {firsName && (
         <section className={styles.profileInformationContainer}>
           <article className={styles['profileInformationContainer--text']}>
