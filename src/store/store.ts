@@ -120,14 +120,12 @@ type profileImageType = File | null;
 
 interface userProfileInitialStateProps {
   firstName: string;
-  lastName: string;
   email: string;
   profileImgURL?: profileImageType;
 }
 
 const userProfileInitialState: userProfileInitialStateProps = {
   firstName: '',
-  lastName: '',
   email: '',
   profileImgURL: null,
 };
@@ -140,9 +138,8 @@ const userProfileSlice = createSlice({
       state,
       action: PayloadAction<userProfileInitialStateProps>
     ) {
-      const { firstName, lastName, email } = action.payload;
+      const { firstName, email } = action.payload;
       state.firstName = firstName;
-      state.lastName = lastName;
       state.email = email;
     },
     updateUserImage(state, action: PayloadAction<profileImageType>) {

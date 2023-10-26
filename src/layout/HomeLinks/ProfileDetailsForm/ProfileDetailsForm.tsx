@@ -15,10 +15,6 @@ interface InputsDataProps {
     inputValue: string | undefined;
     isValid: null | boolean;
   };
-  lastNameInputData: {
-    inputValue: string | undefined;
-    isValid: null | boolean;
-  };
   emailInputData: {
     inputValue: string | undefined;
     isValid: null | boolean;
@@ -26,7 +22,7 @@ interface InputsDataProps {
 }
 export const ProfileDetailsForm = (props: profileDetailsProps) => {
   const userProfileDispatch = useAppDispatch();
-  const { profileImgURL, firstName, lastName, email } = useAppSelector(
+  const { profileImgURL, firstName, email } = useAppSelector(
     (state) => state.userProfile
   );
   const {
@@ -39,9 +35,6 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
     firstNameLabel,
     firstNamePlaceholder,
     firstNameErrorMessage,
-    secondLastNameLabel,
-    secondLastNamePlaceholder,
-    secondNameErrorMessage,
     emailLabel,
     emailPlaceholder,
     emailErrorMessage,
@@ -56,10 +49,6 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
 
   const [inputsData, setInputsData] = useState<InputsDataProps>({
     firstNameInputData: {
-      inputValue: '',
-      isValid: null,
-    },
-    lastNameInputData: {
       inputValue: '',
       isValid: null,
     },
@@ -83,20 +72,7 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
       };
     });
   };
-  const returnInputLastNameHandler = (
-    isValid: boolean,
-    inputValue?: string
-  ) => {
-    setInputsData((prevState) => {
-      return {
-        ...prevState,
-        lastNameInputData: {
-          inputValue,
-          isValid,
-        },
-      };
-    });
-  };
+
   const returnInputEmailHandler = (isValid: boolean, inputValue?: string) => {
     setInputsData((prevState) => {
       return {
@@ -111,19 +87,14 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
 
   const onSubmitFormHandler = (e: FormEvent) => {
     e.preventDefault();
-    const { firstNameInputData, lastNameInputData, emailInputData } =
-      inputsData;
+    const { firstNameInputData, emailInputData } = inputsData;
 
-    const areInputsValid =
-      firstNameInputData.isValid &&
-      lastNameInputData.isValid &&
-      emailInputData.isValid;
+    const areInputsValid = firstNameInputData.isValid && emailInputData.isValid;
 
     if (areInputsValid) {
       userProfileDispatch(
         userProfileActions.updateUserProfile({
           firstName: firstNameInputData.inputValue || '',
-          lastName: lastNameInputData.inputValue || '',
           email: emailInputData.inputValue || '',
         })
       );
@@ -156,18 +127,6 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
             className={styles.inputTextContainer}
             isRequired
             inputValue={firstName}
-          />
-          <InputText
-            placeholder={secondLastNamePlaceholder}
-            validationregex={usernameRegex}
-            errorMessageProp={secondNameErrorMessage}
-            returnIsInputValid={returnInputLastNameHandler}
-            label={secondLastNameLabel}
-            showLabel
-            timeOnCheck={500}
-            className={styles.inputTextContainer}
-            isRequired
-            inputValue={lastName}
           />
           <InputText
             placeholder={emailPlaceholder}
