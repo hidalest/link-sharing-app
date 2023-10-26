@@ -21,6 +21,7 @@ function Navbar(props: NavBarProps) {
   } = props.navbarProps;
 
   const view = useAppSelector((state) => state.app.currentView);
+  const username = useAppSelector((state) => state.userProfile.username);
   const onChangeLinksViewHandler = () =>
     dispatch(appActions.changeView('links'));
   const onChangeProfileDetailsViewHandler = () => {
@@ -59,7 +60,10 @@ function Navbar(props: NavBarProps) {
           <span className={styles['link-copy']}>{profileDetailsPageCopy}</span>
         </Link>
       </section>
-      <Link to={'/preview'} className={`${styles.navbarLinks}`}>
+      <Link
+        to={`/usr/${username.toLowerCase()}`}
+        className={`${styles.navbarLinks}`}
+      >
         <Button priority='secondary' className={styles.previewBtn}>
           <span className={styles['link-copy']}>{buttonPreviewCopy}</span>
           <img

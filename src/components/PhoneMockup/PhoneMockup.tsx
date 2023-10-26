@@ -17,11 +17,11 @@ export const PhoneMockup = ({
   phoneMockupImage,
   phoneMockupProps,
 }: phoneMockupProps) => {
-  const { profileImgURL, firstName, email } = useAppSelector(
+  const { profileImgURL, username, email } = useAppSelector(
     (state) => state.userProfile
   );
 
-  const isUserInfoValid = firstName && email;
+  const isUserInfoValid = username && email;
   const { arrowIconLinks } = phoneMockupProps;
   return (
     <Card priority='white' className={styles['phone-mockup']}>
@@ -35,7 +35,7 @@ export const PhoneMockup = ({
         <section className={styles.profileInformationContainer}>
           <article className={styles['profileInformationContainer--text']}>
             <p className={styles['profileInformationContainer--name']}>
-              {firstName}
+              {username}
             </p>
             <p className={styles['profileInformationContainer--email']}>
               {email}

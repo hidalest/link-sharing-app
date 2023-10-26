@@ -22,9 +22,11 @@ interface InputsDataProps {
 }
 export const ProfileDetailsForm = (props: profileDetailsProps) => {
   const userProfileDispatch = useAppDispatch();
-  const { profileImgURL, firstName, email } = useAppSelector(
-    (state) => state.userProfile
-  );
+  const {
+    profileImgURL,
+    username: firstName,
+    email,
+  } = useAppSelector((state) => state.userProfile);
   const {
     heading,
     headingInstructions,
@@ -94,7 +96,7 @@ export const ProfileDetailsForm = (props: profileDetailsProps) => {
     if (areInputsValid) {
       userProfileDispatch(
         userProfileActions.updateUserProfile({
-          firstName: firstNameInputData.inputValue || '',
+          username: firstNameInputData.inputValue || '',
           email: emailInputData.inputValue || '',
         })
       );
