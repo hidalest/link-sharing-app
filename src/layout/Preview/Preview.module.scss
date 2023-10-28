@@ -1,0 +1,18 @@
+@import '../../sassStyles/variables';
+
+.preview {
+  &--navigation {
+    background-color: $purple;
+    position: absolute;
+    width: 100%;
+    max-width: fit-content;
+  }
+  &--navigation_bar {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      font-size: 1.6rem;
+    }
+  }
+}

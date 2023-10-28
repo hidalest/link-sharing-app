@@ -61,7 +61,7 @@ function Navbar(props: NavBarProps) {
         </Link>
       </section>
       <Link
-        to={`/usr/${username.toLowerCase()}`}
+        to={`/preview/${username.toLowerCase()}`}
         className={`${styles.navbarLinks}`}
       >
         <Button priority='secondary' className={styles.previewBtn}>
