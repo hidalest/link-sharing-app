@@ -44,7 +44,11 @@ export const PhoneMockup = ({
         </section>
       )}
       {userLinks.length !== 0 && (
-        <SocialLink userLinks={userLinks} arrowIconLinks={arrowIconLinks} />
+        <SocialLink
+          userLinks={userLinks}
+          arrowIconLinks={arrowIconLinks}
+          className={styles.socialLinksContainer}
+        />
       )}
     </Card>
   );

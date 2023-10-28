@@ -8,11 +8,12 @@ import styles from './SocialLink.module.scss';
 interface SocialLinkProps {
   userLinks: LinkType[];
   arrowIconLinks: string;
+  className?: string;
 }
 
-function SocialLink({ userLinks, arrowIconLinks }: SocialLinkProps) {
+function SocialLink({ userLinks, arrowIconLinks, className }: SocialLinkProps) {
   return (
-    <section className={styles.linkContainer}>
+    <section className={`${styles.linkContainer} ${className}`}>
       {userLinks
         .filter((link) => link.isValid)
         .map(({ name, userLink, icon, backgroundColor, fontColor }, index) => {

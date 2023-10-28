@@ -60,6 +60,10 @@
       }
     }
   }
+  .socialLinksContainer {
+    position: absolute;
+    top: 35rem;
+  }
 
   @include responsiveMax($tablet) {
     display: none;
