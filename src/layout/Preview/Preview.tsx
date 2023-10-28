@@ -3,8 +3,14 @@ import React from 'react';
 import styles from './Preview.module.scss';
 import Card from '../../components/UI/Card/Card';
 import Button from '../../components/UI/Button/Button';
+import SocialLink from '../../components/SocialLink/SocialLink';
+import { useAppSelector } from '../../hooks/hooks';
+
+import data from '../../data.json';
 
 function Preview() {
+  const userLinks = useAppSelector((state) => state.links.links);
+  const arrowLink = data.homeLinksData.phoneMockupProps.arrowIconLinks;
   return (
     <section className={styles.preview}>
       <div className={styles['preview--navigation']}>
@@ -17,7 +23,9 @@ function Preview() {
         </Card>
       </nav>
 
-      <Card priority='white'></Card>
+      <Card priority='white'>
+        <SocialLink userLinks={userLinks} arrowIconLinks={arrowLink} />
+      </Card>
     </section>
   );
 }
