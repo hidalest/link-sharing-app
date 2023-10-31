@@ -138,5 +138,11 @@
             "emailPlaceholder": "e.g. email@example.com",
             "emailErrorMessage": "Please enter a valid email"
         }
+    },
+    "previewPageProps": {
+        "navbarProps": {
+            "goBackBtn": "Go Back",
+            "shareLinkBtn": "Share Link"
+        }
     }
 }

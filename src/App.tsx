@@ -8,7 +8,7 @@ import data from './data.json';
 import './App.scss';
 
 function App() {
-  const { homeLinksData } = data;
+  const { homeLinksData, previewPageProps } = data;
   const username = useAppSelector((state) => state.userProfile.username);
 
   return (
@@ -20,7 +20,10 @@ function App() {
             element={<HomeLinks homeLinksData={homeLinksData} />}
           />
           {/* //BUG the navigation is working weard when there's no username */}
-          <Route path={`/preview/${username}`} element={<Preview />} />
+          <Route
+            path={`/preview/${username}`}
+            element={<Preview previewPageProps={previewPageProps} />}
+          />
         </Routes>
       </main>
     </div>
