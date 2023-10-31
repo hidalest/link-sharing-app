@@ -6,6 +6,7 @@ import Preview from './layout/Preview/Preview';
 
 import data from './data.json';
 import './App.scss';
+import { routes } from './lib/routes';
 
 function App() {
   const { homeLinksData, previewPageProps } = data;
@@ -16,12 +17,12 @@ function App() {
       <main className={'main'}>
         <Routes>
           <Route
-            path='/home'
+            path={routes.home}
             element={<HomeLinks homeLinksData={homeLinksData} />}
           />
           {/* //BUG the navigation is working weard when there's no username */}
           <Route
-            path={`/preview/${username}`}
+            path={`/${routes.preview}/${username}`}
             element={<Preview previewPageProps={previewPageProps} />}
           />
         </Routes>
