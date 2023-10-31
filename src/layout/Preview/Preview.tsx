@@ -8,6 +8,8 @@ import { useAppSelector } from '../../hooks/hooks';
 import { PreviewPageProps } from '../../interfaces';
 
 import styles from './Preview.module.scss';
+import { Link } from 'react-router-dom';
+import { routes } from '../../lib/routes';
 
 function Preview(props: PreviewPageProps) {
   const userLinks = useAppSelector((state) => state.links.links);
@@ -21,13 +23,18 @@ function Preview(props: PreviewPageProps) {
       </div>
       <nav className={styles['preview--navigation2']}>
         <Card priority='white' className={styles['preview--navigation_bar']}>
-          <Button priority='secondary'>{goBackBtn}</Button>
+          <Link to={routes.home}>
+            <Button priority='secondary'>{goBackBtn}</Button>
+          </Link>
           <Button priority='primary'>{shareLinkBtn}</Button>
         </Card>
       </nav>
 
       <Card priority='white' className={styles.previewLinksContainer}>
-        <SocialLink userLinks={userLinks} arrowIconLinks={arrowLink} />
+        {userLinks.length === 0 && <p>Try adding some links first!</p>}
+        {userLinks.length !== 0 && (
+          <SocialLink userLinks={userLinks} arrowIconLinks={arrowLink} />
+        )}
       </Card>
     </section>
   );
