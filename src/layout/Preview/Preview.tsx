@@ -10,6 +10,7 @@ import { PreviewPageProps } from '../../interfaces';
 import styles from './Preview.module.scss';
 import { Link } from 'react-router-dom';
 import { routes } from '../../lib/routes';
+import UserInformation from '../../components/UserInformation/UserInformation';
 
 function Preview(props: PreviewPageProps) {
   const userLinks = useAppSelector((state) => state.links.links);
@@ -31,6 +32,7 @@ function Preview(props: PreviewPageProps) {
       </nav>
 
       <Card priority='white' className={styles.previewLinksContainer}>
+        <UserInformation />
         {userLinks.length === 0 && <p>Try adding some links first!</p>}
         {userLinks.length !== 0 && (
           <SocialLink userLinks={userLinks} arrowIconLinks={arrowLink} />
