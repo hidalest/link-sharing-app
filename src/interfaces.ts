@@ -118,3 +118,13 @@ export interface LinkFormProps {
   dragHandleProps?: DraggableProvidedDragHandleProps;
   isDragging: boolean;
 }
+
+// preview page props
+export interface PreviewPageProps {
+  previewPageProps: {
+    navbarProps: {
+      goBackBtn: string;
+      shareLinkBtn: string;
+    };
+  };
+}

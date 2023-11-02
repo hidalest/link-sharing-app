@@ -2,10 +2,12 @@ import { Link } from 'react-router-dom';
 import Button from '../UI/Button/Button';
 import { NavBarProps } from '../../interfaces';
 
-import styles from './Navbar.module.scss';
 import { SVGWrapper } from '../UI/SVGWrapper/SVGWrapper';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { appActions } from '../../store/store';
+import { routes } from '../../lib/routes';
+
+import styles from './Navbar.module.scss';
 
 function Navbar(props: NavBarProps) {
   const dispatch = useAppDispatch();
@@ -21,6 +23,7 @@ function Navbar(props: NavBarProps) {
   } = props.navbarProps;
 
   const view = useAppSelector((state) => state.app.currentView);
+  const username = useAppSelector((state) => state.userProfile.username);
   const onChangeLinksViewHandler = () =>
     dispatch(appActions.changeView('links'));
   const onChangeProfileDetailsViewHandler = () => {
@@ -36,7 +39,7 @@ function Navbar(props: NavBarProps) {
       <section className={styles.navbarLinks}>
         <Link
           onClick={onChangeLinksViewHandler}
-          to={'/home'}
+          to={`${routes.home}`}
           className={`${styles.navbarLinks} ${styles.routeLink} ${
             location.pathname === '/home' && view === 'links'
               ? styles.activeRoute
@@ -48,7 +51,7 @@ function Navbar(props: NavBarProps) {
         </Link>
         <Link
           onClick={onChangeProfileDetailsViewHandler}
-          to={'/home'}
+          to={`${routes.home}`}
           className={`${styles.navbarLinks} ${styles.routeLink} ${
             location.pathname === '/home' && view === 'profileDetails'
               ? styles.activeRoute
@@ -59,7 +62,10 @@ function Navbar(props: NavBarProps) {
           <span className={styles['link-copy']}>{profileDetailsPageCopy}</span>
         </Link>
       </section>
-      <Link to={'/preview'} className={`${styles.navbarLinks}`}>
+      <Link
+        to={`${routes.preview}/${username.toLowerCase()}`}
+        className={`${styles.navbarLinks}`}
+      >
         <Button priority='secondary' className={styles.previewBtn}>
           <span className={styles['link-copy']}>{buttonPreviewCopy}</span>
           <img

@@ -128,8 +128,8 @@
             "profilePictureImageInstructions": "Image must be below 1024x1024px. Use PNG or JPG format.",
             "profilePictureImageIcon": "/src/assets/images/icon-upload-image.svg",
             "profilePictureImagePlaceholder": "+ Upload Image",
-            "firstNameLabel": "First Name",
-            "firstNamePlaceholder": "e.g. John",
+            "firstNameLabel": "Username",
+            "firstNamePlaceholder": "e.g. Noobmaster69",
             "firstNameErrorMessage": "Please enter a valid name",
             "secondLastNameLabel": "Last Name",
             "secondLastNamePlaceholder": "e.g. Appleseed",
@@ -137,6 +137,12 @@
             "emailLabel": "Email",
             "emailPlaceholder": "e.g. email@example.com",
             "emailErrorMessage": "Please enter a valid email"
+        }
+    },
+    "previewPageProps": {
+        "navbarProps": {
+            "goBackBtn": "Go Back",
+            "shareLinkBtn": "Share Link"
         }
     }
 }
