@@ -19,15 +19,17 @@ function Preview(props: PreviewPageProps) {
   const { goBackBtn, shareLinkBtn } = navbarProps;
   return (
     <section className={styles.preview}>
-      <div className={styles['preview--navigation']}>
+      {/* <div className={styles['preview--navigation']}>
         <p>pre</p>
-      </div>
+      </div> */}
       <nav className={styles['preview--navigation2']}>
         <Card priority='white' className={styles['preview--navigation_bar']}>
           <Link to={routes.home}>
             <Button priority='secondary'>{goBackBtn}</Button>
           </Link>
-          <Button priority='primary'>{shareLinkBtn}</Button>
+          <Link to={routes.home}>
+            <Button priority='primary'>{shareLinkBtn}</Button>
+          </Link>
         </Card>
       </nav>
 
@@ -35,7 +37,11 @@ function Preview(props: PreviewPageProps) {
         <UserInformation />
         {userLinks.length === 0 && <p>Try adding some links first!</p>}
         {userLinks.length !== 0 && (
-          <SocialLink userLinks={userLinks} arrowIconLinks={arrowLink} />
+          <SocialLink
+            userLinks={userLinks}
+            arrowIconLinks={arrowLink}
+            className={styles.previewLinksSubcontainer}
+          />
         )}
       </Card>
     </section>
