@@ -12,7 +12,14 @@
 
   .userInfo--phoneMockup {
     position: absolute;
-    top: 14rem;
+
+    &-full {
+      top: 14.5rem;
+    }
+
+    &-partial {
+      top: 24.5rem;
+    }
   }
 
   .socialLinksContainer {
