@@ -41,7 +41,6 @@ export const CardInputImage = ({
     dispatch(userProfileActions.updateUserImage(null));
   };
 
-  console.log('profilePiCTURE', profilePicture);
   const onMouseEnterHandler = () => setShowIcons(true);
   const onMouseLeaveHandler = () => setShowIcons(false);
   const showIconsComponent = !profilePicture || showIcons;
