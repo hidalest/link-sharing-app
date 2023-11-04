@@ -128,3 +128,7 @@ export interface PreviewPageProps {
     };
   };
 }
+// authentication page props
+export interface AuthenticationPageProps {
+  className: string;
+}

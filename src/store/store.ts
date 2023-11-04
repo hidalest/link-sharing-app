@@ -148,11 +148,22 @@ const userProfileSlice = createSlice({
   },
 });
 
+const userAuthenticationSliceInitialState = {
+  view: 'login',
+};
+
+const userAuthentication = createSlice({
+  name: 'authenticationSlice',
+  initialState: userAuthenticationSliceInitialState,
+  reducers: {},
+});
+
 const store = configureStore({
   reducer: {
     links: linksStore.reducer,
     app: appSlice.reducer,
     userProfile: userProfileSlice.reducer,
+    authenticationSlice: userAuthentication.reducer,
     //anotherSlice: ....
   },
 });
