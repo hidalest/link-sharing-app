@@ -9,12 +9,12 @@ interface InputTextProps {
   errorMessageProp: string;
   showLabel?: boolean;
   label: string;
-  timeOnCheck: number;
+  timeOnCheck?: number;
   className?: string;
   isRequired: boolean;
   maxLength?: number;
   onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
-  returnIsInputValid: (isValid: boolean, inputValue?: string) => void;
+  returnIsInputValid: (isValid: boolean, inputValue: string) => void;
 }
 
 const InputText = forwardRef(
@@ -43,7 +43,7 @@ const InputText = forwardRef(
       if (!isInputValidWithRegex && text !== '') {
         setIsInputValid(false);
         setErrorMessage(errorMessageProp);
-        returnIsInputValid(false);
+        returnIsInputValid(false, inputText);
       } else if (text.trim() !== '' && isInputValidWithRegex) {
         setIsInputValid(true);
         returnIsInputValid(true, inputText);
@@ -51,7 +51,7 @@ const InputText = forwardRef(
       } else if (text.trim() === '' && textValid !== null && isRequired) {
         setIsInputValid(false);
         setErrorMessage("Can't be empty");
-        returnIsInputValid(false);
+        returnIsInputValid(false, inputText);
       } else if (text.trim() === '' && !isRequired) {
         setIsInputValid(true);
         returnIsInputValid(true, inputText);

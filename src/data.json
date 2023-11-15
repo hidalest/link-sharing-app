@@ -1,9 +1,9 @@
 {
     "theme": "light",
+    "mainLogoDesktop": "/src/assets/images/logo-devlinks-large.svg",
+    "mainLogoSmall": "/src/assets/images/logo-devlinks-small.svg",
     "homeLinksData": {
         "navbarProps": {
-            "mainLogoDesktop": "/src/assets/images/logo-devlinks-large.svg",
-            "mainLogoSmall": "/src/assets/images/logo-devlinks-small.svg",
             "logoLinkPage": "/src/assets/images/icon-links-header.svg",
             "logoProfilePage": "/src/assets/images/icon-profile-details-header.svg",
             "linkPageCopy": "Links",
@@ -143,6 +143,19 @@
         "navbarProps": {
             "goBackBtn": "Go Back",
             "shareLinkBtn": "Share Link"
+        }
+    },
+    "authenticationPhaseProps": {
+        "loginPhase": {
+            "loginHeader": "Login",
+            "loginInstructions": "Add your details below to get back into the app",
+            "emailLabel": "Email address",
+            "emailPlaceholder": "e.g. alex@email.com",
+            "passwordLabel": "Password",
+            "passwordPlaceholder": "Enter your password",
+            "loginButton": "Login",
+            "registerInstructionsBtn": "Don’t have an account?",
+            "registerBtn": "Create account"
         }
     }
 }

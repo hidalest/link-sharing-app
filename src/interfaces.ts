@@ -15,6 +15,8 @@ export type LinkType = {
   fontColor?: string;
 };
 export interface HomeLinksProps {
+  mainLogoDesktop: string;
+  mainLogoSmall: string;
   homeLinksData: {
     phoneMockupImage: string;
     mainHeader: string;
@@ -26,8 +28,6 @@ export interface HomeLinksProps {
       secondaryInstructions: string;
     };
     navbarProps: {
-      mainLogoDesktop: string;
-      mainLogoSmall: string;
       logoLinkPage: string;
       logoProfilePage: string;
       linkPageCopy: string;
@@ -130,5 +130,34 @@ export interface PreviewPageProps {
 }
 // authentication page props
 export interface AuthenticationPageProps {
-  className: string;
+  className?: string;
+  mainLogoDesktop: string;
+  authenticationPhaseProps: {
+    loginPhase: {
+      loginHeader: string;
+      loginInstructions: string;
+      emailLabel: string;
+      emailPlaceholder: string;
+      passwordLabel: string;
+      passwordPlaceholder: string;
+      loginButton: string;
+      registerInstructionsBtn: string;
+      registerBtn: string;
+    };
+  };
+}
+
+export interface LoginProps {
+  className?: string;
+  loginPhase: {
+    loginHeader: string;
+    loginInstructions: string;
+    emailLabel: string;
+    emailPlaceholder: string;
+    passwordLabel: string;
+    passwordPlaceholder: string;
+    loginButton: string;
+    registerInstructionsBtn: string;
+    registerBtn: string;
+  };
 }
