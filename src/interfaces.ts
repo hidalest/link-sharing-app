@@ -3,7 +3,13 @@
 import {
   DraggableProvidedDragHandleProps,
   DraggableProvidedDraggableProps,
-} from 'react-beautiful-dnd';
+} from "react-beautiful-dnd";
+
+export type commonProps = {
+  className?: string;
+  id?: string;
+  name?: string;
+};
 
 export type LinkType = {
   icon: string;

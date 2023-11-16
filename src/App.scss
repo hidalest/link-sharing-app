@@ -1,11 +1,11 @@
-@import './sassStyles/variables';
-@import './sassStyles/mixins';
+@import "./sassStyles/variables";
+@import "./sassStyles/mixins";
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
 html {
@@ -43,10 +43,8 @@ body {
 
   .authentication {
     position: absolute;
-    top: 40%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%);
-    // TODO: remove this property below
-    border: 1px solid red;
   }
 }

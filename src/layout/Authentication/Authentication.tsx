@@ -1,16 +1,17 @@
-import { AuthenticationPageProps } from '../../interfaces';
+import { AuthenticationPageProps } from "../../interfaces";
 
-import styles from './Authentication.module.scss';
-import Login from './components/Login/Login';
+import Login from "./components/Login/Login";
+
+import styles from "./Authentication.module.scss";
 
 const Authentication = (props: AuthenticationPageProps) => {
   const { className, mainLogoDesktop, authenticationPhaseProps } = props;
   const { loginPhase } = authenticationPhaseProps;
   return (
     <section className={`${className} ${styles.authenticationContainer}`}>
-      <img src={mainLogoDesktop} alt='dev links logo' />
+      <img src={mainLogoDesktop} alt="dev links logo" />
 
-      <Login loginPhase={loginPhase} />
+      <Login loginPhase={loginPhase} className={styles.inputsContainer} />
     </section>
   );
 };

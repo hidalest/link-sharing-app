@@ -5,6 +5,7 @@ import { emailRegex, passwordRegex } from "../../../../utils/regex";
 import Button from "../../../../components/UI/Button/Button";
 
 function Login(props: LoginProps) {
+  const { className, loginPhase } = props;
   const {
     loginHeader,
     loginButton,
@@ -13,7 +14,7 @@ function Login(props: LoginProps) {
     emailPlaceholder,
     passwordLabel,
     passwordPlaceholder,
-  } = props.loginPhase;
+  } = loginPhase;
 
   const getEmailInputInfo = (isValid: boolean, inputValue: string) => {
     console.log(isValid, inputValue);
@@ -22,11 +23,11 @@ function Login(props: LoginProps) {
     console.log(isValid, inputValue);
   };
   return (
-    <Card priority="white">
+    <Card priority="white" className={className}>
       <h1>{loginHeader}</h1>
       <p>{loginInstructions}</p>
       <div>
-        <label>{emailLabel}</label>
+        <label htmlFor="inputEmail">{emailLabel}</label>
         <InputText
           placeholder={emailPlaceholder}
           label={emailLabel}
@@ -34,7 +35,9 @@ function Login(props: LoginProps) {
           validationregex={emailRegex}
           errorMessageProp={""}
           isRequired
+          id={"inputEmail"}
         />
+        <label htmlFor="inputPassword">{passwordLabel}</label>
         <InputText
           placeholder={passwordPlaceholder}
           label={passwordLabel}
@@ -42,9 +45,10 @@ function Login(props: LoginProps) {
           validationregex={passwordRegex}
           errorMessageProp={""}
           isRequired
+          id={"inputPassword"}
         />
-        <Button priority="primary">{loginButton}</Button>
       </div>
+      <Button priority="primary">{loginButton}</Button>
     </Card>
   );
 }

@@ -1,5 +1,6 @@
-import { FormEvent, Ref, forwardRef, useEffect, useState } from 'react';
-import styles from './InputText.module.scss';
+import { FormEvent, Ref, forwardRef, useEffect, useState } from "react";
+import styles from "./InputText.module.scss";
+import { commonProps } from "../../../interfaces";
 
 interface InputTextProps {
   placeholder: string;
@@ -15,6 +16,7 @@ interface InputTextProps {
   maxLength?: number;
   onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
   returnIsInputValid: (isValid: boolean, inputValue: string) => void;
+  id?: string;
 }
 
 const InputText = forwardRef(
@@ -33,29 +35,29 @@ const InputText = forwardRef(
       isRequired,
       maxLength = 50,
     } = props;
-    const [inputText, setInputText] = useState(inputValue || '');
+    const [inputText, setInputText] = useState(inputValue || "");
     const [isInputValid, setIsInputValid] = useState<boolean | null>(null);
-    const [errorMessage, setErrorMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState("");
 
     const onValidateInput = function (text: string, textValid: boolean | null) {
       const isInputValidWithRegex = validationregex.test(text);
 
-      if (!isInputValidWithRegex && text !== '') {
+      if (!isInputValidWithRegex && text !== "") {
         setIsInputValid(false);
         setErrorMessage(errorMessageProp);
         returnIsInputValid(false, inputText);
-      } else if (text.trim() !== '' && isInputValidWithRegex) {
+      } else if (text.trim() !== "" && isInputValidWithRegex) {
         setIsInputValid(true);
         returnIsInputValid(true, inputText);
-        setErrorMessage('');
-      } else if (text.trim() === '' && textValid !== null && isRequired) {
+        setErrorMessage("");
+      } else if (text.trim() === "" && textValid !== null && isRequired) {
         setIsInputValid(false);
         setErrorMessage("Can't be empty");
         returnIsInputValid(false, inputText);
-      } else if (text.trim() === '' && !isRequired) {
+      } else if (text.trim() === "" && !isRequired) {
         setIsInputValid(true);
         returnIsInputValid(true, inputText);
-        setErrorMessage('');
+        setErrorMessage("");
       }
     };
 
@@ -73,13 +75,13 @@ const InputText = forwardRef(
       };
     }, [inputText, isInputValid]);
 
-    const errorClass = isInputValid === false ? 'inputInvalid' : '';
-    const showLabelClass = showLabel ? 'showLabel' : 'hideLabel';
+    const errorClass = isInputValid === false ? "inputInvalid" : "";
+    const showLabelClass = showLabel ? "showLabel" : "hideLabel";
 
     return (
       <div className={`${styles.inputContainer} ${className}`}>
         <label
-          htmlFor='inputLink'
+          htmlFor="inputLink"
           className={`${styles.label} ${styles[showLabelClass]}`}
         >
           {label}
@@ -88,23 +90,23 @@ const InputText = forwardRef(
         {inputLinkIcon && (
           <img
             src={inputLinkIcon}
-            alt='link icon'
+            alt="link icon"
             className={styles.inputIcon}
-            aria-hidden='true'
+            aria-hidden="true"
           />
         )}
         <input
-          type='text'
+          type="text"
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           placeholder={placeholder}
           className={`${styles.inputText} ${styles[errorClass]}`}
-          name='inputLink'
+          name="inputLink"
           onBlur={onInputFocus}
           ref={ref}
-          aria-invalid={isInputValid === false ? 'true' : 'false'} // Set ARIA attributes
+          aria-invalid={isInputValid === false ? "true" : "false"} // Set ARIA attributes
           aria-describedby={
-            isInputValid === false ? 'error-message' : undefined
+            isInputValid === false ? "error-message" : undefined
           }
           maxLength={maxLength}
         />
@@ -113,7 +115,7 @@ const InputText = forwardRef(
         )}
       </div>
     );
-  }
+  },
 );
 
 export default InputText;
