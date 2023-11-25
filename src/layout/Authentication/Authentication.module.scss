@@ -57,11 +57,19 @@
       flex: 1 1 auto;
       align-self: stretch;
       text-align: center;
-      color: var(--White, #fff);
       font-size: 1.6rem;
       font-style: normal;
       font-weight: 600;
       line-height: 150%; /* 24px */
+    }
+
+    // create account or login button
+    & div ~ p:has(.pButtonCombo) {
+      padding: 0;
+    }
+    & button:nth-child(2) {
+      margin-top: 0;
+      padding: 0;
     }
   }
 }

@@ -4,6 +4,8 @@ import InputText from "../../../../components/UI/InputText/InputText";
 import { emailRegex, passwordRegex } from "../../../../utils/regex";
 import Button from "../../../../components/UI/Button/Button";
 
+import styles from "./Login.module.scss";
+
 function Login(props: LoginProps) {
   const { className, loginPhase } = props;
   const {
@@ -14,6 +16,8 @@ function Login(props: LoginProps) {
     emailPlaceholder,
     passwordLabel,
     passwordPlaceholder,
+    registerBtn,
+    registerInstructionsBtn,
   } = loginPhase;
 
   const getEmailInputInfo = (isValid: boolean, inputValue: string) => {
@@ -48,7 +52,13 @@ function Login(props: LoginProps) {
           id={"inputPassword"}
         />
       </div>
-      <Button priority="primary">{loginButton}</Button>
+      <Button priority="primary" className={styles.buttonLogin}>
+        {loginButton}
+      </Button>
+      <div className={styles.buttonCombo}>
+        <p className={styles.pButtonCombo}>{registerInstructionsBtn}</p>
+        <Button priority="tertiary">{registerBtn}</Button>
+      </div>
     </Card>
   );
 }
