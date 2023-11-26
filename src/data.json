@@ -156,6 +156,20 @@
             "loginButton": "Login",
             "registerInstructionsBtn": "Don’t have an account?",
             "registerBtn": "Create account"
+        },
+        "signupPhase": {
+            "loginHeader": "Create account",
+            "loginInstructions": "Let’s get you started sharing your links!",
+            "emailLabel": "Email address",
+            "emailPlaceholder": "e.g. alex@email.com",
+            "passwordLabel": "Password",
+            "passwordPlaceholder": "Enter your password",
+            "confirmPasswordLabel": "Confirm Password",
+            "confirmPasswordPlaceholder": "Enter your password",
+            "passwordInstructions": "Password must contain at least 8 characters",
+            "loginButton": "Login",
+            "registerInstructionsBtn": "Already have an account? ",
+            "registerBtn": "Login"
         }
     }
 }
