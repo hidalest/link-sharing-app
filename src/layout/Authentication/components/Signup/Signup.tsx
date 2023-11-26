@@ -1,4 +1,4 @@
-import { LoginProps } from '../../../../interfaces';
+import { SignupProps } from '../../../../interfaces';
 import Card from '../../../../components/UI/Card/Card';
 import InputText from '../../../../components/UI/InputText/InputText';
 import { emailRegex, passwordRegex } from '../../../../utils/regex';
@@ -6,8 +6,8 @@ import Button from '../../../../components/UI/Button/Button';
 
 import styles from './Signup.module.scss';
 
-function Signup(props: LoginProps) {
-  const { className, loginPhase } = props;
+function Signup(props: SignupProps) {
+  const { className, signupPhase } = props;
   const {
     loginHeader,
     loginButton,
@@ -16,14 +16,19 @@ function Signup(props: LoginProps) {
     emailPlaceholder,
     passwordLabel,
     passwordPlaceholder,
+    confirmPasswordLabel,
+    confirmPasswordPlaceholder,
     registerBtn,
     registerInstructionsBtn,
-  } = loginPhase;
+  } = signupPhase;
 
   const getEmailInputInfo = (isValid: boolean, inputValue: string) => {
     console.log(isValid, inputValue);
   };
   const getPasswordInput = (isValid: boolean, inputValue: string) => {
+    console.log(isValid, inputValue);
+  };
+  const getConfirmPassword = (isValid: boolean, inputValue: string) => {
     console.log(isValid, inputValue);
   };
   return (
@@ -50,6 +55,16 @@ function Signup(props: LoginProps) {
           errorMessageProp={''}
           isRequired
           id={'inputPassword'}
+        />
+        <label htmlFor='inputConfirmPassword'>{confirmPasswordLabel}</label>
+        <InputText
+          placeholder={confirmPasswordPlaceholder}
+          label={confirmPasswordLabel}
+          returnIsInputValid={getConfirmPassword}
+          validationregex={passwordRegex}
+          errorMessageProp={''}
+          isRequired
+          id={'inputConfirmPassword'}
         />
       </div>
       <Button priority='primary' className={styles.buttonLogin}>

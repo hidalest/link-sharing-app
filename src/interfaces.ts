@@ -180,3 +180,19 @@ export interface LoginProps {
     registerBtn: string;
   };
 }
+export interface SignupProps {
+  className?: string;
+  signupPhase: {
+    loginHeader: string;
+    loginInstructions: string;
+    emailLabel: string;
+    emailPlaceholder: string;
+    passwordLabel: string;
+    passwordPlaceholder: string;
+    confirmPasswordLabel: string;
+    confirmPasswordPlaceholder: string;
+    loginButton: string;
+    registerInstructionsBtn: string;
+    registerBtn: string;
+  };
+}

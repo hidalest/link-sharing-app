@@ -13,7 +13,7 @@ const Authentication = (props: AuthenticationPageProps) => {
       <img src={mainLogoDesktop} alt='dev links logo' />
 
       {/* <Login loginPhase={loginPhase} className={''} /> */}
-      <Signup loginPhase={signupPhase} className={''} />
+      <Signup signupPhase={signupPhase} className={''} />
     </section>
   );
 };
