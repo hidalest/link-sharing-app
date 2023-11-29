@@ -57,7 +57,7 @@ function HomeLinks(props: HomeLinksProps) {
 
   return (
     <>
-      <Navbar navbarProps={navbarProps} />
+      <Navbar navbarProps={navbarProps} {...props} />
       <section className={styles.mainContainer}>
         <PhoneMockup
           userLinks={userLinks}

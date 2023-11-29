@@ -5,6 +5,12 @@ import {
   DraggableProvidedDraggableProps,
 } from 'react-beautiful-dnd';
 
+export type commonProps = {
+  className?: string;
+  id?: string;
+  name?: string;
+};
+
 export type LinkType = {
   icon: string;
   name: string;
@@ -15,6 +21,8 @@ export type LinkType = {
   fontColor?: string;
 };
 export interface HomeLinksProps {
+  mainLogoDesktop: string;
+  mainLogoSmall: string;
   homeLinksData: {
     phoneMockupImage: string;
     mainHeader: string;
@@ -26,8 +34,6 @@ export interface HomeLinksProps {
       secondaryInstructions: string;
     };
     navbarProps: {
-      mainLogoDesktop: string;
-      mainLogoSmall: string;
       logoLinkPage: string;
       logoProfilePage: string;
       linkPageCopy: string;
@@ -76,9 +82,9 @@ export interface profileDetailsProps {
 // Navigation Bar Props
 
 export interface NavBarProps {
+  mainLogoDesktop: string;
+  mainLogoSmall: string;
   navbarProps: {
-    mainLogoDesktop: string;
-    mainLogoSmall: string;
     logoLinkPage: string;
     logoProfilePage: string;
     linkPageCopy: string;
@@ -126,5 +132,79 @@ export interface PreviewPageProps {
       goBackBtn: string;
       shareLinkBtn: string;
     };
+  };
+}
+// authentication page props
+export interface AuthenticationPageProps {
+  className?: string;
+  mainLogoDesktop: string;
+  authenticationPhaseProps: {
+    loginPhase: {
+      loginHeader: string;
+      loginInstructions: string;
+      emailLabel: string;
+      emailPlaceholder: string;
+      passwordLabel: string;
+      passwordPlaceholder: string;
+      loginButton: string;
+      registerInstructionsBtn: string;
+      registerBtn: string;
+    };
+    signupPhase: {
+      loginHeader: string;
+      loginInstructions: string;
+      emailLabel: string;
+      emailPlaceholder: string;
+      usernameLabel: string;
+      usernameIcon: string;
+      usernamePlaceholder: string;
+      inputPasswordIcon: string;
+      inputPasswordEmailIcon: string;
+      passwordLabel: string;
+      passwordPlaceholder: string;
+      confirmPasswordLabel: string;
+      confirmPasswordPlaceholder: string;
+      passwordInstructions: string;
+      loginButton: string;
+      registerInstructionsBtn: string;
+      registerBtn: string;
+    };
+  };
+}
+
+export interface LoginProps {
+  className?: string;
+  loginPhase: {
+    loginHeader: string;
+    loginInstructions: string;
+    emailLabel: string;
+    emailPlaceholder: string;
+    passwordLabel: string;
+    passwordPlaceholder: string;
+    loginButton: string;
+    registerInstructionsBtn: string;
+    registerBtn: string;
+  };
+}
+export interface SignupProps {
+  className?: string;
+  signupPhase: {
+    loginHeader: string;
+    loginInstructions: string;
+    emailLabel: string;
+    inputPasswordIcon: string;
+    emailPlaceholder: string;
+    passwordLabel: string;
+    passwordPlaceholder: string;
+    confirmPasswordLabel: string;
+    confirmPasswordPlaceholder: string;
+    loginButton: string;
+    registerInstructionsBtn: string;
+    registerBtn: string;
+    inputPasswordEmailIcon: string;
+    usernameIcon: string;
+    usernamePlaceholder: string;
+    usernameLabel: string;
+    passwordInstructions: string;
   };
 }

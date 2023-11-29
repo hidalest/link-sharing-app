@@ -1,5 +1,6 @@
 import { FormEvent, Ref, forwardRef, useEffect, useState } from 'react';
 import styles from './InputText.module.scss';
+import { SVGWrapper } from '../SVGWrapper/SVGWrapper';
 
 interface InputTextProps {
   placeholder: string;
@@ -9,12 +10,13 @@ interface InputTextProps {
   errorMessageProp: string;
   showLabel?: boolean;
   label: string;
-  timeOnCheck: number;
+  timeOnCheck?: number;
   className?: string;
   isRequired: boolean;
   maxLength?: number;
   onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
-  returnIsInputValid: (isValid: boolean, inputValue?: string) => void;
+  returnIsInputValid: (isValid: boolean, inputValue: string) => void;
+  id?: string;
 }
 
 const InputText = forwardRef(
@@ -43,7 +45,7 @@ const InputText = forwardRef(
       if (!isInputValidWithRegex && text !== '') {
         setIsInputValid(false);
         setErrorMessage(errorMessageProp);
-        returnIsInputValid(false);
+        returnIsInputValid(false, inputText);
       } else if (text.trim() !== '' && isInputValidWithRegex) {
         setIsInputValid(true);
         returnIsInputValid(true, inputText);
@@ -51,7 +53,7 @@ const InputText = forwardRef(
       } else if (text.trim() === '' && textValid !== null && isRequired) {
         setIsInputValid(false);
         setErrorMessage("Can't be empty");
-        returnIsInputValid(false);
+        returnIsInputValid(false, inputText);
       } else if (text.trim() === '' && !isRequired) {
         setIsInputValid(true);
         returnIsInputValid(true, inputText);
@@ -86,31 +88,34 @@ const InputText = forwardRef(
           {isRequired && <span className={styles.isRequiredStar}>*</span>}
         </label>
         {inputLinkIcon && (
-          <img
-            src={inputLinkIcon}
-            alt='link icon'
+          <SVGWrapper
+            markup={inputLinkIcon}
+            color='#737373'
             className={styles.inputIcon}
-            aria-hidden='true'
           />
         )}
-        <input
-          type='text'
-          value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
-          placeholder={placeholder}
-          className={`${styles.inputText} ${styles[errorClass]}`}
-          name='inputLink'
-          onBlur={onInputFocus}
-          ref={ref}
-          aria-invalid={isInputValid === false ? 'true' : 'false'} // Set ARIA attributes
-          aria-describedby={
-            isInputValid === false ? 'error-message' : undefined
-          }
-          maxLength={maxLength}
-        />
-        {!isInputValid && (
-          <span className={styles.errorMessage}>{errorMessage}</span>
-        )}
+        <div>
+          <input
+            type='text'
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            className={`${styles.inputText} ${styles[errorClass]}`}
+            name='inputLink'
+            onBlur={onInputFocus}
+            ref={ref}
+            aria-invalid={isInputValid === false ? 'true' : 'false'} // Set ARIA attributes
+            aria-describedby={
+              isInputValid === false ? 'error-message' : undefined
+            }
+            maxLength={maxLength}
+          />
+          {!inputText.length && (
+            <span className={styles.placeholder}>{placeholder}</span>
+          )}
+          {!isInputValid && (
+            <span className={styles.errorMessage}>{errorMessage}</span>
+          )}
+        </div>
       </div>
     );
   }
