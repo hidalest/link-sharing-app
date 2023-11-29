@@ -9,18 +9,16 @@ import { routes } from '../../lib/routes';
 
 import styles from './Navbar.module.scss';
 
-function Navbar(props: NavBarProps) {
+function Navbar({ navbarProps, mainLogoDesktop, mainLogoSmall }: NavBarProps) {
   const dispatch = useAppDispatch();
   const {
-    mainLogoDesktop,
-    mainLogoSmall,
     logoLinkPage,
     logoProfilePage,
     linkPageCopy,
     profileDetailsPageCopy,
     buttonPreviewCopy,
     buttonPreviewIcon,
-  } = props.navbarProps;
+  } = navbarProps;
 
   const view = useAppSelector((state) => state.app.currentView);
   const username = useAppSelector((state) => state.userProfile.username);

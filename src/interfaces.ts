@@ -3,7 +3,7 @@
 import {
   DraggableProvidedDragHandleProps,
   DraggableProvidedDraggableProps,
-} from "react-beautiful-dnd";
+} from 'react-beautiful-dnd';
 
 export type commonProps = {
   className?: string;
@@ -82,9 +82,9 @@ export interface profileDetailsProps {
 // Navigation Bar Props
 
 export interface NavBarProps {
+  mainLogoDesktop: string;
+  mainLogoSmall: string;
   navbarProps: {
-    mainLogoDesktop: string;
-    mainLogoSmall: string;
     logoLinkPage: string;
     logoProfilePage: string;
     linkPageCopy: string;

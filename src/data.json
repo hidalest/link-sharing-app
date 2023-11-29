@@ -174,7 +174,7 @@
       "passwordInstructions": "Password must contain 8 to 16 characters",
       "loginButton": "Login",
       "registerInstructionsBtn": "Already have an account? ",
-      "registerBtn": "Login"
+      "registerBtn": "Create account"
     }
   }
 }

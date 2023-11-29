@@ -7,10 +7,11 @@ import {
   usernameRegex,
 } from "../../../../utils/regex";
 import Button from "../../../../components/UI/Button/Button";
-
-import styles from "./Signup.module.scss";
 import { useAppDispatch } from "../../../../hooks/hooks";
 import { appActions } from "../../../../store/store";
+import { FormEvent } from "react";
+
+import styles from "./Signup.module.scss";
 
 function Signup(props: SignupProps) {
   const { className, signupPhase } = props;
@@ -52,11 +53,15 @@ function Signup(props: SignupProps) {
   const getUsernameInfo = (isValid: boolean, inputValue: string) => {
     console.log(isValid, inputValue);
   };
+
+  const onSubmitAccount = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
   return (
     <Card priority="white" className={`${styles.loginContainer} ${className}`}>
       <h1>{loginHeader}</h1>
       <p>{loginInstructions}</p>
-      <div className={styles.inputsContainer}>
+      <form className={styles.inputsContainer} onSubmit={onSubmitAccount}>
         {/* TODO, username placeholder doesnt look in line with the icon */}
         <label htmlFor="inputEmail">{usernameLabel}</label>
         <InputText
@@ -102,17 +107,20 @@ function Signup(props: SignupProps) {
           id={"inputConfirmPassword"}
           inputLinkIcon={inputPasswordIcon}
         />
-      </div>
-      <p>{passwordInstructions}</p>
-      <Button priority="primary" className={styles.buttonLogin}>
-        {loginButton}
-      </Button>
-      <div className={styles.buttonCombo}>
-        <p className={styles.pButtonCombo}>{registerInstructionsBtn}</p>
-        <Button priority="tertiary" onClick={onChangeToLoginView}>
-          {registerBtn}
+        <p>{passwordInstructions}</p>
+        <Button
+          priority="primary"
+          className={`${styles.buttonLogin} ${styles.submitButton}`}
+        >
+          {loginButton}
         </Button>
-      </div>
+        <div className={styles.buttonCombo}>
+          <p className={styles.pButtonCombo}>{registerInstructionsBtn}</p>
+          <Button priority="tertiary" onClick={onChangeToLoginView}>
+            {loginButton}
+          </Button>
+        </div>
+      </form>
     </Card>
   );
 }
