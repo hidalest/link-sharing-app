@@ -1,7 +1,11 @@
 import { SignupProps } from '../../../../interfaces';
 import Card from '../../../../components/UI/Card/Card';
 import InputText from '../../../../components/UI/InputText/InputText';
-import { emailRegex, passwordRegex } from '../../../../utils/regex';
+import {
+  emailRegex,
+  passwordRegex,
+  usernameRegex,
+} from '../../../../utils/regex';
 import Button from '../../../../components/UI/Button/Button';
 
 import styles from './Signup.module.scss';
@@ -15,12 +19,16 @@ function Signup(props: SignupProps) {
     emailLabel,
     emailPlaceholder,
     inputPasswordIcon,
+    inputPasswordEmailIcon,
     passwordLabel,
     passwordPlaceholder,
     confirmPasswordLabel,
     confirmPasswordPlaceholder,
     registerBtn,
     registerInstructionsBtn,
+    usernameIcon,
+    usernamePlaceholder,
+    usernameLabel,
   } = signupPhase;
 
   const getEmailInputInfo = (isValid: boolean, inputValue: string) => {
@@ -32,6 +40,9 @@ function Signup(props: SignupProps) {
   const getConfirmPassword = (isValid: boolean, inputValue: string) => {
     console.log(isValid, inputValue);
   };
+  const getUsernameInfo = (isValid: boolean, inputValue: string) => {
+    console.log(isValid, inputValue);
+  };
   return (
     <Card priority='white' className={`${styles.loginContainer} ${className}`}>
       <h1>{loginHeader}</h1>
@@ -39,10 +50,22 @@ function Signup(props: SignupProps) {
       <div className={styles.inputsContainer}>
         <label htmlFor='inputEmail'>{emailLabel}</label>
         <InputText
+          placeholder={usernamePlaceholder}
+          label={usernameLabel}
+          returnIsInputValid={getUsernameInfo}
+          validationregex={usernameRegex}
+          inputLinkIcon={usernameIcon}
+          errorMessageProp={''}
+          isRequired
+          id={'inputEmail'}
+        />
+        <label htmlFor='inputEmail'>{emailLabel}</label>
+        <InputText
           placeholder={emailPlaceholder}
           label={emailLabel}
           returnIsInputValid={getEmailInputInfo}
           validationregex={emailRegex}
+          inputLinkIcon={inputPasswordEmailIcon}
           errorMessageProp={''}
           isRequired
           id={'inputEmail'}
@@ -53,6 +76,7 @@ function Signup(props: SignupProps) {
           label={passwordLabel}
           returnIsInputValid={getPasswordInput}
           validationregex={passwordRegex}
+          inputLinkIcon={inputPasswordIcon}
           errorMessageProp={''}
           isRequired
           id={'inputPassword'}

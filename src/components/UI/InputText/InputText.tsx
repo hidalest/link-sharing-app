@@ -94,27 +94,28 @@ const InputText = forwardRef(
             className={styles.inputIcon}
           />
         )}
-        <input
-          type='text'
-          value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
-          // placeholder={placeholder}
-          className={`${styles.inputText} ${styles[errorClass]}`}
-          name='inputLink'
-          onBlur={onInputFocus}
-          ref={ref}
-          aria-invalid={isInputValid === false ? 'true' : 'false'} // Set ARIA attributes
-          aria-describedby={
-            isInputValid === false ? 'error-message' : undefined
-          }
-          maxLength={maxLength}
-        />
-        {!isInputValid && (
-          <span className={styles.errorMessage}>{errorMessage}</span>
-        )}
-        {!inputText.length && (
-          <span className={styles.placeholder}>{placeholder}</span>
-        )}
+        <div>
+          <input
+            type='text'
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            className={`${styles.inputText} ${styles[errorClass]}`}
+            name='inputLink'
+            onBlur={onInputFocus}
+            ref={ref}
+            aria-invalid={isInputValid === false ? 'true' : 'false'} // Set ARIA attributes
+            aria-describedby={
+              isInputValid === false ? 'error-message' : undefined
+            }
+            maxLength={maxLength}
+          />
+          {!inputText.length && (
+            <span className={styles.placeholder}>{placeholder}</span>
+          )}
+          {!isInputValid && (
+            <span className={styles.errorMessage}>{errorMessage}</span>
+          )}
+        </div>
       </div>
     );
   }

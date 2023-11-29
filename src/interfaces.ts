@@ -195,5 +195,9 @@ export interface SignupProps {
     loginButton: string;
     registerInstructionsBtn: string;
     registerBtn: string;
+    inputPasswordEmailIcon: string;
+    usernameIcon: string;
+    usernamePlaceholder: string;
+    usernameLabel: string;
   };
 }
