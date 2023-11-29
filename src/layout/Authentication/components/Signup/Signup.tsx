@@ -29,6 +29,7 @@ function Signup(props: SignupProps) {
     usernameIcon,
     usernamePlaceholder,
     usernameLabel,
+    passwordInstructions,
   } = signupPhase;
 
   const getEmailInputInfo = (isValid: boolean, inputValue: string) => {
@@ -94,6 +95,7 @@ function Signup(props: SignupProps) {
           inputLinkIcon={inputPasswordIcon}
         />
       </div>
+      <p>{passwordInstructions}</p>
       <Button priority='primary' className={styles.buttonLogin}>
         {loginButton}
       </Button>

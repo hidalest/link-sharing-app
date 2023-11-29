@@ -171,7 +171,7 @@
             "passwordPlaceholder": "Enter your password",
             "confirmPasswordLabel": "Confirm Password",
             "confirmPasswordPlaceholder": "Enter your password",
-            "passwordInstructions": "Password must contain at least 8 characters",
+            "passwordInstructions": "Password must contain 8 to 16 characters",
             "loginButton": "Login",
             "registerInstructionsBtn": "Already have an account? ",
             "registerBtn": "Login"

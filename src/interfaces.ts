@@ -199,5 +199,6 @@ export interface SignupProps {
     usernameIcon: string;
     usernamePlaceholder: string;
     usernameLabel: string;
+    passwordInstructions: string;
   };
 }
