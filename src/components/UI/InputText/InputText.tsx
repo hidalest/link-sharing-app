@@ -1,6 +1,6 @@
-import { FormEvent, Ref, forwardRef, useEffect, useState } from "react";
-import styles from "./InputText.module.scss";
-import { commonProps } from "../../../interfaces";
+import { FormEvent, Ref, forwardRef, useEffect, useState } from 'react';
+import styles from './InputText.module.scss';
+import { SVGWrapper } from '../SVGWrapper/SVGWrapper';
 
 interface InputTextProps {
   placeholder: string;
@@ -35,29 +35,29 @@ const InputText = forwardRef(
       isRequired,
       maxLength = 50,
     } = props;
-    const [inputText, setInputText] = useState(inputValue || "");
+    const [inputText, setInputText] = useState(inputValue || '');
     const [isInputValid, setIsInputValid] = useState<boolean | null>(null);
-    const [errorMessage, setErrorMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState('');
 
     const onValidateInput = function (text: string, textValid: boolean | null) {
       const isInputValidWithRegex = validationregex.test(text);
 
-      if (!isInputValidWithRegex && text !== "") {
+      if (!isInputValidWithRegex && text !== '') {
         setIsInputValid(false);
         setErrorMessage(errorMessageProp);
         returnIsInputValid(false, inputText);
-      } else if (text.trim() !== "" && isInputValidWithRegex) {
+      } else if (text.trim() !== '' && isInputValidWithRegex) {
         setIsInputValid(true);
         returnIsInputValid(true, inputText);
-        setErrorMessage("");
-      } else if (text.trim() === "" && textValid !== null && isRequired) {
+        setErrorMessage('');
+      } else if (text.trim() === '' && textValid !== null && isRequired) {
         setIsInputValid(false);
         setErrorMessage("Can't be empty");
         returnIsInputValid(false, inputText);
-      } else if (text.trim() === "" && !isRequired) {
+      } else if (text.trim() === '' && !isRequired) {
         setIsInputValid(true);
         returnIsInputValid(true, inputText);
-        setErrorMessage("");
+        setErrorMessage('');
       }
     };
 
@@ -75,47 +75,49 @@ const InputText = forwardRef(
       };
     }, [inputText, isInputValid]);
 
-    const errorClass = isInputValid === false ? "inputInvalid" : "";
-    const showLabelClass = showLabel ? "showLabel" : "hideLabel";
+    const errorClass = isInputValid === false ? 'inputInvalid' : '';
+    const showLabelClass = showLabel ? 'showLabel' : 'hideLabel';
 
     return (
       <div className={`${styles.inputContainer} ${className}`}>
         <label
-          htmlFor="inputLink"
+          htmlFor='inputLink'
           className={`${styles.label} ${styles[showLabelClass]}`}
         >
           {label}
           {isRequired && <span className={styles.isRequiredStar}>*</span>}
         </label>
         {inputLinkIcon && (
-          <img
-            src={inputLinkIcon}
-            alt="link icon"
+          <SVGWrapper
+            markup={inputLinkIcon}
+            color='#737373'
             className={styles.inputIcon}
-            aria-hidden="true"
           />
         )}
         <input
-          type="text"
+          type='text'
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
-          placeholder={placeholder}
+          // placeholder={placeholder}
           className={`${styles.inputText} ${styles[errorClass]}`}
-          name="inputLink"
+          name='inputLink'
           onBlur={onInputFocus}
           ref={ref}
-          aria-invalid={isInputValid === false ? "true" : "false"} // Set ARIA attributes
+          aria-invalid={isInputValid === false ? 'true' : 'false'} // Set ARIA attributes
           aria-describedby={
-            isInputValid === false ? "error-message" : undefined
+            isInputValid === false ? 'error-message' : undefined
           }
           maxLength={maxLength}
         />
         {!isInputValid && (
           <span className={styles.errorMessage}>{errorMessage}</span>
         )}
+        {!inputText.length && (
+          <span className={styles.placeholder}>{placeholder}</span>
+        )}
       </div>
     );
-  },
+  }
 );
 
 export default InputText;

@@ -4,8 +4,9 @@ import styles from './SVGWrapper.module.scss';
 interface SVGWrapperProps {
   markup: RequestInfo | URL;
   color: string;
+  className?: string;
 }
-export const SVGWrapper = ({ markup, color }: SVGWrapperProps) => {
+export const SVGWrapper = ({ markup, color, className }: SVGWrapperProps) => {
   const [svgMarkup, setSVGMarkup] = useState<string>('');
   useEffect(() => {
     // Fetch the SVG file content
@@ -20,7 +21,7 @@ export const SVGWrapper = ({ markup, color }: SVGWrapperProps) => {
       dangerouslySetInnerHTML={{ __html: svgMarkup }}
       style={{ color }}
       role='img'
-      className={styles.icon}
+      className={`${styles.icon} ${className}`}
     />
   );
 };

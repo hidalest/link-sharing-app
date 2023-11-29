@@ -186,6 +186,7 @@ export interface SignupProps {
     loginHeader: string;
     loginInstructions: string;
     emailLabel: string;
+    inputPasswordIcon: string;
     emailPlaceholder: string;
     passwordLabel: string;
     passwordPlaceholder: string;

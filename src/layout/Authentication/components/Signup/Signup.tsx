@@ -14,6 +14,7 @@ function Signup(props: SignupProps) {
     loginInstructions,
     emailLabel,
     emailPlaceholder,
+    inputPasswordIcon,
     passwordLabel,
     passwordPlaceholder,
     confirmPasswordLabel,
@@ -65,6 +66,7 @@ function Signup(props: SignupProps) {
           errorMessageProp={''}
           isRequired
           id={'inputConfirmPassword'}
+          inputLinkIcon={inputPasswordIcon}
         />
       </div>
       <Button priority='primary' className={styles.buttonLogin}>

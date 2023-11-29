@@ -162,6 +162,7 @@
             "loginInstructions": "Let’s get you started sharing your links!",
             "emailLabel": "Email address",
             "emailPlaceholder": "e.g. alex@email.com",
+            "inputPasswordIcon": "/src/assets/images/icon-password.svg",
             "passwordLabel": "Password",
             "passwordPlaceholder": "Enter your password",
             "confirmPasswordLabel": "Confirm Password",
