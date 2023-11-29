@@ -3,7 +3,7 @@
 import {
   DraggableProvidedDragHandleProps,
   DraggableProvidedDraggableProps,
-} from 'react-beautiful-dnd';
+} from "react-beautiful-dnd";
 
 export type commonProps = {
   className?: string;
@@ -155,10 +155,16 @@ export interface AuthenticationPageProps {
       loginInstructions: string;
       emailLabel: string;
       emailPlaceholder: string;
+      usernameLabel: string;
+      usernameIcon: string;
+      usernamePlaceholder: string;
+      inputPasswordIcon: string;
+      inputPasswordEmailIcon: string;
       passwordLabel: string;
       passwordPlaceholder: string;
       confirmPasswordLabel: string;
       confirmPasswordPlaceholder: string;
+      passwordInstructions: string;
       loginButton: string;
       registerInstructionsBtn: string;
       registerBtn: string;

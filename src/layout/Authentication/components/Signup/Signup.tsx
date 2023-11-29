@@ -1,14 +1,16 @@
-import { SignupProps } from '../../../../interfaces';
-import Card from '../../../../components/UI/Card/Card';
-import InputText from '../../../../components/UI/InputText/InputText';
+import { SignupProps } from "../../../../interfaces";
+import Card from "../../../../components/UI/Card/Card";
+import InputText from "../../../../components/UI/InputText/InputText";
 import {
   emailRegex,
   passwordRegex,
   usernameRegex,
-} from '../../../../utils/regex';
-import Button from '../../../../components/UI/Button/Button';
+} from "../../../../utils/regex";
+import Button from "../../../../components/UI/Button/Button";
 
-import styles from './Signup.module.scss';
+import styles from "./Signup.module.scss";
+import { useAppDispatch } from "../../../../hooks/hooks";
+import { appActions } from "../../../../store/store";
 
 function Signup(props: SignupProps) {
   const { className, signupPhase } = props;
@@ -32,9 +34,15 @@ function Signup(props: SignupProps) {
     passwordInstructions,
   } = signupPhase;
 
+  const dispatch = useAppDispatch();
+
+  const onChangeToLoginView = () =>
+    dispatch(appActions.changeAuthenticationView());
+
   const getEmailInputInfo = (isValid: boolean, inputValue: string) => {
     console.log(isValid, inputValue);
   };
+
   const getPasswordInput = (isValid: boolean, inputValue: string) => {
     console.log(isValid, inputValue);
   };
@@ -45,63 +53,65 @@ function Signup(props: SignupProps) {
     console.log(isValid, inputValue);
   };
   return (
-    <Card priority='white' className={`${styles.loginContainer} ${className}`}>
+    <Card priority="white" className={`${styles.loginContainer} ${className}`}>
       <h1>{loginHeader}</h1>
       <p>{loginInstructions}</p>
       <div className={styles.inputsContainer}>
         {/* TODO, username placeholder doesnt look in line with the icon */}
-        <label htmlFor='inputEmail'>{usernameLabel}</label>
+        <label htmlFor="inputEmail">{usernameLabel}</label>
         <InputText
           placeholder={usernamePlaceholder}
           label={usernameLabel}
           returnIsInputValid={getUsernameInfo}
           validationregex={usernameRegex}
           inputLinkIcon={usernameIcon}
-          errorMessageProp={''}
+          errorMessageProp={""}
           isRequired
-          id={'inputEmail'}
+          id={"inputEmail"}
         />
-        <label htmlFor='inputEmail'>{emailLabel}</label>
+        <label htmlFor="inputEmail">{emailLabel}</label>
         <InputText
           placeholder={emailPlaceholder}
           label={emailLabel}
           returnIsInputValid={getEmailInputInfo}
           validationregex={emailRegex}
           inputLinkIcon={inputPasswordEmailIcon}
-          errorMessageProp={''}
+          errorMessageProp={""}
           isRequired
-          id={'inputEmail'}
+          id={"inputEmail"}
         />
-        <label htmlFor='inputPassword'>{passwordLabel}</label>
+        <label htmlFor="inputPassword">{passwordLabel}</label>
         <InputText
           placeholder={passwordPlaceholder}
           label={passwordLabel}
           returnIsInputValid={getPasswordInput}
           validationregex={passwordRegex}
           inputLinkIcon={inputPasswordIcon}
-          errorMessageProp={''}
+          errorMessageProp={""}
           isRequired
-          id={'inputPassword'}
+          id={"inputPassword"}
         />
-        <label htmlFor='inputConfirmPassword'>{confirmPasswordLabel}</label>
+        <label htmlFor="inputConfirmPassword">{confirmPasswordLabel}</label>
         <InputText
           placeholder={confirmPasswordPlaceholder}
           label={confirmPasswordLabel}
           returnIsInputValid={getConfirmPassword}
           validationregex={passwordRegex}
-          errorMessageProp={''}
+          errorMessageProp={""}
           isRequired
-          id={'inputConfirmPassword'}
+          id={"inputConfirmPassword"}
           inputLinkIcon={inputPasswordIcon}
         />
       </div>
       <p>{passwordInstructions}</p>
-      <Button priority='primary' className={styles.buttonLogin}>
+      <Button priority="primary" className={styles.buttonLogin}>
         {loginButton}
       </Button>
       <div className={styles.buttonCombo}>
         <p className={styles.pButtonCombo}>{registerInstructionsBtn}</p>
-        <Button priority='tertiary'>{registerBtn}</Button>
+        <Button priority="tertiary" onClick={onChangeToLoginView}>
+          {registerBtn}
+        </Button>
       </div>
     </Card>
   );
