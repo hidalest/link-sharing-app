@@ -1,8 +1,9 @@
-@import '../../../sassStyles/variables';
-@import '../../../sassStyles/mixins';
+@import "../../../sassStyles/variables";
+@import "../../../sassStyles/mixins";
 
 .inputContainer {
   position: relative;
+
   & .inputIcon {
     position: absolute;
     top: 50%;
@@ -74,4 +75,5 @@
   top: 50%;
   left: 3.5rem;
   transform: translateY(-50%);
+  pointer-events: none;
 }

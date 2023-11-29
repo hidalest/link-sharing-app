@@ -1,4 +1,4 @@
-@import '../../../../sassStyles/variables.scss';
+@import "../../../../sassStyles/variables.scss";
 
 .loginContainer {
   display: flex;
@@ -32,7 +32,6 @@
     font-weight: 400;
     line-height: 150%; /* 24px */
     padding-top: 0.8rem;
-    padding-bottom: 2.6rem;
   }
 
   & label {
