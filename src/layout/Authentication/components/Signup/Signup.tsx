@@ -48,7 +48,8 @@ function Signup(props: SignupProps) {
       <h1>{loginHeader}</h1>
       <p>{loginInstructions}</p>
       <div className={styles.inputsContainer}>
-        <label htmlFor='inputEmail'>{emailLabel}</label>
+        {/* TODO, username placeholder doesnt look in line with the icon */}
+        <label htmlFor='inputEmail'>{usernameLabel}</label>
         <InputText
           placeholder={usernamePlaceholder}
           label={usernameLabel}

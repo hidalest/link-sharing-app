@@ -163,7 +163,7 @@
             "emailLabel": "Email address",
             "emailPlaceholder": "e.g. alex@email.com",
             "usernameLabel": "Email address",
-            "usernamePlaceholder": "Noobmaster69",
+            "usernamePlaceholder": "noobmaster69",
             "usernameIcon": "/src/assets/images/icon-profile-details-header.svg",
             "inputPasswordIcon": "/src/assets/images/icon-password.svg",
             "inputPasswordEmailIcon": "/src/assets/images/icon-email.svg",
