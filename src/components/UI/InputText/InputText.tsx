@@ -17,6 +17,8 @@ interface InputTextProps {
   onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
   returnIsInputValid: (isValid: boolean, inputValue: string) => void;
   id?: string;
+  type?: 'text' | 'email' | 'password';
+  isValid?: boolean;
 }
 
 const InputText = forwardRef(
@@ -34,6 +36,8 @@ const InputText = forwardRef(
       className,
       isRequired,
       maxLength = 50,
+      type = 'text',
+      isValid = null,
     } = props;
     const [inputText, setInputText] = useState(inputValue || '');
     const [isInputValid, setIsInputValid] = useState<boolean | null>(null);
@@ -42,7 +46,7 @@ const InputText = forwardRef(
     const onValidateInput = function (text: string, textValid: boolean | null) {
       const isInputValidWithRegex = validationregex.test(text);
 
-      if (!isInputValidWithRegex && text !== '') {
+      if ((!isInputValidWithRegex && text !== '') || isValid === false) {
         setIsInputValid(false);
         setErrorMessage(errorMessageProp);
         returnIsInputValid(false, inputText);
@@ -96,7 +100,7 @@ const InputText = forwardRef(
         )}
         <div>
           <input
-            type='text'
+            type={type}
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             className={`${styles.inputText} ${styles[errorClass]}`}
