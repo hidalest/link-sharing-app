@@ -9,13 +9,100 @@ import {
 import Button from '../../../../components/UI/Button/Button';
 import { useAppDispatch } from '../../../../hooks/hooks';
 import { appActions } from '../../../../store/store';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useReducer, useState } from 'react';
 
 import styles from './Signup.module.scss';
 
+type InputsProperties = {
+  value: string;
+  isValid: boolean | null;
+};
+interface inputsInitialValuesProps {
+  inputEmail: InputsProperties;
+  inputUsername: InputsProperties;
+  inputPassword: InputsProperties;
+  inputConfirmPassword: InputsProperties;
+}
+
+const inputsInitialValues: inputsInitialValuesProps = {
+  inputEmail: {
+    value: '',
+    isValid: null,
+  },
+  inputUsername: {
+    value: '',
+    isValid: null,
+  },
+  inputPassword: {
+    value: '',
+    isValid: null,
+  },
+  inputConfirmPassword: {
+    value: '',
+    isValid: null,
+  },
+};
+
+type ReducerPayload = {
+  value: string;
+  isValid: boolean | null;
+};
+
+type ReducerType =
+  | 'InputEmail'
+  | 'InputUsername'
+  | 'InputPassword'
+  | 'InputConfirmPassword';
+
+type ReducerActions = { type: ReducerType; payload: ReducerPayload };
+
+const reducer = (state: inputsInitialValuesProps, action: ReducerActions) => {
+  switch (action.type) {
+    case 'InputEmail':
+      return {
+        ...state,
+        inputEmail: {
+          value: action.payload.value,
+          isValid: action.payload.isValid,
+        },
+      };
+
+    case 'InputUsername':
+      return {
+        ...state,
+        inputUsername: {
+          value: action.payload.value,
+          isValid: action.payload.isValid,
+        },
+      };
+    case 'InputPassword':
+      return {
+        ...state,
+        inputPassword: {
+          value: action.payload.value,
+          isValid: action.payload.isValid,
+        },
+      };
+    case 'InputConfirmPassword':
+      return {
+        ...state,
+        inputConfirmPassword: {
+          value: action.payload.value,
+          isValid: action.payload.isValid,
+        },
+      };
+
+    default:
+      return state;
+  }
+};
+
 function Signup(props: SignupProps) {
   const { className, signupPhase } = props;
-  const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState(null);
+  const [inputsElements, dispatch] = useReducer(reducer, inputsInitialValues);
+  const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState<
+    null | boolean
+  >(null);
   const {
     loginHeader,
     loginButton,
@@ -36,28 +123,45 @@ function Signup(props: SignupProps) {
     passwordInstructions,
   } = signupPhase;
 
-  const dispatch = useAppDispatch();
+  const reduxDispatch = useAppDispatch();
 
   const onChangeToLoginView = () =>
-    dispatch(appActions.changeAuthenticationView());
+    reduxDispatch(appActions.changeAuthenticationView());
 
-  const getEmailInputInfo = (isValid: boolean, inputValue: string) => {
-    console.log(isValid, inputValue);
+  const getUsernameInfo = (isValid: boolean, value: string) => {
+    dispatch({ type: 'InputUsername', payload: { value, isValid } });
   };
 
-  const getPasswordInput = (isValid: boolean, inputValue: string) => {
-    console.log(isValid, inputValue);
+  const getEmailInputInfo = (isValid: boolean, value: string) => {
+    dispatch({ type: 'InputEmail', payload: { value, isValid } });
   };
-  const getConfirmPassword = (isValid: boolean, inputValue: string) => {
-    console.log(isValid, inputValue);
+
+  const getPasswordInput = (isValid: boolean, value: string) => {
+    dispatch({ type: 'InputPassword', payload: { value, isValid } });
   };
-  const getUsernameInfo = (isValid: boolean, inputValue: string) => {
-    console.log(isValid, inputValue);
+  const getConfirmPassword = (isValid: boolean, value: string) => {
+    dispatch({ type: 'InputConfirmPassword', payload: { value, isValid } });
+    console.log(isValid);
   };
 
   const onSubmitAccount = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    if (isConfirmPasswordValid === false) return;
+
+    console.log('Successfull register!');
   };
+
+  const getConfirmationPassword = (text: string) => {
+    if (inputsElements.inputPassword.value !== text) {
+      setIsConfirmPasswordValid(false);
+      console.log("Passwords don't match!");
+    } else {
+      setIsConfirmPasswordValid(true);
+    }
+  };
+
   return (
     <Card priority='white' className={`${styles.loginContainer} ${className}`}>
       <h1>{loginHeader}</h1>
@@ -75,6 +179,7 @@ function Signup(props: SignupProps) {
           errorMessageProp={''}
           isRequired
           id={'inputEmail'}
+          autocomplete='email'
         />
         {/*  Email */}
         <label htmlFor='inputEmail'>{emailLabel}</label>
@@ -88,10 +193,12 @@ function Signup(props: SignupProps) {
           isRequired
           id={'inputEmail'}
           type='email'
+          autocomplete='email'
         />
         {/*  Password */}
         <label htmlFor='inputPassword'>{passwordLabel}</label>
         <InputText
+          autocomplete='new-password'
           placeholder={passwordPlaceholder}
           label={passwordLabel}
           returnIsInputValid={getPasswordInput}
@@ -105,6 +212,7 @@ function Signup(props: SignupProps) {
         {/* Confirm Password */}
         <label htmlFor='inputConfirmPassword'>{confirmPasswordLabel}</label>
         <InputText
+          autocomplete='new-password'
           placeholder={confirmPasswordPlaceholder}
           label={confirmPasswordLabel}
           returnIsInputValid={getConfirmPassword}
@@ -114,6 +222,8 @@ function Signup(props: SignupProps) {
           id={'inputConfirmPassword'}
           inputLinkIcon={inputPasswordIcon}
           type='password'
+          isValid={isConfirmPasswordValid}
+          onChange={getConfirmationPassword}
         />
         <p>{passwordInstructions}</p>
         <Button

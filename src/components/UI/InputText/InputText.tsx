@@ -1,4 +1,11 @@
-import { FormEvent, Ref, forwardRef, useEffect, useState } from 'react';
+import {
+  ChangeEvent,
+  FormEvent,
+  Ref,
+  forwardRef,
+  useEffect,
+  useState,
+} from 'react';
 import styles from './InputText.module.scss';
 import { SVGWrapper } from '../SVGWrapper/SVGWrapper';
 
@@ -18,7 +25,9 @@ interface InputTextProps {
   returnIsInputValid: (isValid: boolean, inputValue: string) => void;
   id?: string;
   type?: 'text' | 'email' | 'password';
-  isValid?: boolean;
+  isValid?: boolean | null;
+  autocomplete?: 'current-password' | 'new-password' | 'username' | 'email';
+  onChange?: (value: string) => void;
 }
 
 const InputText = forwardRef(
@@ -38,6 +47,7 @@ const InputText = forwardRef(
       maxLength = 50,
       type = 'text',
       isValid = null,
+      onChange,
     } = props;
     const [inputText, setInputText] = useState(inputValue || '');
     const [isInputValid, setIsInputValid] = useState<boolean | null>(null);
@@ -79,6 +89,12 @@ const InputText = forwardRef(
       };
     }, [inputText, isInputValid]);
 
+    const onInputValueChange = (e: ChangeEvent<HTMLInputElement>) => {
+      setInputText(e.target.value);
+
+      if (onChange) onChange(e.target.value);
+    };
+
     const errorClass = isInputValid === false ? 'inputInvalid' : '';
     const showLabelClass = showLabel ? 'showLabel' : 'hideLabel';
 
@@ -102,7 +118,7 @@ const InputText = forwardRef(
           <input
             type={type}
             value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
+            onChange={onInputValueChange}
             className={`${styles.inputText} ${styles[errorClass]}`}
             name='inputLink'
             onBlur={onInputFocus}
