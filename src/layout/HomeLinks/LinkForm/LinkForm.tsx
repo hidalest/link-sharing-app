@@ -30,6 +30,7 @@ const LinkForm = (props: LinkFormProps) => {
     platformHeading,
     inputLinkIcon,
     dragAndDropIcon,
+    addButton,
   } = linkFormProps;
 
   const dispatch = useAppDispatch();
@@ -132,29 +133,39 @@ const LinkForm = (props: LinkFormProps) => {
           timeOnCheck={500}
           isRequired
         />
+        <section className={styles.inputColorContainer}>
+          <InputColor
+            label={'background'}
+            onColorChange={onColorChange}
+            name={'backgroundColor'}
+            defaultColor={`${
+              currentLink?.backgroundColor
+                ? currentLink.backgroundColor
+                : '#333333'
+            }`}
+            className={styles.test}
+          />
+          <InputColor
+            label={'Font'}
+            onColorChange={onColorChange}
+            name={'fontColor'}
+            defaultColor={`${
+              currentLink?.fontColor ? currentLink.fontColor : '#ffffff'
+            }`}
+            className={styles.test}
+          />
+          <Button
+            priority='primary'
+            className={styles.addBtn}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            //@ts-ignore
+            onClick={onSubmitInputHandler}
+            type='submit'
+          >
+            {addButton}
+          </Button>
+        </section>
       </form>
-      <section className={styles.inputColorContainer}>
-        <InputColor
-          label={'background'}
-          onColorChange={onColorChange}
-          name={'backgroundColor'}
-          defaultColor={`${
-            currentLink?.backgroundColor
-              ? currentLink.backgroundColor
-              : '#333333'
-          }`}
-          className={styles.test}
-        />
-        <InputColor
-          label={'Font'}
-          onColorChange={onColorChange}
-          name={'fontColor'}
-          defaultColor={`${
-            currentLink?.fontColor ? currentLink.fontColor : '#ffffff'
-          }`}
-          className={styles.test}
-        />
-      </section>
     </Card>
   );
 };

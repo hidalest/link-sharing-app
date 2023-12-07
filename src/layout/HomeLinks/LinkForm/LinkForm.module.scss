@@ -1,5 +1,5 @@
-@import '../../../sassStyles/variables';
-@import '../../../sassStyles/mixins';
+@import "../../../sassStyles/variables";
+@import "../../../sassStyles/mixins";
 
 .platformLink {
   display: flex;
@@ -60,5 +60,13 @@
   .inputColorContainer {
     display: flex;
     justify-content: flex-start;
+    align-items: center;
+  }
+
+  .addBtn {
+    padding: 1.1rem 2.7rem;
+    text-align: center;
+    position: absolute;
+    right: 6.4rem;
   }
 }

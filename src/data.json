@@ -36,6 +36,7 @@
       "platformHeading": "Platform",
       "linkSubheading": "Link",
       "dragAndDropIcon": "/src/assets/images/icon-drag-and-drop.svg",
+      "addButton": "Add",
       "sources": [
         {
           "id": 1,

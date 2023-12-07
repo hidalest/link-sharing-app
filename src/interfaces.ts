@@ -3,7 +3,7 @@
 import {
   DraggableProvidedDragHandleProps,
   DraggableProvidedDraggableProps,
-} from "react-beautiful-dnd";
+} from 'react-beautiful-dnd';
 
 export type commonProps = {
   className?: string;
@@ -55,6 +55,7 @@ export interface HomeLinksProps {
       inputLinkIcon: string;
       sources: LinkType[];
       dragAndDropIcon: string;
+      addButton: string;
     };
     phoneMockupProps: {
       arrowIconLinks: string;
@@ -110,6 +111,7 @@ export interface LinkFormProps {
     inputLinkIcon: string;
     sources: LinkType[];
     dragAndDropIcon: string;
+    addButton: string;
   };
   linkId: string;
   linkName: string;
