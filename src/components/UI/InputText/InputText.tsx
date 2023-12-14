@@ -27,6 +27,7 @@ interface InputTextProps {
   type?: 'text' | 'email' | 'password';
   isValid?: boolean | null;
   autocomplete?: 'current-password' | 'new-password' | 'username' | 'email';
+  shouldValidate?: boolean;
   onChange?: (value: string) => void;
 }
 
@@ -39,6 +40,7 @@ const InputText = forwardRef(
       validationregex,
       errorMessageProp,
       inputValue,
+      shouldValidate = true,
       showLabel = false,
       label,
       timeOnCheck = 300,
@@ -54,7 +56,9 @@ const InputText = forwardRef(
     const [errorMessage, setErrorMessage] = useState('');
 
     const onValidateInput = function (text: string, textValid: boolean | null) {
-      const isInputValidWithRegex = validationregex.test(text);
+      // TODO: by not validating like this, malicious actors could insert some scripting. double check this later
+      if (!shouldValidate) return;
+      const isInputValidWithRegex = validationregex?.test(text);
 
       if ((!isInputValidWithRegex && text !== '') || isValid === false) {
         setIsInputValid(false);

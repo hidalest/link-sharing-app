@@ -151,11 +151,12 @@
       "loginHeader": "Login",
       "loginInstructions": "Add your details below to get back into the app",
       "inputPasswordEmailIcon": "/src/assets/images/icon-email.svg",
-      "usernameIcon": "/src/assets/images/icon-profile-details-header.svg",
+      "emailIcon": "/src/assets/images/icon-email.svg",
       "emailLabel": "Email address",
       "emailPlaceholder": "e.g. alex@email.com",
       "passwordLabel": "Password",
       "passwordPlaceholder": "Enter your password",
+      "passwordIcon": "/src/assets/images/icon-password.svg",
       "loginButton": "Login",
       "registerInstructionsBtn": "Don’t have an account?",
       "registerBtn": "Create account"

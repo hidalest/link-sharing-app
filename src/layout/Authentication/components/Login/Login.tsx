@@ -1,12 +1,12 @@
-import { LoginProps } from "../../../../interfaces";
-import Card from "../../../../components/UI/Card/Card";
-import InputText from "../../../../components/UI/InputText/InputText";
-import { emailRegex, passwordRegex } from "../../../../utils/regex";
-import Button from "../../../../components/UI/Button/Button";
+import { LoginProps } from '../../../../interfaces';
+import Card from '../../../../components/UI/Card/Card';
+import InputText from '../../../../components/UI/InputText/InputText';
+import { emailRegex, passwordRegex } from '../../../../utils/regex';
+import Button from '../../../../components/UI/Button/Button';
 
-import styles from "./Login.module.scss";
-import { useAppDispatch } from "../../../../hooks/hooks";
-import { appActions } from "../../../../store/store";
+import styles from './Login.module.scss';
+import { useAppDispatch } from '../../../../hooks/hooks';
+import { appActions } from '../../../../store/store';
 
 function Login(props: LoginProps) {
   const { className, loginPhase } = props;
@@ -14,10 +14,12 @@ function Login(props: LoginProps) {
     loginHeader,
     loginButton,
     loginInstructions,
+    emailIcon,
     emailLabel,
     emailPlaceholder,
     passwordLabel,
     passwordPlaceholder,
+    passwordIcon,
     registerBtn,
     registerInstructionsBtn,
   } = loginPhase;
@@ -34,37 +36,41 @@ function Login(props: LoginProps) {
     dispatch(appActions.changeAuthenticationView());
 
   return (
-    <Card priority="white" className={`${styles.loginContainer} ${className}`}>
+    <Card priority='white' className={`${styles.loginContainer} ${className}`}>
       <h1>{loginHeader}</h1>
       <p>{loginInstructions}</p>
       <div className={styles.inputsContainer}>
-        <label htmlFor="inputEmail">{emailLabel}</label>
+        <label htmlFor='inputEmail'>{emailLabel}</label>
         <InputText
-          placeholder={emailPlaceholder}
+          errorMessageProp={''}
+          id={'inputEmail'}
+          inputLinkIcon={emailIcon}
+          isRequired
           label={emailLabel}
+          placeholder={emailPlaceholder}
           returnIsInputValid={getEmailInputInfo}
+          shouldValidate={false}
           validationregex={emailRegex}
-          errorMessageProp={""}
-          isRequired
-          id={"inputEmail"}
         />
-        <label htmlFor="inputPassword">{passwordLabel}</label>
+        <label htmlFor='inputPassword'>{passwordLabel}</label>
         <InputText
-          placeholder={passwordPlaceholder}
-          label={passwordLabel}
-          returnIsInputValid={getPasswordInput}
-          validationregex={passwordRegex}
-          errorMessageProp={""}
+          errorMessageProp={''}
+          id={'inputPassword'}
+          inputLinkIcon={passwordIcon}
           isRequired
-          id={"inputPassword"}
+          label={passwordLabel}
+          placeholder={passwordPlaceholder}
+          returnIsInputValid={getPasswordInput}
+          shouldValidate={false}
+          validationregex={passwordRegex}
         />
       </div>
-      <Button priority="primary" className={styles.buttonLogin}>
+      <Button priority='primary' className={styles.buttonLogin}>
         {loginButton}
       </Button>
       <div className={styles.buttonCombo}>
         <p className={styles.pButtonCombo}>{registerInstructionsBtn}</p>
-        <Button priority="tertiary" onClick={onChangeViewToSignup}>
+        <Button priority='tertiary' onClick={onChangeViewToSignup}>
           {registerBtn}
         </Button>
       </div>
