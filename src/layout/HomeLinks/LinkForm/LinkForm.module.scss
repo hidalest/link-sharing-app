@@ -60,5 +60,36 @@
   .inputColorContainer {
     display: flex;
     justify-content: flex-start;
+    align-items: center;
+
+    & input {
+      width: 5.5rem;
+      border-radius: 5rem;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      width: 2.5rem;
+      height: 2.5rem;
+      background-color: transparent;
+      border: 1px solid $light-grey;
+      cursor: pointer;
+
+      &::-webkit-color-swatch {
+        border-radius: 15px;
+        border: none;
+      }
+      &::-moz-color-swatch {
+        border-radius: 15px;
+        border: none;
+      }
+    }
+  }
+
+  .addBtn {
+    width: revert;
+    padding: 1.1rem 2.7rem;
+    text-align: center;
+    position: absolute;
+    right: 6.4rem;
   }
 }

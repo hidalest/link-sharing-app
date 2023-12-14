@@ -30,6 +30,7 @@ const LinkForm = (props: LinkFormProps) => {
     platformHeading,
     inputLinkIcon,
     dragAndDropIcon,
+    addButton,
   } = linkFormProps;
 
   const dispatch = useAppDispatch();
@@ -79,6 +80,7 @@ const LinkForm = (props: LinkFormProps) => {
     inputRef.current?.blur();
 
     const form = e.target as HTMLFormElement;
+    console.log(form);
     const inputValue = form.inputLink.value;
     const payload = {
       linkId,
@@ -131,30 +133,34 @@ const LinkForm = (props: LinkFormProps) => {
           ref={inputRef}
           timeOnCheck={500}
           isRequired
+          className={styles.inputTextLink}
         />
+        <section className={styles.inputColorContainer}>
+          <InputColor
+            label={'background'}
+            onColorChange={onColorChange}
+            name={'backgroundColor'}
+            defaultColor={`${
+              currentLink?.backgroundColor
+                ? currentLink.backgroundColor
+                : '#333333'
+            }`}
+            className={styles.test}
+          />
+          <InputColor
+            label={'Font'}
+            onColorChange={onColorChange}
+            name={'fontColor'}
+            defaultColor={`${
+              currentLink?.fontColor ? currentLink.fontColor : '#ffffff'
+            }`}
+            className={styles.test}
+          />
+          <Button priority='primary' className={styles.addBtn} type='submit'>
+            {addButton}
+          </Button>
+        </section>
       </form>
-      <section className={styles.inputColorContainer}>
-        <InputColor
-          label={'background'}
-          onColorChange={onColorChange}
-          name={'backgroundColor'}
-          defaultColor={`${
-            currentLink?.backgroundColor
-              ? currentLink.backgroundColor
-              : '#333333'
-          }`}
-          className={styles.test}
-        />
-        <InputColor
-          label={'Font'}
-          onColorChange={onColorChange}
-          name={'fontColor'}
-          defaultColor={`${
-            currentLink?.fontColor ? currentLink.fontColor : '#ffffff'
-          }`}
-          className={styles.test}
-        />
-      </section>
     </Card>
   );
 };
