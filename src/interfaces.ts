@@ -181,10 +181,12 @@ export interface LoginProps {
     inputPasswordIcon: string;
     usernameIcon: string;
     loginInstructions: string;
+    emailIcon: string;
     emailLabel: string;
     emailPlaceholder: string;
     passwordLabel: string;
     passwordPlaceholder: string;
+    passwordIcon: string;
     loginButton: string;
     registerInstructionsBtn: string;
     registerBtn: string;
