@@ -80,6 +80,7 @@ const LinkForm = (props: LinkFormProps) => {
     inputRef.current?.blur();
 
     const form = e.target as HTMLFormElement;
+    console.log(form);
     const inputValue = form.inputLink.value;
     const payload = {
       linkId,
@@ -132,6 +133,7 @@ const LinkForm = (props: LinkFormProps) => {
           ref={inputRef}
           timeOnCheck={500}
           isRequired
+          className={styles.inputTextLink}
         />
         <section className={styles.inputColorContainer}>
           <InputColor
@@ -154,14 +156,7 @@ const LinkForm = (props: LinkFormProps) => {
             }`}
             className={styles.test}
           />
-          <Button
-            priority='primary'
-            className={styles.addBtn}
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            //@ts-ignore
-            onClick={onSubmitInputHandler}
-            type='submit'
-          >
+          <Button priority='primary' className={styles.addBtn} type='submit'>
             {addButton}
           </Button>
         </section>

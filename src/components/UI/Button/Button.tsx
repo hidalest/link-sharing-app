@@ -1,10 +1,10 @@
-import React, { FormEvent, FormEventHandler, MouseEventHandler } from 'react';
+import React, { MouseEventHandler } from 'react';
 import styles from './Button.module.scss';
 
 interface ButtonProps {
   children: React.ReactNode;
   className?: string;
-  onClick?: (e?: FormEvent<HTMLInputElement>) => void;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   priority: 'primary' | 'secondary' | 'tertiary';
   name?: string;
   type?: 'button' | 'submit';
@@ -21,7 +21,7 @@ function Button(props: ButtonProps) {
   } = props;
   return (
     <button
-      onClick={onClick} // error here
+      onClick={onClick}
       className={`${styles.button} ${
         styles[`button-${priority}`]
       } ${className}`}
